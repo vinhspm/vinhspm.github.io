@@ -60,6 +60,9 @@ figure{
 #pic-5{
     margin-top:100px;
 }
+footer{
+    text-align: center;
+}
 @media(max-width:873px){
     #pic-2,#pic-4,#pic-6{
         margin-top:100px;
