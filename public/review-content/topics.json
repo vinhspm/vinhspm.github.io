@@ -1,0 +1,498 @@
+[
+  {
+    "title": "1. Core Java",
+    "icon": "🔷",
+    "topics": [
+      {
+        "name": "OOP",
+        "subs": [
+          "Encapsulation",
+          "Inheritance",
+          "Polymorphism",
+          "Abstraction",
+          "Interface vs Abstract Class"
+        ]
+      },
+      {
+        "name": "JVM Internals",
+        "subs": [
+          "Heap",
+          "Stack",
+          "Metaspace",
+          "Class Loading",
+          "Garbage Collection",
+          "Memory Leaks"
+        ]
+      },
+      {
+        "name": "Collections",
+        "subs": [
+          "ArrayList vs LinkedList",
+          "HashMap Internals",
+          "ConcurrentHashMap",
+          "TreeMap / LinkedHashMap"
+        ]
+      },
+      {
+        "name": "Exception Handling",
+        "subs": [
+          "Checked vs Unchecked",
+          "try-with-resources",
+          "Custom Exceptions"
+        ]
+      },
+      {
+        "name": "Java I/O",
+        "subs": [
+          "Blocking I/O (java.io)",
+          "NIO (Non-Blocking)",
+          "NIO.2 Path & Files",
+          "So sánh các mô hình I/O"
+        ]
+      },
+      {
+        "name": "Performance Tuning",
+        "subs": [
+          "Công cụ Profiling (jstack/jmap/jcmd)",
+          "Phân tích Heap Dump",
+          "Phân tích Thread Dump",
+          "JVM Flags Cheatsheet"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "2. Concurrency",
+    "icon": "⚡",
+    "topics": [
+      {
+        "name": "Thread Lifecycle",
+        "subs": []
+      },
+      {
+        "name": "Synchronization",
+        "subs": [
+          "synchronized keyword",
+          "wait / notify",
+          "ReentrantLock"
+        ]
+      },
+      {
+        "name": "Volatile",
+        "subs": []
+      },
+      {
+        "name": "Atomic Classes",
+        "subs": [
+          "AtomicInteger",
+          "CAS (Compare-And-Swap)"
+        ]
+      },
+      {
+        "name": "Thread Pool",
+        "subs": [
+          "ExecutorService",
+          "CompletableFuture"
+        ]
+      },
+      {
+        "name": "Deadlock",
+        "subs": []
+      },
+      {
+        "name": "Race Condition",
+        "subs": []
+      },
+      {
+        "name": "Starvation",
+        "subs": []
+      },
+      {
+        "name": "Java Memory Model",
+        "subs": [
+          "happens-before",
+          "visibility / ordering"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "3. Spring Ecosystem",
+    "icon": "🍃",
+    "topics": [
+      {
+        "name": "Spring Core",
+        "subs": [
+          "IoC Container",
+          "Dependency Injection",
+          "Bean Lifecycle",
+          "Bean Scope"
+        ]
+      },
+      {
+        "name": "Spring Boot",
+        "subs": [
+          "Auto Configuration",
+          "Profiles",
+          "Actuator"
+        ]
+      },
+      {
+        "name": "Spring MVC",
+        "subs": [
+          "Request Flow",
+          "Filters vs Interceptors",
+          "Exception Handling (@ControllerAdvice)"
+        ]
+      },
+      {
+        "name": "Spring Security",
+        "subs": [
+          "JWT",
+          "OAuth2",
+          "Authentication vs Authorization"
+        ]
+      },
+      {
+        "name": "Spring AOP",
+        "subs": [
+          "Proxy Mechanism",
+          "Aspect / Pointcut / Advice",
+          "Cross-Cutting Concerns"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "4. Database",
+    "icon": "🗄️",
+    "topics": [
+      {
+        "name": "SQL",
+        "subs": [
+          "Joins",
+          "Window Functions",
+          "GROUP BY / HAVING"
+        ]
+      },
+      {
+        "name": "Indexing",
+        "subs": [
+          "B-Tree Index",
+          "Composite Index",
+          "Covering Index"
+        ]
+      },
+      {
+        "name": "Transactions",
+        "subs": [
+          "ACID",
+          "Isolation Levels",
+          "Locking"
+        ]
+      },
+      {
+        "name": "JPA / Hibernate",
+        "subs": [
+          "Entity Lifecycle",
+          "Lazy Loading",
+          "N+1 Problem",
+          "Optimistic / Pessimistic Locking"
+        ]
+      },
+      {
+        "name": "NoSQL",
+        "subs": [
+          "Redis",
+          "MongoDB",
+          "When to Use NoSQL"
+        ]
+      },
+      {
+        "name": "MyBatis",
+        "subs": [
+          "Mapper & XML Mapping",
+          "Dynamic SQL",
+          "ResultMap",
+          "MyBatis vs JPA"
+        ]
+      },
+      {
+        "name": "MySQL Deep Dive",
+        "subs": [
+          "InnoDB & MVCC",
+          "Đọc EXPLAIN Plan",
+          "Slow Query Log",
+          "Connection Pool (HikariCP)"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "5. Microservices",
+    "icon": "🔗",
+    "topics": [
+      {
+        "name": "Service Discovery",
+        "subs": [
+          "Eureka / Consul"
+        ]
+      },
+      {
+        "name": "API Gateway",
+        "subs": [
+          "Routing & Rate Limiting"
+        ]
+      },
+      {
+        "name": "Circuit Breaker",
+        "subs": [
+          "Resilience4j",
+          "States: CLOSED → OPEN → HALF_OPEN"
+        ]
+      },
+      {
+        "name": "Service Communication",
+        "subs": [
+          "REST vs gRPC",
+          "Feign Client"
+        ]
+      },
+      {
+        "name": "Saga Pattern",
+        "subs": [
+          "Choreography",
+          "Orchestration"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "6. Messaging",
+    "icon": "📨",
+    "topics": [
+      {
+        "name": "Kafka",
+        "subs": [
+          "Topic / Partition / Offset",
+          "Producer & Consumer",
+          "Consumer Group",
+          "Ordering Guarantees"
+        ]
+      },
+      {
+        "name": "RabbitMQ",
+        "subs": [
+          "Exchange / Queue / Binding",
+          "Routing Keys"
+        ]
+      },
+      {
+        "name": "Common Concepts",
+        "subs": [
+          "Dead Letter Queue (DLQ)",
+          "Idempotency / Deduplication",
+          "Retry Strategies",
+          "At-Least-Once vs Exactly-Once"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "7. System Design",
+    "icon": "🏗️",
+    "topics": [
+      {
+        "name": "Scalability",
+        "subs": [
+          "Horizontal vs Vertical",
+          "Stateless Services"
+        ]
+      },
+      {
+        "name": "Load Balancing",
+        "subs": [
+          "Algorithms",
+          "Consistent Hashing"
+        ]
+      },
+      {
+        "name": "Caching",
+        "subs": [
+          "Cache-Aside",
+          "Write-Through / Write-Behind",
+          "Eviction Policies"
+        ]
+      },
+      {
+        "name": "Database Scaling",
+        "subs": [
+          "Read Replica",
+          "Sharding",
+          "CQRS"
+        ]
+      },
+      {
+        "name": "Distributed Lock",
+        "subs": [
+          "Redis SETNX / Redlock"
+        ]
+      },
+      {
+        "name": "Rate Limiting",
+        "subs": [
+          "Token Bucket",
+          "Sliding Window"
+        ]
+      },
+      {
+        "name": "CAP Theorem",
+        "subs": []
+      },
+      {
+        "name": "Consistency Patterns",
+        "subs": [
+          "Eventual Consistency",
+          "Strong Consistency"
+        ]
+      },
+      {
+        "name": "High Concurrency",
+        "subs": [
+          "Sizing Thread Pool",
+          "Tuning Connection Pool",
+          "Bulkhead & Isolation",
+          "Capacity Planning"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "8. Cloud & DevOps",
+    "icon": "☁️",
+    "topics": [
+      {
+        "name": "Docker",
+        "subs": [
+          "Image / Container / Layer",
+          "Dockerfile Best Practices",
+          "Networking & Volumes"
+        ]
+      },
+      {
+        "name": "Kubernetes",
+        "subs": [
+          "Pod / Deployment / Service",
+          "ConfigMap & Secret",
+          "HPA & Rolling Update"
+        ]
+      },
+      {
+        "name": "CI/CD",
+        "subs": [
+          "Pipeline Stages",
+          "Blue-Green & Canary Deploy"
+        ]
+      },
+      {
+        "name": "Monitoring",
+        "subs": [
+          "Prometheus & Grafana",
+          "Distributed Tracing",
+          "Structured Logging"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "9. Testing",
+    "icon": "🧪",
+    "topics": [
+      {
+        "name": "Unit Test",
+        "subs": [
+          "JUnit 5 Annotations",
+          "Parameterized Tests"
+        ]
+      },
+      {
+        "name": "Mocking",
+        "subs": [
+          "Mockito (Mock / Spy / Captor)",
+          "When to Mock"
+        ]
+      },
+      {
+        "name": "Integration Test",
+        "subs": [
+          "@SpringBootTest",
+          "TestContainers"
+        ]
+      },
+      {
+        "name": "Contract Testing",
+        "subs": [
+          "Pact"
+        ]
+      },
+      {
+        "name": "Performance Testing",
+        "subs": [
+          "JMeter / Gatling / k6"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "10. Design Patterns",
+    "icon": "🎨",
+    "topics": [
+      {
+        "name": "Creational",
+        "subs": [
+          "Singleton",
+          "Factory Method",
+          "Builder",
+          "Prototype"
+        ]
+      },
+      {
+        "name": "Structural",
+        "subs": [
+          "Adapter",
+          "Decorator",
+          "Facade",
+          "Proxy"
+        ]
+      },
+      {
+        "name": "Behavioral",
+        "subs": [
+          "Strategy",
+          "Observer",
+          "Template Method",
+          "Command",
+          "Chain of Responsibility"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "11. Linux & Deployment",
+    "icon": "🐧",
+    "topics": [
+      {
+        "name": "File & Process",
+        "subs": []
+      },
+      {
+        "name": "Network & Logs",
+        "subs": []
+      },
+      {
+        "name": "Service Deployment",
+        "subs": []
+      }
+    ]
+  }
+]
