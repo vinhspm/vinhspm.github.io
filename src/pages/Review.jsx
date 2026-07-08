@@ -183,7 +183,7 @@ function Review() {
         {!activeItem ? (
           <div className="welcome">
             <div className="welcome-icon">☕</div>
-            <h2>Bản Đồ Kiến Thức Phỏng Vấn Java</h2>
+            <h2>Tổng Hợp Kiến Thức</h2>
             <p>Chọn chủ đề bất kỳ từ menu bên trái để xem giải thích, ví dụ code và câu hỏi phỏng vấn.</p>
           </div>
         ) : (
