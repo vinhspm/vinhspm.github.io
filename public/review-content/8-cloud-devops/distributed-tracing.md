@@ -43,6 +43,20 @@ Thêm tracing trước khi cần — sau incident thì quá muộn. Sample ở 1
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Sự khác biệt giữa trace và span là gì?
-- **Q:** Trace context được truyền qua HTTP boundary thế nào?
-- **Q:** Sampling là gì và tại sao 100% sampling problematic trong production?
+<details>
+<summary><b>Q: Sự khác biệt giữa trace và span là gì?</b></summary>
+
+**Trace** đại diện cho toàn bộ hành trình xử lý của một request đi xuyên qua toàn bộ hệ thống microservices. **Span** đại diện cho một đơn vị công việc/xử lý nhỏ nhất nằm trong hành trình đó (ví dụ: một truy vấn SQL, một lời gọi HTTP sang service khác).
+</details>
+
+<details>
+<summary><b>Q: Trace context được truyền qua HTTP boundary thế nào?</b></summary>
+
+Thông qua việc chèn các trường thông tin chuẩn hóa vào HTTP Headers (phổ biến nhất là chuẩn **W3C Trace Context** với header `traceparent` chứa Trace ID và Span ID).
+</details>
+
+<details>
+<summary><b>Q: Sampling là gì và tại sao 100% sampling problematic trong production?</b></summary>
+
+Sampling là tỷ lệ chọn lọc lưu trữ lại vết trace (ví dụ chỉ lưu 10% số request). 100% sampling trong production sẽ tạo ra một lượng dữ liệu log khổng lồ gây tốn kém không gian lưu trữ và làm chậm hiệu năng của ứng dụng do chi phí thu thập thông tin lớn.
+</details>

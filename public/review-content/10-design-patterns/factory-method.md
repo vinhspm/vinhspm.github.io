@@ -90,6 +90,20 @@ Registry pattern là Factory Method idiom của Spring. Định nghĩa interface
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Open/Closed Principle là gì và Factory Method hỗ trợ thế nào?
-- **Q:** Sự khác biệt giữa Factory Method và Simple Factory?
-- **Q:** Đặt tên một ví dụ Factory Method trong Spring hoặc JDK.
+<details>
+<summary><b>Q: Open/Closed Principle là gì và Factory Method hỗ trợ thế nào?</b></summary>
+
+OCP khuyên code nên mở rộng dễ dàng nhưng đóng với việc sửa đổi. Factory Method hỗ trợ bằng cách cho phép ta thêm các class sản phẩm mới và các class factory con tương ứng để tạo chúng mà không cần chỉnh sửa code của các factory hay client hiện có.
+</details>
+
+<details>
+<summary><b>Q: Sự khác biệt giữa Factory Method và Simple Factory?</b></summary>
+
+Simple Factory chỉ là một class bình thường chứa cấu trúc if-else để tạo đối tượng dựa trên tham số truyền vào. Factory Method sử dụng tính đa hình và kế thừa, trì hoãn việc quyết định tạo class con nào cho các Factory Class con tự triển khai.
+</details>
+
+<details>
+<summary><b>Q: Đặt tên một ví dụ Factory Method trong Spring hoặc JDK.</b></summary>
+
+Calendar.getInstance() trong JDK hoặc LoggerFactory.getLogger() của SLF4J.
+</details>

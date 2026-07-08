@@ -75,6 +75,20 @@ Dùng strong consistency cho thao tác nơi tính đúng đắn là tối quan t
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Linearizability là gì?
-- **Q:** Google Spanner đạt global strong consistency thế nào?
-- **Q:** Chi phí của strong consistency trong distributed system là gì?
+<details>
+<summary><b>Q: Linearizability là gì?</b></summary>
+
+Là mức độ nhất quán mạnh mẽ nhất cho các hoạt động đơn lẻ trên một đối tượng: đảm bảo mọi hoạt động đọc đều trả về giá trị mới nhất của lệnh ghi thành công gần nhất theo đúng dòng thời gian thực tế toàn cầu.
+</details>
+
+<details>
+<summary><b>Q: Google Spanner đạt global strong consistency thế nào?</b></summary>
+
+Sử dụng công nghệ **TrueTime API** kết hợp đồng bộ hóa đồng hồ phần cứng có độ chính xác cao bằng định vị GPS và đồng hồ nguyên tử (Atomic Clocks) để gán timestamp chính xác tuyệt đối cho các transaction trên toàn cầu.
+</details>
+
+<details>
+<summary><b>Q: Chi phí của strong consistency trong distributed system là gì?</b></summary>
+
+Đánh đổi bằng hiệu năng (tăng độ trễ do phải chờ đồng thuận giữa các node qua 2-phase commit/Paxos) và giảm tính khả dụng (hệ thống có thể từ chối phục vụ nếu không đủ số node phản hồi).
+</details>

@@ -41,6 +41,20 @@ Viết Adapter khi tích hợp payment provider bên thứ ba mới, storage bac
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Sự khác biệt giữa Adapter và Bridge?
-- **Q:** Khi nào dùng Adapter vs rewrite interface?
-- **Q:** Spring HandlerAdapter implement Adapter pattern thế nào?
+<details>
+<summary><b>Q: Sự khác biệt giữa Adapter và Bridge?</b></summary>
+
+Adapter dùng để chuyển đổi interface của một class hiện có thành một interface khác mà client mong muốn (giải quyết bất tương thích sau khi code đã được viết). Bridge tách biệt phần trừu tượng (abstraction) và phần triển khai (implementation) ngay từ khâu thiết kế ban đầu để chúng phát triển độc lập.
+</details>
+
+<details>
+<summary><b>Q: Khi nào dùng Adapter vs rewrite interface?</b></summary>
+
+Dùng Adapter khi code nguồn là thư viện bên thứ ba chỉ đọc, hoặc hệ thống cũ (legacy code) không thể chỉnh sửa trực tiếp. Dùng rewrite interface khi bạn sở hữu hoàn toàn mã nguồn và việc sửa đổi trực tiếp không gây ảnh hưởng lớn.
+</details>
+
+<details>
+<summary><b>Q: Spring HandlerAdapter implement Adapter pattern thế nào?</b></summary>
+
+Spring MVC hỗ trợ nhiều loại controller khác nhau (HTTPRequestHandler, Controller, Servlet). DispatcherServlet sử dụng HandlerAdapter để gọi phương thức xử lý request của từng loại handler tương ứng mà không cần biết chi tiết cấu trúc nội bộ của chúng.
+</details>

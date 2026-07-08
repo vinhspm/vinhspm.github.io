@@ -46,6 +46,20 @@ Dùng External Secrets Operator để sync từ AWS Secrets Manager hoặc Hashi
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Sự khác biệt giữa ConfigMap và Secret trong Kubernetes là gì?
-- **Q:** Làm thế nào để quản lý secret an toàn trong Kubernetes production?
-- **Q:** Điều gì xảy ra với pod khi bạn cập nhật ConfigMap mà chúng mount?
+<details>
+<summary><b>Q: Sự khác biệt giữa ConfigMap và Secret trong Kubernetes là gì?</b></summary>
+
+ConfigMap dùng để lưu trữ dữ liệu cấu hình thông thường dưới dạng plain text. Secret dùng để lưu trữ dữ liệu nhạy cảm (passwords, tokens, keys) dưới dạng mã hóa Base64 và được lưu trên bộ nhớ tạm (tmpfs) của node để tăng độ an toàn.
+</details>
+
+<details>
+<summary><b>Q: Làm thế nào để quản lý secret an toàn trong Kubernetes production?</b></summary>
+
+Sử dụng các công cụ quản lý khóa chuyên nghiệp bên ngoài (như HashiCorp Vault, AWS Secrets Manager) kết hợp với các bộ tích hợp như **External Secrets Operator** để tự động đồng bộ secret vào K8s mà không cần commit khóa lên Git.
+</details>
+
+<details>
+<summary><b>Q: Điều gì xảy ra với pod khi bạn cập nhật ConfigMap mà chúng mount?</b></summary>
+
+Nếu ConfigMap được mount dưới dạng **Volume**, dữ liệu bên trong pod sẽ tự động cập nhật sau một khoảng trễ (không cần restart pod). Nếu ConfigMap được nạp qua **Biến môi trường (env)**, pod sẽ KHÔNG tự động cập nhật cho đến khi nó được khởi động lại (restart/rollout).
+</details>

@@ -77,6 +77,20 @@ class OrderCheckoutSimulation extends Simulation {
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Sự khác biệt giữa load test và stress test?
-- **Q:** Percentile nào (p50/p95/p99) quan trọng nhất cho user experience?
-- **Q:** Làm thế nào để tích hợp performance test vào CI/CD?
+<details>
+<summary><b>Q: Sự khác biệt giữa load test và stress test?</b></summary>
+
+Load Test kiểm tra hoạt động của hệ thống dưới mức tải dự kiến bình thường và cao điểm để đo hiệu năng. Stress Test cố tình tăng tải vượt quá giới hạn thiết kế để tìm ra "điểm gãy" và xem hệ thống phục hồi ra sao sau khi sập.
+</details>
+
+<details>
+<summary><b>Q: Percentile nào (p50/p95/p99) quan trọng nhất cho user experience?</b></summary>
+
+p99 (hoặc p95) quan trọng nhất. Vì p50 là trung vị, p99 cho biết 1% người dùng gặp độ trễ tệ nhất. Trong hệ thống lớn, p99 tệ nghĩa là lượng lớn khách hàng đang có trải nghiệm rất xấu.
+</details>
+
+<details>
+<summary><b>Q: Làm thế nào để tích hợp performance test vào CI/CD?</b></summary>
+
+Chạy một kịch bản kiểm thử tải nhẹ (smoke/load test nhỏ) bằng công cụ CLI (như k6) ở cuối pipeline, cấu hình ngưỡng kiểm tra thất bại (ví dụ: nếu tỷ lệ lỗi > 1% hoặc p95 latency > 500ms thì pipeline fail).
+</details>

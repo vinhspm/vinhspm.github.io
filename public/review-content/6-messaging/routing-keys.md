@@ -62,6 +62,20 @@ Thiết kế taxonomy routing key từ đầu: pattern `domain.entity.action` ho
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Sự khác biệt giữa * và # trong topic routing key là gì?
-- **Q:** Một message có thể được giao đến nhiều queue không?
-- **Q:** Routing key khác nhau thế nào giữa direct và topic exchange?
+<details>
+<summary><b>Q: Sự khác biệt giữa * và # trong topic routing key là gì?</b></summary>
+
+Ký tự `*` đại diện cho chính xác 1 từ (word). Ký tự `#` đại diện cho 0 hoặc nhiều từ.
+</details>
+
+<details>
+<summary><b>Q: Một message có thể được giao đến nhiều queue không?</b></summary>
+
+Có, nếu message được gửi qua Fanout/Topic exchange và cấu hình binding khớp với nhiều queue cùng lúc.
+</details>
+
+<details>
+<summary><b>Q: Routing key khác nhau thế nào giữa direct và topic exchange?</b></summary>
+
+Direct so khớp chuỗi chính xác tuyệt đối (exact match). Topic so khớp chuỗi linh hoạt theo pattern phân tách bằng dấu chấm `.` kết hợp các ký tự đại diện `*` và `#`.
+</details>

@@ -89,6 +89,20 @@ Cho distributed rate limiting qua các instance, back token bucket bằng Redis 
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Sự khác biệt giữa token bucket và fixed window rate limiting là gì?
-- **Q:** Làm thế nào để implement rate limiting hoạt động qua nhiều service instance?
-- **Q:** HTTP status code và header nào một response bị rate-limited nên bao gồm?
+<details>
+<summary><b>Q: Sự khác biệt giữa token bucket và fixed window rate limiting là gì?</b></summary>
+
+Token Bucket cho phép xử lý lưu lượng tăng đột biến (burst of traffic) nếu còn token trong xô. Fixed Window giới hạn cứng số request trong một chu kỳ cố định, có rủi ro bị gấp đôi lượng tải (double-spend) ở ranh giới giữa 2 chu kỳ.
+</details>
+
+<details>
+<summary><b>Q: Làm thế nào để implement rate limiting hoạt động qua nhiều service instance?</b></summary>
+
+Sử dụng Redis làm kho lưu trữ tập trung số lượng token/request còn lại, kết hợp chạy Lua Script để đảm bảo việc kiểm tra và cập nhật khóa diễn ra atomic.
+</details>
+
+<details>
+<summary><b>Q: HTTP status code và header nào một response bị rate-limited nên bao gồm?</b></summary>
+
+Mã trạng thái **429 Too Many Requests**. Đi kèm các header: `Retry-After` (số giây phải chờ trước khi gọi lại), `X-RateLimit-Limit`, và `X-RateLimit-Remaining`.
+</details>

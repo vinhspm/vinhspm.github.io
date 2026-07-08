@@ -58,6 +58,20 @@ Với hầu hết ứng dụng: dùng at-least-once + idempotent consumer (đơn
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Sự khác biệt giữa at-least-once và exactly-once delivery là gì?
-- **Q:** Kafka đạt exactly-once semantics thế nào?
-- **Q:** Tại sao at-least-once + idempotency là lựa chọn thực tế phổ biến nhất?
+<details>
+<summary><b>Q: Sự khác biệt giữa at-least-once và exactly-once delivery là gì?</b></summary>
+
+At-least-once đảm bảo tin nhắn được gửi đi ít nhất một lần (có thể bị trùng lặp do gửi lại khi timeout). Exactly-once đảm bảo tin nhắn được xử lý chính xác một lần duy nhất nhờ cơ chế loại bỏ trùng lặp (deduplication) và transaction.
+</details>
+
+<details>
+<summary><b>Q: Kafka đạt exactly-once semantics thế nào?</b></summary>
+
+Kết hợp 3 cơ chế: Idempotent Producer (gắn chuỗi tuần tự Sequence ID cho tin nhắn), Transactional API (cho phép viết ghi đa partition/topic mang tính nguyên tử), và Consumer tracking offset trong transaction.
+</details>
+
+<details>
+<summary><b>Q: Tại sao at-least-once + idempotency là lựa chọn thực tế phổ biến nhất?</b></summary>
+
+Vì dễ thiết lập, chịu lỗi tốt, hiệu năng cao và ít tốn tài nguyên hệ thống hơn rất nhiều so với việc duy trì transaction hai pha (exactly-once) phức tạp trên toàn bộ các service.
+</details>

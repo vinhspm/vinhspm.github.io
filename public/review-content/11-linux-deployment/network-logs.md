@@ -51,6 +51,20 @@ awk '{sum+=$NF; cnt++} END{print "avg:", sum/cnt}' access.log  # avg response ti
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Kiểm tra process nào đang dùng port 8080 thế nào?
-- **Q:** Nhiều TIME_WAIT connection trong ss -s cho thấy gì?
-- **Q:** Xem live log nhưng chỉ filter dòng ERROR thế nào?
+<details>
+<summary><b>Q: Kiểm tra process nào đang dùng port 8080 thế nào?</b></summary>
+
+Sử dụng lệnh `lsof -i :8080` hoặc `netstat -tunlp | grep 8080` để tìm ra PID của process đang chiếm giữ port.
+</details>
+
+<details>
+<summary><b>Q: Nhiều TIME_WAIT connection trong ss -s cho thấy gì?</b></summary>
+
+Cho thấy ứng dụng đang mở/đóng rất nhiều kết nối TCP ngắn hạn liên tục (short-lived connections) thay vì sử dụng cơ chế Keep-Alive hoặc Connection Pool, gây lãng phí tài nguyên socket của hệ điều hành.
+</details>
+
+<details>
+<summary><b>Q: Xem live log nhưng chỉ filter dòng ERROR thế nào?</b></summary>
+
+Sử dụng lệnh `tail -f app.log | grep --line-buffered "ERROR"`.
+</details>

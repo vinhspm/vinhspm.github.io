@@ -62,6 +62,20 @@ Scan image với `trivy` hoặc `docker scout` cho vulnerability. Đặt image t
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Tại sao bạn nên tránh chạy container với root?
-- **Q:** .dockerignore file là gì và tại sao quan trọng?
-- **Q:** Làm thế nào để xử lý secret cần thiết lúc build time vs runtime?
+<details>
+<summary><b>Q: Tại sao bạn nên tránh chạy container với root?</b></summary>
+
+Vì lý do bảo mật: nếu kẻ tấn công khai thác được lỗ hổng bảo mật bên trong container chạy quyền root, họ có thể thoát ra ngoài container và chiếm toàn quyền kiểm soát máy chủ vật lý (host).
+</details>
+
+<details>
+<summary><b>Q: .dockerignore file là gì và tại sao quan trọng?</b></summary>
+
+Là file khai báo các thư mục/file không được gửi lên Docker Daemon lúc build image (như `node_modules`, `.git`, local build artifacts). Quan trọng vì giúp tăng tốc độ build image và giảm kích thước image, tránh lộ thông tin nhạy cảm.
+</details>
+
+<details>
+<summary><b>Q: Làm thế nào để xử lý secret cần thiết lúc build time vs runtime?</b></summary>
+
+Build time: Dùng tính năng `--secret` của Docker BuildKit để truyền an toàn (không bị ghi đè vào layer history). Runtime: Truyền qua biến môi trường hoặc mount volume bảo mật (như Kubernetes Secrets) khi chạy container.
+</details>

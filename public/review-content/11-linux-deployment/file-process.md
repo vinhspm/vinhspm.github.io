@@ -53,6 +53,20 @@ Dùng `kill -15` (SIGTERM) trước — graceful shutdown của Spring Boot sẽ
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** kill -9 và kill -15 khác nhau thế nào?
-- **Q:** Chạy ứng dụng Java background và giữ nó chạy sau khi logout thế nào?
-- **Q:** Tìm thư mục nào đang chiếm nhiều disk nhất thế nào?
+<details>
+<summary><b>Q: kill -9 và kill -15 khác nhau thế nào?</b></summary>
+
+`kill -15` (SIGTERM) yêu cầu ứng dụng dừng một cách an toàn (graceful shutdown) để nó kịp giải phóng connection pool, lưu trạng thái. `kill -9` (SIGKILL) ép hệ điều hành tắt ứng dụng ngay lập tức mà không cho phép dọn dẹp tài nguyên (dễ gây lỗi mất mát dữ liệu).
+</details>
+
+<details>
+<summary><b>Q: Chạy ứng dụng Java background và giữ nó chạy sau khi logout thế nào?</b></summary>
+
+Sử dụng lệnh `nohup java -jar app.jar > app.log 2>&1 &` hoặc chạy ứng dụng bên trong một systemd service.
+</details>
+
+<details>
+<summary><b>Q: Tìm thư mục nào đang chiếm nhiều disk nhất thế nào?</b></summary>
+
+Sử dụng lệnh `du -h --max-depth=1 / | sort -hr` để hiển thị kích thước các thư mục con cấp 1 và sắp xếp từ lớn đến nhỏ.
+</details>

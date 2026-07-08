@@ -65,6 +65,20 @@ Trước khi scale horizontally, xác định bottleneck. Thường: thêm DB re
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Sự khác biệt giữa horizontal và vertical scaling là gì?
-- **Q:** Tại sao service phải stateless để scale horizontally?
-- **Q:** Làm thế nào để xác định bottleneck trong hệ thống đang chịu tải?
+<details>
+<summary><b>Q: Sự khác biệt giữa horizontal và vertical scaling là gì?</b></summary>
+
+Vertical Scaling (Scale up) là nâng cấp cấu hình phần cứng (CPU, RAM) cho server hiện tại. Horizontal Scaling (Scale out) là bổ sung thêm nhiều server vật lý chạy song song.
+</details>
+
+<details>
+<summary><b>Q: Tại sao service phải stateless để scale horizontally?</b></summary>
+
+Vì nếu chứa trạng thái (state) nội bộ, các server khác sẽ không có thông tin này khi request của người dùng được phân phối ngẫu nhiên sang, dẫn đến sai lệch dữ liệu logic.
+</details>
+
+<details>
+<summary><b>Q: Làm thế nào để xác định bottleneck trong hệ thống đang chịu tải?</b></summary>
+
+Sử dụng các công cụ APM giám sát độ trễ, kiểm tra tỷ lệ sử dụng tài nguyên (CPU, Memory, Disk I/O) của Database Server, đo đạc thời gian kết nối của mạng và phân tích logs lỗi.
+</details>

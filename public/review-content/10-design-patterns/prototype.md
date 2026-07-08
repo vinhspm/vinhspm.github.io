@@ -98,6 +98,20 @@ public class CheckoutService {
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Sự khác biệt giữa shallow clone và deep clone?
-- **Q:** Tại sao Cloneable được coi là broken trong Java?
-- **Q:** Khi nào dùng Prototype thay vì Factory?
+<details>
+<summary><b>Q: Sự khác biệt giữa shallow clone và deep clone?</b></summary>
+
+Shallow Clone chỉ sao chép các kiểu dữ liệu nguyên thủy và tham chiếu của đối tượng con. Deep Clone sao chép toàn bộ bao gồm cả dữ liệu nguyên thủy và nhân bản mới hoàn toàn các đối tượng con độc lập.
+</details>
+
+<details>
+<summary><b>Q: Tại sao Cloneable được coi là broken trong Java?</b></summary>
+
+Vì interface Cloneable không định nghĩa bất kỳ phương thức nào (chỉ là marker interface), và phương thức `clone()` lại là protected trong Object, buộc ta phải cast đối tượng và xử lý lỗi `CloneNotSupportedException` một cách thủ công, rườm rà.
+</details>
+
+<details>
+<summary><b>Q: Khi nào dùng Prototype thay vì Factory?</b></summary>
+
+Khi việc khởi tạo đối tượng mới trực tiếp (bằng toán tử new) tiêu tốn quá nhiều tài nguyên hệ thống (truy vấn DB, đọc file) hoặc khi muốn tạo đối tượng mới giống hệt một đối tượng đang có ở runtime.
+</details>

@@ -74,6 +74,20 @@ Trong K8s, Docker volume chuyển thành PersistentVolumeClaim (PVC). Named volu
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Sự khác biệt giữa Docker volume và bind mount là gì?
-- **Q:** Container trên cùng Docker network giao tiếp thế nào?
-- **Q:** Điều gì xảy ra với dữ liệu trong container khi container bị xóa?
+<details>
+<summary><b>Q: Sự khác biệt giữa Docker volume và bind mount là gì?</b></summary>
+
+Docker Volume được quản lý hoàn toàn bởi Docker trong một thư mục riêng biệt bảo mật của Docker host. Bind Mount liên kết trực tiếp một thư mục tuỳ ý từ máy chủ vật lý (host path) vào container, phụ thuộc vào cấu trúc thư mục của OS máy chủ.
+</details>
+
+<details>
+<summary><b>Q: Container trên cùng Docker network giao tiếp thế nào?</b></summary>
+
+Giao tiếp trực tiếp với nhau thông qua cơ chế phân giải tên miền DNS nội bộ bằng tên của Container (container_name).
+</details>
+
+<details>
+<summary><b>Q: Điều gì xảy ra với dữ liệu trong container khi container bị xóa?</b></summary>
+
+Dữ liệu nằm trong lớp ghi tạm thời (writable layer) sẽ bị xóa sạch hoàn toàn. Chỉ có dữ liệu được lưu trữ trong các Mount/Volume được liên kết mới được bảo toàn trên máy chủ.
+</details>

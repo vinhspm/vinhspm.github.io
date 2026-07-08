@@ -98,6 +98,20 @@ Chuyển từ pattern-based logging sang JSON với `logstash-logback-encoder`. 
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Structured logging là gì và tại sao tốt hơn plain text log?
-- **Q:** MDC giúp gì với correlating log qua một request?
-- **Q:** Mỗi log entry nên bao gồm những field nào?
+<details>
+<summary><b>Q: Structured logging là gì và tại sao tốt hơn plain text log?</b></summary>
+
+Là định dạng log ghi dữ liệu dưới dạng cấu trúc có tổ chức (như JSON) thay vì một dòng text tự do. Tốt hơn vì máy tính dễ dàng phân tích, lọc, tìm kiếm và lập chỉ mục (index) log tự động trên các công cụ như ELK/Loki.
+</details>
+
+<details>
+<summary><b>Q: MDC giúp gì với correlating log qua một request?</b></summary>
+
+Mapped Diagnostic Context giúp lưu trữ các thông tin ngữ cảnh (như Correlation ID/User ID) vào ThreadLocal. Mọi dòng log được in ra từ luồng (thread) đó sẽ tự động được gán kèm ID này, giúp liên kết toàn bộ hành trình xử lý request trong log.
+</details>
+
+<details>
+<summary><b>Q: Mỗi log entry nên bao gồm những field nào?</b></summary>
+
+timestamp (định dạng ISO 8601), log_level (INFO/ERROR), thread_name, logger_name, message, correlation_id, service_name, và exception_stacktrace (nếu có lỗi).
+</details>

@@ -59,6 +59,20 @@ Pool thread riêng cho từng downstream dependency là Bulkhead pattern — pay
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Công thức sizing thread pool cho I/O-bound service?
-- **Q:** Tại sao tạo thread pool riêng cho từng service?
-- **Q:** CallerRunsPolicy khác AbortPolicy thế nào?
+<details>
+<summary><b>Q: Công thức sizing thread pool cho I/O-bound service?</b></summary>
+
+Công thức: `threads = cores * (1 + blocking_time / computation_time)`. Do thời gian chờ I/O (blocking_time) rất lớn nên số lượng thread cho I/O-bound service thường cao hơn nhiều số core CPU.
+</details>
+
+<details>
+<summary><b>Q: Tại sao tạo thread pool riêng cho từng service?</b></summary>
+
+Để cô lập lỗi: sự cố quá tải hoặc treo luồng ở một service này không thể tranh chấp hay làm cạn kiệt tài nguyên thread pool của service khác hoạt động độc lập.
+</details>
+
+<details>
+<summary><b>Q: CallerRunsPolicy khác AbortPolicy thế nào?</b></summary>
+
+AbortPolicy lập tức ném ra lỗi `RejectedExecutionException` khi hàng đợi đầy. CallerRunsPolicy ép chính thread gọi (caller thread) phải trực tiếp xử lý task đó, giúp tự động giảm tốc độ gửi request của ứng dụng (backpressure).
+</details>

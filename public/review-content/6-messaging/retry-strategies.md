@@ -72,6 +72,20 @@ Chỉ retry trên transient error (network timeout, service unavailable). Đừn
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Exponential backoff với jitter là gì và tại sao jitter quan trọng?
-- **Q:** Lỗi nào bạn KHÔNG nên retry?
-- **Q:** Làm thế nào để phân biệt transient vs permanent failure trong Kafka consumer?
+<details>
+<summary><b>Q: Exponential backoff với jitter là gì và tại sao jitter quan trọng?</b></summary>
+
+Là cơ chế tăng thời gian chờ sau mỗi lần thử lại lỗi theo cấp số nhân, kết hợp thêm một lượng thời gian ngẫu nhiên (jitter). Jitter quan trọng để tránh hiện tượng nghẽn cổ chai tập trung (Thundering Herd) khi tất cả các client cùng retry vào một thời điểm.
+</details>
+
+<details>
+<summary><b>Q: Lỗi nào bạn KHÔNG nên retry?</b></summary>
+
+Các lỗi vĩnh viễn (permanent failures) như sai định dạng dữ liệu (validation errors), lỗi xác thực tài khoản (unauthorized), lỗi logic nghiệp vụ không thể tự sửa.
+</details>
+
+<details>
+<summary><b>Q: Làm thế nào để phân biệt transient vs permanent failure trong Kafka consumer?</b></summary>
+
+Transient là lỗi kết nối mạng, database quá tải (nên retry). Permanent là lỗi deserialization, NullPointerException do logic code (nên ném ngay vào DLQ).
+</details>

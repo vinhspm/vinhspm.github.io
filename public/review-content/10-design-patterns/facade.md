@@ -101,6 +101,20 @@ Thiết kế service class như facade: expose method use-case đơn giản (pla
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Sự khác biệt giữa Facade và Adapter?
-- **Q:** Facade có ngăn truy cập trực tiếp vào subsystem không?
-- **Q:** Đặt tên một Facade trong Spring Framework.
+<details>
+<summary><b>Q: Sự khác biệt giữa Facade và Adapter?</b></summary>
+
+Facade tạo ra một interface đơn giản hóa để giao tiếp dễ dàng hơn với cả một hệ thống con phức tạp. Adapter chuyển đổi interface của một class có sẵn sang một interface cụ thể khác để tương thích với hệ thống hiện tại.
+</details>
+
+<details>
+<summary><b>Q: Facade có ngăn truy cập trực tiếp vào subsystem không?</b></summary>
+
+Không. Facade chỉ là một lối đi tắt tiện lợi. Các client vẫn hoàn toàn có quyền truy cập trực tiếp vào các class chi tiết bên trong subsystem nếu cần các tính năng nâng cao.
+</details>
+
+<details>
+<summary><b>Q: Đặt tên một Facade trong Spring Framework.</b></summary>
+
+JdbcTemplate (đơn giản hoá toàn bộ các bước mở kết nối, tạo statement, xử lý exception của JDBC thô) hoặc RestTemplate.
+</details>

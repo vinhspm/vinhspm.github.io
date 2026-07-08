@@ -90,6 +90,20 @@ Strategy là pattern áp dụng nhiều nhất cho biến đổi business logic.
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Strategy khác if-else thế nào?
-- **Q:** Chain of Responsibility được dùng ở đâu trong Spring?
-- **Q:** Sự khác biệt giữa Observer và pub/sub messaging?
+<details>
+<summary><b>Q: Strategy khác if-else thế nào?</b></summary>
+
+If-else cứng nhắc và khó mở rộng (vi phạm Open/Closed). Strategy bao bọc các nhánh điều kiện thành các class chiến lược độc lập kế thừa chung một interface, cho phép dễ dàng thêm chiến lược mới mà không cần sửa đổi code gọi gốc.
+</details>
+
+<details>
+<summary><b>Q: Chain of Responsibility được dùng ở đâu trong Spring?</b></summary>
+
+Dùng phổ biến trong hệ thống lọc của Spring Security (`FilterChain` bao gồm chuỗi các Filter kiểm tra request nối tiếp nhau) và cơ chế HandlerInterceptor trong Spring MVC.
+</details>
+
+<details>
+<summary><b>Q: Sự khác biệt giữa Observer và pub/sub messaging?</b></summary>
+
+Observer là giao tiếp đồng bộ trực tiếp (Subject giữ danh sách tham chiếu các Observer để gọi hàm). Pub/Sub là bất đồng bộ hoàn toàn và lỏng lẻo (decoupled) thông qua một kênh trung gian (Event Broker/Message Queue), người gửi và người nhận không hề biết nhau.
+</details>

@@ -93,6 +93,20 @@ Thêm quality gate làm fail pipeline: coverage test tối thiểu (ví dụ 80%
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Giai đoạn nào mọi CI/CD pipeline production cần có?
-- **Q:** Làm thế nào để ngăn secret bị lộ trong CI log?
-- **Q:** Quality gate là gì và làm thế nào để implement?
+<details>
+<summary><b>Q: Giai đoạn nào mọi CI/CD pipeline production cần có?</b></summary>
+
+Linting & Static Code Analysis -> Unit & Integration Testing -> Build & Package Artifact -> Vulnerability Scanning -> Deploy to Staging -> E2E/Smoke Testing -> Promote to Production -> Post-deploy Verification.
+</details>
+
+<details>
+<summary><b>Q: Làm thế nào để ngăn secret bị lộ trong CI log?</b></summary>
+
+Sử dụng tính năng ẩn giấu (masking values) của các công cụ CI (như GitHub Actions secrets), không bao giờ dùng lệnh `echo` in trực tiếp biến môi trường nhạy cảm ra màn hình console.
+</details>
+
+<details>
+<summary><b>Q: Quality gate là gì và làm thế nào để implement?</b></summary>
+
+Là bộ quy tắc kiểm tra chất lượng bắt buộc code phải vượt qua (ví dụ: SonarQube code coverage > 80%, không có lỗi bảo mật Blockers). Implement bằng cách cấu hình SonarQube plugin chạy chặn ở CI pipeline, nếu không đạt tiêu chuẩn thì tự động dừng pipeline và báo fail.
+</details>

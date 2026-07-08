@@ -90,6 +90,20 @@ Thay thế các test method lặp lại tương tự bằng @ParameterizedTest. 
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Khi nào dùng @MethodSource thay vì @CsvSource?
-- **Q:** Làm thế nào để đặt tên mô tả cho parameterized case?
-- **Q:** Có thể parameterize với enum value không?
+<details>
+<summary><b>Q: Khi nào dùng @MethodSource thay vì @CsvSource?</b></summary>
+
+Khi tập dữ liệu test phức tạp (ví dụ là các đối tượng Java lồng nhau, danh sách danh sách), hoặc dữ liệu cần được sinh động từ code logic thay vì các chuỗi chữ/số đơn giản trong @CsvSource.
+</details>
+
+<details>
+<summary><b>Q: Làm thế nào để đặt tên mô tả cho parameterized case?</b></summary>
+
+Sử dụng thuộc tính name của annotation (ví dụ: `@ParameterizedTest(name = "[{index}] Testing with username={0}, expectedSuccess={1}")`) để hiển thị thông tin rõ ràng trong kết quả chạy test.
+</details>
+
+<details>
+<summary><b>Q: Có thể parameterize với enum value không?</b></summary>
+
+Có, sử dụng annotation `@EnumSource(MyEnum.class)` để tự động truyền lần lượt các giá trị của Enum vào phương thức test làm tham số đầu vào.
+</details>

@@ -62,6 +62,20 @@ Luôn dùng systemd thay vì raw `nohup`: systemd tự restart khi fail, quản 
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Tạo systemd service cho Spring Boot app thế nào?
-- **Q:** systemctl stop khác kill -9 vào Java process thế nào?
-- **Q:** Xem và filter log của systemd service cụ thể thế nào?
+<details>
+<summary><b>Q: Tạo systemd service cho Spring Boot app thế nào?</b></summary>
+
+Tạo file `.service` trong thư mục `/etc/systemd/system/` định nghĩa các thẻ `[Service]` chứa đường dẫn `ExecStart=/usr/bin/java -jar /path/to/app.jar` và chạy lệnh `systemctl enable --now app.service`.
+</details>
+
+<details>
+<summary><b>Q: systemctl stop khác kill -9 vào Java process thế nào?</b></summary>
+
+`systemctl stop` gửi tín hiệu SIGTERM (kill -15) cho Java process để tắt graceful shutdown an toàn. `kill -9` tắt thô bạo cưỡng chế ngay lập tức, không giải phóng tài nguyên.
+</details>
+
+<details>
+<summary><b>Q: Xem và filter log của systemd service cụ thể thế nào?</b></summary>
+
+Sử dụng công cụ `journalctl`: chạy lệnh `journalctl -u app.service -f` để xem live log hoặc `journalctl -u app.service --since "1 hour ago"` để xem log 1 giờ qua.
+</details>

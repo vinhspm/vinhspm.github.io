@@ -79,6 +79,20 @@ Cấu hình two-level cache: Caffeine (L1, nanosecond, per-instance) backed bở
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Cache stampede là gì và làm thế nào để ngăn?
-- **Q:** Sự khác biệt giữa cache invalidation và TTL-based expiry là gì?
-- **Q:** Làm thế nào để implement cache warming khi khởi động ứng dụng?
+<details>
+<summary><b>Q: Cache stampede là gì và làm thế nào để ngăn?</b></summary>
+
+Giống Thundering Herd, xảy ra khi nhiều luồng cùng đọc DB khi cache miss. Ngăn chặn bằng cách dùng Lock/Mutex cho luồng đầu tiên đi tải dữ liệu, hoặc tính toán cập nhật cache chạy ngầm trước khi hết hạn (probabilistic early expiration).
+</details>
+
+<details>
+<summary><b>Q: Sự khác biệt giữa cache invalidation và TTL-based expiry là gì?</b></summary>
+
+Cache Invalidation là chủ động xóa hoặc cập nhật cache ngay khi dữ liệu gốc thay đổi. TTL-based Expiry là tự động giải phóng key cache sau một khoảng thời gian thiết lập sẵn bất kể dữ liệu gốc có đổi hay không.
+</details>
+
+<details>
+<summary><b>Q: Làm thế nào để implement cache warming khi khởi động ứng dụng?</b></summary>
+
+Sử dụng các hook khởi động ứng dụng (ví dụ `@EventListener(ApplicationReadyEvent.class)` trong Spring) để chủ động truy vấn các dữ liệu tĩnh, cấu hình hệ thống, hoặc dữ liệu truy cập nhiều từ DB và đẩy vào Redis trước khi mở cổng nhận request từ người dùng.
+</details>

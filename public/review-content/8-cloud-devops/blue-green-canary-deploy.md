@@ -83,6 +83,20 @@ Dùng Argo Rollouts cho automated canary với Prometheus-based promotion gate. 
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Trade-off chính giữa blue-green và canary deployment là gì?
-- **Q:** Argo Rollouts tự động hóa quyết định canary promotion thế nào?
-- **Q:** Feature flag là gì và khác canary deployment thế nào?
+<details>
+<summary><b>Q: Trade-off chính giữa blue-green và canary deployment là gì?</b></summary>
+
+Blue-Green cần gấp đôi tài nguyên hệ thống (chạy song song 2 môi trường hoàn chỉnh) nhưng rollback lập tức rất an toàn. Canary tiết kiệm tài nguyên hơn và kiểm tra được lỗi trên tập người dùng thực tế nhỏ nhưng quá trình theo dõi lâu và phức tạp hơn.
+</details>
+
+<details>
+<summary><b>Q: Argo Rollouts tự động hóa quyết định canary promotion thế nào?</b></summary>
+
+Sử dụng cơ chế **AnalysisTemplate** để định kỳ chạy các truy vấn PromQL kiểm tra tỷ lệ lỗi, độ trễ trên Prometheus. Nếu các chỉ số nằm trong ngưỡng an toàn, nó tự động tăng tỷ lệ traffic; nếu phát hiện lỗi, nó tự động rollback.
+</details>
+
+<details>
+<summary><b>Q: Feature flag là gì và khác canary deployment thế nào?</b></summary>
+
+Canary Deployment là kiểm soát định tuyến traffic ở tầng mạng hạ tầng (gửi 5% user sang bản app mới). Feature Flag hoạt động ở tầng logic ứng dụng (if/else trong code), cho phép bật/tắt tính năng động cho từng đối tượng user cụ thể.
+</details>

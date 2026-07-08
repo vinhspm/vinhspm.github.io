@@ -20,6 +20,20 @@ HC là concern xuyên suốt. Trong phỏng vấn: đừng chỉ nói "thêm ser
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Phát biểu Little's Law và dùng để size thread pool.
-- **Q:** Walk me through thiết kế system xử lý 50K request/giây.
-- **Q:** Khi latency spike dưới high load, điều đầu tiên bạn kiểm tra là gì?
+<details>
+<summary><b>Q: Phát biểu Little's Law và dùng để size thread pool.</b></summary>
+
+Công thức: `L = λ * W` (Số lượng request đồng thời trong hệ thống = Tốc độ request đầu vào * Thời gian xử lý trung bình). Dùng để tính toán số lượng thread tối đa cần thiết để tránh nghẽn hàng đợi.
+</details>
+
+<details>
+<summary><b>Q: Walk me through thiết kế system xử lý 50K request/giây.</b></summary>
+
+Dùng CDN cho static files -> API Gateway (Rate limit, Auth) -> DNS Round Robin / Load Balancer (L4/L7) -> Cụm Stateless Web App (Auto Scale) -> Cache tầng (Redis) giảm tải cho DB -> Hàng đợi bất đồng bộ (Kafka/RabbitMQ) cho luồng ghi phức tạp -> Database Sharding / NoSQL.
+</details>
+
+<details>
+<summary><b>Q: Khi latency spike dưới high load, điều đầu tiên bạn kiểm tra là gì?</b></summary>
+
+Kiểm tra tỷ lệ sử dụng CPU/Memory của Database Server, số lượng kết nối Connection Pool của ứng dụng có bị cạn kiệt không, hoặc thời gian chạy Garbage Collection (GC Pause) của ứng dụng.
+</details>

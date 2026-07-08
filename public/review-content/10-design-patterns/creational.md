@@ -73,6 +73,20 @@ Dùng Lombok @Builder cho DTO/request nhiều field. Dùng Factory Method khi kh
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Khi nào dùng Builder thay vì constructor?
-- **Q:** Sự khác biệt giữa Factory Method và Abstract Factory?
-- **Q:** Spring quản lý Singleton bean thế nào?
+<details>
+<summary><b>Q: Khi nào dùng Builder thay vì constructor?</b></summary>
+
+Khi đối tượng có quá nhiều trường (ví dụ > 4 trường), nhiều trường tùy chọn (optional) hoặc khi đối tượng yêu cầu quá trình khởi tạo phức tạp từng bước.
+</details>
+
+<details>
+<summary><b>Q: Sự khác biệt giữa Factory Method và Abstract Factory?</b></summary>
+
+Factory Method là một phương thức đơn lẻ để tạo ra một loại đối tượng cụ thể thông qua kế thừa. Abstract Factory là một Interface chứa nhiều Factory Method để tạo ra một họ các đối tượng liên quan với nhau mà không cần chỉ ra class cụ thể.
+</details>
+
+<details>
+<summary><b>Q: Spring quản lý Singleton bean thế nào?</b></summary>
+
+Spring sử dụng một bộ đăng ký (Singleton Registry) nội bộ (bản chất là một ConcurrentHashMap) để lưu giữ và trả về duy nhất một instance của bean ứng với mỗi ID/Class trong suốt vòng đời của ApplicationContext (khác với Singleton cổ điển ở mức ClassLoader).
+</details>

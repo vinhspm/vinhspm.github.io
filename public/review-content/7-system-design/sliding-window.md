@@ -72,6 +72,20 @@ Sliding window chính xác hơn fixed window nhưng dùng nhiều memory hơn (O
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Double-spend problem với fixed window rate limiting là gì?
-- **Q:** Làm thế nào để implement sliding window trong Redis?
-- **Q:** Trade-off giữa sliding window log và sliding window counter là gì?
+<details>
+<summary><b>Q: Double-spend problem với fixed window rate limiting là gì?</b></summary>
+
+Là hiện tượng người dùng có thể gửi gấp đôi số lượng request cho phép bằng cách tập trung toàn bộ request vào cuối chu kỳ 1 và đầu chu kỳ 2 liền kề nhau.
+</details>
+
+<details>
+<summary><b>Q: Làm thế nào để implement sliding window trong Redis?</b></summary>
+
+Sử dụng cấu trúc dữ liệu **Sorted Set (ZSET)**. Mỗi request đến sẽ được ghi nhận với value và score là thời gian hiện tại (epoch timestamp). Chạy lệnh `ZREMRANGEBYSCORE` để xoá các request nằm ngoài cửa sổ thời gian, và dùng `ZCARD` để đếm xem số request còn lại có vượt quá giới hạn hay không.
+</details>
+
+<details>
+<summary><b>Q: Trade-off giữa sliding window log và sliding window counter là gì?</b></summary>
+
+Sliding Window Log chính xác tuyệt đối nhưng cực kỳ tốn bộ nhớ vì phải lưu timestamp của từng request. Sliding Window Counter tiết kiệm bộ nhớ tối đa bằng cách ước lượng gần đúng dựa trên tỷ lệ giao thoa giữa hai chu kỳ gần nhất.
+</details>

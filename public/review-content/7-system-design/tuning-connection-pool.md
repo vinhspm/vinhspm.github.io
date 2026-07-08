@@ -47,6 +47,20 @@ Pattern incident production điển hình: traffic spike → pool hết → requ
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Tính maximumPoolSize thế nào khi chạy 5 app instance?
-- **Q:** Điều gì gây ra "Connection is not available, request timed out" trong HikariCP?
-- **Q:** Khi nào cần thêm ProxySQL trước MySQL?
+<details>
+<summary><b>Q: Tính maximumPoolSize thế nào khi chạy 5 app instance?</b></summary>
+
+Tổng số kết nối tối đa từ 5 instance không được vượt quá giới hạn chịu tải kết nối của DB Server (max_connections). Công thức: `5 * maximumPoolSize < max_connections - reserve`.
+</details>
+
+<details>
+<summary><b>Q: Điều gì gây ra "Connection is not available, request timed out" trong HikariCP?</b></summary>
+
+Do tất cả các kết nối trong pool đều đang bận xử lý câu lệnh chậm, hoặc ứng dụng bị rò rỉ kết nối (Connection Leak) lấy ra nhưng quên không đóng lại để trả về pool.
+</details>
+
+<details>
+<summary><b>Q: Khi nào cần thêm ProxySQL trước MySQL?</b></summary>
+
+Khi hệ thống có số lượng app instance quá lớn làm cạn kiệt kết nối trực tiếp đến MySQL, hoặc khi cần tự động hóa việc phân tách câu lệnh đọc/ghi (Read/Write splitting) và làm cache câu lệnh ở tầng trung gian.
+</details>

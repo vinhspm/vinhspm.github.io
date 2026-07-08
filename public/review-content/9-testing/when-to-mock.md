@@ -82,6 +82,20 @@ Nguyên tắc: mock infrastructure (I/O), test domain. Test với 10+ mock là c
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Rủi ro của over-mocking là gì?
-- **Q:** Có nên mock class đang test không?
-- **Q:** Điều gì có nghĩa khi setup mock rất đau đớn?
+<details>
+<summary><b>Q: Rủi ro của over-mocking là gì?</b></summary>
+
+Làm bài test trở nên quá nhạy cảm và dễ hỏng (fragile) khi cấu trúc code thay đổi nhỏ dù logic nghiệp vụ vẫn đúng, đồng thời che giấu các lỗi tích hợp thực tế giữa các class với nhau.
+</details>
+
+<details>
+<summary><b>Q: Có nên mock class đang test không?</b></summary>
+
+Không bao giờ. Class đang được kiểm thử (System Under Test - SUT) phải luôn chạy code thật 100% để đảm bảo kiểm thử chính xác hành vi của nó.
+</details>
+
+<details>
+<summary><b>Q: Điều gì có nghĩa khi setup mock rất đau đớn?</b></summary>
+
+Cho thấy class đó đang vi phạm nguyên tắc Single Responsibility (quá nhiều dependencies, ôm đồm quá nhiều việc) và cần phải được refactor chia nhỏ ra ngay lập tức.
+</details>

@@ -56,6 +56,20 @@ Thiết kế số partition cho parallelism consumer mong đợi. Nếu cần 10
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Consumer group là gì và giải quyết vấn đề gì?
-- **Q:** Số consumer active tối đa trong consumer group là bao nhiêu?
-- **Q:** Điều gì trigger Kafka rebalance và ảnh hưởng của nó là gì?
+<details>
+<summary><b>Q: Consumer group là gì và giải quyết vấn đề gì?</b></summary>
+
+Là nhóm các consumer cùng chia sẻ việc tiêu thụ dữ liệu của một Topic. Giải quyết vấn đề mở rộng quy mô xử lý (scale-out) song song và tự động chia sẻ tải/chịu lỗi (fault tolerance).
+</details>
+
+<details>
+<summary><b>Q: Số consumer active tối đa trong consumer group là bao nhiêu?</b></summary>
+
+Bằng số lượng **Partition** của topic đó. Số consumer vượt quá số partition sẽ ở trạng thái rảnh rỗi (idle) chờ dự phòng.
+</details>
+
+<details>
+<summary><b>Q: Điều gì trigger Kafka rebalance và ảnh hưởng của nó là gì?</b></summary>
+
+Trigger khi có consumer tham gia/rời nhóm, consumer crash (mất heartbeat), hoặc số partition thay đổi. Ảnh hưởng: Tạm dừng việc đọc tin nhắn của cả nhóm (STW), có thể gây trễ (lag) và lãng phí tài nguyên xử lý lại.
+</details>

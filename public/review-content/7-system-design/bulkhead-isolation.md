@@ -52,6 +52,20 @@ Luôn định nghĩa fallback method — Bulkhead không có fallback chỉ thro
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Bulkhead giải quyết vấn đề gì mà shared thread pool không làm được?
-- **Q:** Thread pool bulkhead và semaphore bulkhead khác nhau thế nào?
-- **Q:** Bulkhead bổ sung cho Circuit Breaker thế nào?
+<details>
+<summary><b>Q: Bulkhead giải quyết vấn đề gì mà shared thread pool không làm được?</b></summary>
+
+Ngăn chặn lỗi lan truyền (fault isolation). Bulkhead chia nhỏ các thread pool riêng biệt cho từng service. Nếu một service bị sập hoặc quá tải, nó chỉ chiếm dụng hết thread pool của riêng nó chứ không làm cạn kiệt tài nguyên của các service khác dùng chung hệ thống.
+</details>
+
+<details>
+<summary><b>Q: Thread pool bulkhead và semaphore bulkhead khác nhau thế nào?</b></summary>
+
+Thread Pool Bulkhead chạy bất đồng bộ trên một thread riêng biệt biệt lập (phù hợp cho các I/O call chịu tải chậm, dễ quản lý timeout nhưng tốn CPU context switch). Semaphore Bulkhead chạy đồng bộ trên chính thread hiện tại và chỉ giới hạn số luồng truy cập (ít tốn tài nguyên, phù hợp cho tác vụ nhanh).
+</details>
+
+<details>
+<summary><b>Q: Bulkhead bổ sung cho Circuit Breaker thế nào?</b></summary>
+
+Bulkhead giới hạn **dung lượng tài nguyên tối đa** có thể sử dụng đồng thời, giúp ứng dụng không bị sập luồng trước khi Circuit Breaker có đủ số mẫu lỗi để kích hoạt ngắt mạch (`OPEN`).
+</details>

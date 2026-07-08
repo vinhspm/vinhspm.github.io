@@ -64,6 +64,20 @@ Thêm `@Transactional(readOnly=true)` vào TẤT CẢ query method trong service
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Replication lag là gì và gây vấn đề consistency gì?
-- **Q:** Làm thế nào để route read vs write traffic trong Spring Boot?
-- **Q:** "Read your own writes" consistency problem là gì?
+<details>
+<summary><b>Q: Replication lag là gì và gây vấn đề consistency gì?</b></summary>
+
+Là thời gian trễ đồng bộ dữ liệu từ Master DB sang Replica DB. Gây ra lỗi không nhất quán: Client vừa viết dữ liệu thành công, đọc lại ngay lập tức từ node Replica thì thấy dữ liệu cũ hoặc trống.
+</details>
+
+<details>
+<summary><b>Q: Làm thế nào để route read vs write traffic trong Spring Boot?</b></summary>
+
+Cấu hình một `AbstractRoutingDataSource` động trong Spring Boot, kết hợp kiểm tra thuộc tính `@Transactional(readOnly = true/false)` để tự động chuyển kết nối đến Replica DataSource (nếu readonly) hoặc Master DataSource.
+</details>
+
+<details>
+<summary><b>Q: "Read your own writes" consistency problem là gì?</b></summary>
+
+Là vấn đề người dùng không thấy được nội dung mình vừa tự tạo/cập nhật do trễ đồng bộ DB. Giải quyết bằng cách tạm thời định tuyến mọi lượt đọc của user đó trực tiếp vào Master DB trong một khoảng thời gian ngắn (ví dụ vài giây).
+</details>

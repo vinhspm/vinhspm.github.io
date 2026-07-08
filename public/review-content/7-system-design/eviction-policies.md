@@ -62,6 +62,20 @@ Monitor cache hit rate (mục tiêu >90% cho cache thiết kế tốt). Hit rate
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Sự khác biệt giữa LRU và LFU eviction là gì?
-- **Q:** Redis quyết định evict gì khi memory đầy thế nào?
-- **Q:** Metric nào cho biết eviction policy cần điều chỉnh?
+<details>
+<summary><b>Q: Sự khác biệt giữa LRU và LFU eviction là gì?</b></summary>
+
+LRU (Least Recently Used) xóa phần tử đã lâu nhất không được truy cập. LFU (Least Frequently Used) xóa phần tử có tần suất/số lần được truy cập ít nhất trong một khoảng thời gian.
+</details>
+
+<details>
+<summary><b>Q: Redis quyết định evict gì khi memory đầy thế nào?</b></summary>
+
+Dựa trên cấu hình `maxmemory-policy` (ví dụ: `volatile-lru`, `allkeys-lru`, `noeviction` - ném lỗi oom không xóa). Redis sử dụng thuật toán xấp xỉ (approximated LRU) để tiết kiệm CPU.
+</details>
+
+<details>
+<summary><b>Q: Metric nào cho biết eviction policy cần điều chỉnh?</b></summary>
+
+Tỷ lệ **Cache Hit Rate** giảm mạnh đồng thời số lượng khoá bị xoá (`evicted_keys`) tăng cao liên tục.
+</details>

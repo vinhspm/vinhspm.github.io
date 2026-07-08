@@ -78,6 +78,14 @@ Dùng `@Transactional(readOnly=true)` trên tất cả service method read-only 
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Read replica giúp gì với database scalability?
-- **Q:** Replication lag là gì và ảnh hưởng đến ứng dụng thế nào?
-- **Q:** Khi nào bạn chọn sharding thay vì read replica?
+<details>
+<summary><b>Q: Read replica giúp gì với database scalability?</b></summary>
+
+Cho phép nhân bản dữ liệu ra nhiều node phụ chỉ để phục vụ luồng đọc (SELECT), giúp giải tải cho master node và mở rộng khả năng chịu tải đọc của hệ thống dễ dàng.
+</details>
+
+<details>
+<summary><b>Q: Khi nào bạn chọn sharding thay vì read replica?</b></summary>
+
+Khi dung lượng lưu trữ của database vượt quá giới hạn của một server vật lý, hoặc khi lượng ghi (WRITE) quá cao vượt quá khả năng chịu tải của duy nhất một Master Node.
+</details>

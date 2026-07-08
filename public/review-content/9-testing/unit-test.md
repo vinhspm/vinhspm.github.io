@@ -44,6 +44,20 @@ Viết unit test cho: business logic, edge case, error path, domain rule. Không
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Test pyramid là gì và tại sao quan trọng?
-- **Q:** AAA pattern là gì?
-- **Q:** Điều gì KHÔNG nên unit test?
+<details>
+<summary><b>Q: Test pyramid là gì và tại sao quan trọng?</b></summary>
+
+Là mô hình kim tự tháp kiểm thử: Unit Test ở đáy (số lượng nhiều nhất, chạy nhanh nhất, chi phí rẻ nhất) -> Integration Test ở giữa -> E2E Test ở đỉnh (ít nhất, chạy chậm nhất, chi phí đắt nhất). Quan trọng để tối ưu hóa thời gian phản hồi của kiểm thử và chi phí viết/bảo trì test.
+</details>
+
+<details>
+<summary><b>Q: AAA pattern là gì?</b></summary>
+
+Là cấu trúc chuẩn hóa cho một bài test: Arrange (thiết lập dữ liệu giả lập), Act (gọi hàm cần test), và Assert (kiểm tra kết quả trả về khớp mong muốn).
+</details>
+
+<details>
+<summary><b>Q: Điều gì KHÔNG nên unit test?</b></summary>
+
+Các thư viện bên thứ ba đã được kiểm thử, cấu hình framework, các đoạn code quá đơn giản như getter/setter thuần túy, hoặc các đoạn code liên quan trực tiếp đến UI/Hạ tầng mạng.
+</details>

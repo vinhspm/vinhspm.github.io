@@ -71,6 +71,8 @@ Spring AOP implement Proxy và Decorator một cách trong suốt — @Transacti
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Sự khác biệt giữa Decorator và Proxy?
-- **Q:** Sự khác biệt giữa Adapter và Facade?
-- **Q:** Java I/O dùng Decorator thế nào?
+<details>
+<summary><b>Q: Java I/O dùng Decorator thế nào?</b></summary>
+
+Dùng các lớp bọc (wrappers) để chồng thêm chức năng, ví dụ bọc FileInputStream bằng BufferedInputStream để thêm tính năng đọc đệm tăng tốc độ I/O.
+</details>

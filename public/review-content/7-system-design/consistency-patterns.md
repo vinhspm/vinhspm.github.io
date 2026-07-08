@@ -65,6 +65,20 @@ Với thao tác hiển thị cho user, đảm bảo "read-your-writes" consisten
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Sự khác biệt giữa eventual consistency và strong consistency là gì?
-- **Q:** "Read-your-writes" consistency là gì và làm thế nào để implement?
-- **Q:** CRDT là gì và giúp gì với eventual consistency?
+<details>
+<summary><b>Q: Sự khác biệt giữa eventual consistency và strong consistency là gì?</b></summary>
+
+Strong Consistency đảm bảo mọi Client đọc đều thấy dữ liệu mới nhất ngay lập tức sau lệnh ghi. Eventual Consistency chấp nhận dữ liệu có độ trễ đồng bộ, các Client đọc có thể thấy dữ liệu cũ nhưng sau cùng tất cả sẽ đồng nhất.
+</details>
+
+<details>
+<summary><b>Q: "Read-your-writes" consistency là gì và làm thế nào để implement?</b></summary>
+
+Đảm bảo một user luôn thấy dữ liệu họ vừa tự ghi/cập nhật. Implement bằng cách luôn hướng các request đọc của chính user đó trực tiếp vào Primary Database trong một khoảng thời gian ngắn thay vì đọc từ Read Replica bị lag.
+</details>
+
+<details>
+<summary><b>Q: CRDT là gì và giúp gì với eventual consistency?</b></summary>
+
+Conflict-free Replicated Data Type là các cấu trúc dữ liệu tự động giải quyết xung đột khi đồng bộ hóa song song giữa các node mà không cần điều phối tập trung (như đếm số, tập hợp).
+</details>

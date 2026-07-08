@@ -80,6 +80,20 @@ Dùng Redisson cho distributed lock trong Spring Boot — nó implement Redlock 
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Vấn đề với dùng Redis SETNX đơn giản cho distributed lock là gì?
-- **Q:** Thuật toán Redlock là gì?
-- **Q:** Làm thế nào để ngăn deadlock với distributed lock nếu lock holder crash?
+<details>
+<summary><b>Q: Vấn đề với dùng Redis SETNX đơn giản cho distributed lock là gì?</b></summary>
+
+Nguy cơ mất lock nếu node Redis master chứa lock bị sập trước khi đồng bộ sang replica, hoặc tiến trình bị tạm dừng (GC pause) quá lâu vượt quá thời gian hết hạn TTL của lock, dẫn đến việc tiến trình khác tưởng lock đã trống và nhảy vào chiếm đoạt.
+</details>
+
+<details>
+<summary><b>Q: Thuật toán Redlock là gì?</b></summary>
+
+Là thuật toán khóa phân tán chạy trên nhiều node Redis độc lập (không master-slave). Client phải chiếm quyền khóa thành công trên đa số node (quorum) trong khoảng thời gian ngắn thì mới coi là lấy lock thành công.
+</details>
+
+<details>
+<summary><b>Q: Làm thế nào để ngăn deadlock với distributed lock nếu lock holder crash?</b></summary>
+
+Luôn luôn cấu hình thời gian tự động hết hạn (Lease Time/TTL) cho lock để giải phóng tài nguyên tự động nếu tiến trình sở hữu lock bị chết đột ngột.
+</details>

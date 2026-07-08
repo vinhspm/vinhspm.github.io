@@ -89,6 +89,20 @@ Bắt đầu không có CQRS. Thêm nó khi: read pattern rất khác write patt
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** CQRS giải quyết vấn đề gì?
-- **Q:** Eventual consistency biểu hiện thế nào trong CQRS?
-- **Q:** Sự khác biệt giữa CQRS và Event Sourcing là gì?
+<details>
+<summary><b>Q: CQRS giải quyết vấn đề gì?</b></summary>
+
+Tách biệt hoàn toàn luồng ghi dữ liệu (Commands - tối ưu ghi) và luồng đọc dữ liệu (Queries - tối ưu đọc), giải quyết xung đột hiệu năng khi câu truy vấn đọc quá phức tạp và cần scale độc lập.
+</details>
+
+<details>
+<summary><b>Q: Eventual consistency biểu hiện thế nào trong CQRS?</b></summary>
+
+Khi thực hiện Command ghi thành công vào DB ghi, cần thời gian đồng bộ (qua CDC hoặc Event) sang DB đọc. Trong khoảng thời gian này, query đọc có thể trả về dữ liệu cũ.
+</details>
+
+<details>
+<summary><b>Q: Sự khác biệt giữa CQRS và Event Sourcing là gì?</b></summary>
+
+CQRS chỉ là tách biệt đọc/ghi. Event Sourcing lưu trữ trạng thái ứng dụng dưới dạng chuỗi các sự kiện lịch sử không thay đổi (events log). Chúng thường đi kèm với nhau nhưng CQRS có thể hoạt động độc lập mà không cần Event Sourcing.
+</details>

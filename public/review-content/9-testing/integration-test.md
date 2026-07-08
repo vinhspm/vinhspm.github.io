@@ -107,6 +107,20 @@ Dùng slice test để tăng tốc: @DataJpaTest cho repo, @WebMvcTest cho contr
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Sự khác biệt giữa @SpringBootTest và @DataJpaTest?
-- **Q:** Tại sao ưu tiên TestContainers hơn H2 cho JPA test?
-- **Q:** Slice test cải thiện CI speed thế nào?
+<details>
+<summary><b>Q: Sự khác biệt giữa @SpringBootTest và @DataJpaTest?</b></summary>
+
+@SpringBootTest khởi tạo toàn bộ Spring Application Context đầy đủ (tốn thời gian, nặng). @DataJpaTest là một slice test, chỉ khởi tạo các thành phần liên quan đến tầng JPA/Database (như Repository, EntityManager, DataSource) giúp chạy nhanh hơn.
+</details>
+
+<details>
+<summary><b>Q: Tại sao ưu tiên TestContainers hơn H2 cho JPA test?</b></summary>
+
+H2 là in-memory database nên có nhiều hàm đặc thù, kiểu dữ liệu hoặc cơ chế transaction khác biệt so với database thực tế chạy production (như PostgreSQL, MySQL). TestContainers chạy database thực trong Docker nên đảm bảo hành vi chạy test giống hệt môi trường thật 100%.
+</details>
+
+<details>
+<summary><b>Q: Slice test cải thiện CI speed thế nào?</b></summary>
+
+Bằng cách cô lập và chỉ khởi động một phần nhỏ Spring context cần thiết cho bài test đó (ví dụ chỉ load Web layer với `@WebMvcTest`), giúp giảm thời gian khởi chạy Spring từ hàng chục giây xuống còn vài giây.
+</details>

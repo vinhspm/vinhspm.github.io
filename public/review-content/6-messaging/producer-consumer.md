@@ -72,6 +72,20 @@ Bật `enable.idempotence=true` và `acks=all` trên producer trong production. 
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Sự khác biệt giữa acks=1 và acks=all là gì?
-- **Q:** enable.idempotence=true làm gì cho Kafka producer?
-- **Q:** Rủi ro của auto-commit trong Kafka consumer là gì?
+<details>
+<summary><b>Q: Sự khác biệt giữa acks=1 và acks=all là gì?</b></summary>
+
+`acks=1`: Producer nhận phản hồi ngay khi leader partition ghi thành công (nguy cơ mất tin nếu leader sập trước khi đồng bộ). `acks=all` (hoặc `-1`): Phản hồi chỉ được gửi khi leader và toàn bộ các replica (ISR) đã ghi thành công, an toàn tuyệt đối nhưng trễ hơn.
+</details>
+
+<details>
+<summary><b>Q: enable.idempotence=true làm gì cho Kafka producer?</b></summary>
+
+Ngăn chặn việc gửi trùng lặp tin nhắn lên Kafka Broker khi xảy ra lỗi network (chỉ ghi nhận 1 lần nhờ gắn ID tuần tự cho mỗi request).
+</details>
+
+<details>
+<summary><b>Q: Rủi ro của auto-commit trong Kafka consumer là gì?</b></summary>
+
+Consumer tự động commit offset sau một chu kỳ thời gian. Nếu consumer đang xử lý dở dữ liệu mà bị crash, offset đã commit sẽ khiến dữ liệu chưa hoàn thành bị mất (at-most-once) hoặc xử lý trùng lặp.
+</details>

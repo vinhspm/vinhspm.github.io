@@ -52,6 +52,20 @@ Kích thước partition dựa trên throughput: mỗi partition xử lý ~10-50
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Kafka dùng message key cho partitioning thế nào?
-- **Q:** Bạn có thể đảm bảo thứ tự message qua các partition không?
-- **Q:** Điều gì xảy ra khi bạn tăng số partition cho topic hiện có?
+<details>
+<summary><b>Q: Kafka dùng message key cho partitioning thế nào?</b></summary>
+
+Sử dụng thuật toán băm (thường là MurmurHash2) trên Message Key, lấy kết quả chia dư cho tổng số Partition để chọn ra partition đích ghi dữ liệu.
+</details>
+
+<details>
+<summary><b>Q: Bạn có thể đảm bảo thứ tự message qua các partition không?</b></summary>
+
+Không, thứ tự chỉ được đảm bảo tuyệt đối trong phạm vi một partition đơn lẻ.
+</details>
+
+<details>
+<summary><b>Q: Điều gì xảy ra khi bạn tăng số partition cho topic hiện có?</b></summary>
+
+Việc băm (hash) key cũ sẽ bị tính toán ra kết quả partition khác hoàn toàn so với trước đó, làm phá vỡ tính đảm bảo thứ tự của các tin nhắn có cùng key được gửi sau thời điểm tăng partition.
+</details>

@@ -56,6 +56,20 @@ Sắp xếp instruction Dockerfile từ ít-đến-nhiều-thay-đổi-thường
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Tại sao bạn nên copy file descriptor gói trước source code trong Dockerfile?
-- **Q:** Điều gì xảy ra với writable layer khi container bị xóa?
-- **Q:** Union filesystem cho phép chia sẻ layer giữa container thế nào?
+<details>
+<summary><b>Q: Tại sao bạn nên copy file descriptor gói trước source code trong Dockerfile?</b></summary>
+
+Để tận dụng Docker cache cho lớp cài đặt dependency (như thư viện npm, maven). Nếu danh sách thư viện không đổi, Docker sẽ lấy luôn từ cache và bỏ qua bước tải lâu, chỉ biên dịch lại source code thay đổi phía sau.
+</details>
+
+<details>
+<summary><b>Q: Điều gì xảy ra với writable layer khi container bị xóa?</b></summary>
+
+Lớp writable layer sẽ bị xoá vĩnh viễn cùng với container. Mọi dữ liệu ghi trên đó sẽ bị mất hoàn toàn nếu không được lưu vào Docker Volume.
+</details>
+
+<details>
+<summary><b>Q: Union filesystem cho phép chia sẻ layer giữa container thế nào?</b></summary>
+
+UnionFS xếp chồng các layer chỉ đọc (read-only) của image lên nhau tạo ra một góc nhìn thư mục duy nhất. Nhiều container chạy chung một image sẽ chia sẻ chung các layer chỉ đọc này và chỉ sở hữu riêng một lớp ghi (writable layer) siêu nhẹ trên cùng.
+</details>

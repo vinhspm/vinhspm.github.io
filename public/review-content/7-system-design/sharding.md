@@ -74,6 +74,20 @@ Sharding là phương án cuối cùng cho write scaling. Trước khi sharding:
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Trade-off giữa range sharding và hash sharding là gì?
-- **Q:** Cross-shard join hoạt động thế nào?
-- **Q:** Resharding là gì và tại sao khó?
+<details>
+<summary><b>Q: Trade-off giữa range sharding và hash sharding là gì?</b></summary>
+
+Range Sharding giúp truy vấn phạm vi (range queries) rất nhanh nhưng dễ gây lệch tải tập trung vào một phân vùng (hotspot). Hash Sharding phân bổ dữ liệu rất đều trên các phân vùng nhưng truy vấn phạm vi cực chậm vì phải quét qua tất cả các shard.
+</details>
+
+<details>
+<summary><b>Q: Cross-shard join hoạt động thế nào?</b></summary>
+
+Là truy vấn JOIN dữ liệu nằm ở nhiều shard khác nhau. Thao tác này cực kỳ tốn chi phí vì DB phải kéo toàn bộ dữ liệu từ các shard về bộ nhớ tạm của node trung gian để thực hiện join thủ công. Nên hạn chế bằng cách phi chuẩn hóa (denormalization) dữ liệu.
+</details>
+
+<details>
+<summary><b>Q: Resharding là gì và tại sao khó?</b></summary>
+
+Là việc tính toán lại và di chuyển dữ liệu sang các phân vùng mới khi số lượng shard thay đổi. Khó vì khối lượng dữ liệu di chuyển khổng lồ và phải đảm bảo hệ thống vẫn hoạt động liên tục không downtime.
+</details>

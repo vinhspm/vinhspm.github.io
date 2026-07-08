@@ -43,6 +43,20 @@ Mock tại service boundary: repo, HTTP client, message publisher. Đừng mock 
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Sự khác biệt giữa mock, stub và spy?
-- **Q:** Khi nào KHÔNG nên mock?
-- **Q:** ArgumentCaptor dùng để làm gì?
+<details>
+<summary><b>Q: Sự khác biệt giữa mock, stub và spy?</b></summary>
+
+Stub: Chỉ trả về dữ liệu cứng được cấu hình sẵn. Mock: Đối tượng giả lập được cấu hình hành vi và có thể xác minh cuộc gọi. Spy: Đối tượng thật được bọc lại, chạy code thật nhưng cho phép stub/mock một số hàm hoặc xác minh cuộc gọi.
+</details>
+
+<details>
+<summary><b>Q: Khi nào KHÔNG nên mock?</b></summary>
+
+Không nên mock các lớp tiện ích (utility classes), các đối tượng chứa trạng thái dữ liệu đơn thuần (DTO, Entity, Value Object), hoặc các thư viện lõi của JDK (như List, Map).
+</details>
+
+<details>
+<summary><b>Q: ArgumentCaptor dùng để làm gì?</b></summary>
+
+Dùng để bắt (capture) và lấy ra giá trị của tham số truyền vào một phương thức mock khi nó được gọi, giúp ta kiểm tra tính chính xác của dữ liệu logic bên trong tham số đó.
+</details>

@@ -45,6 +45,20 @@ Trong system design interview: luôn anchor ước tính capacity bằng Little'
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Áp dụng Little's Law để tính thread pool cho 2000 RPS ở 150ms avg latency?
-- **Q:** Chuyển 10M daily active user thành ước tính QPS thế nào?
-- **Q:** "Điểm gãy" trong load test là gì?
+<details>
+<summary><b>Q: Áp dụng Little's Law để tính thread pool cho 2000 RPS ở 150ms avg latency?</b></summary>
+
+Số thread hoạt động đồng thời = `RPS * Latency = 2000 * 0.150s = 300` threads.
+</details>
+
+<details>
+<summary><b>Q: Chuyển 10M daily active user thành ước tính QPS thế nào?</b></summary>
+
+Giả định mỗi user hoạt động tạo ra trung bình 10 request/ngày. Tổng request = 100M/ngày. QPS trung bình = `100,000,000 / 86400 giây ≈ 1157 QPS`. Peak QPS thường nhân 2 hoặc 3 lần (khoảng 2300 - 3500 QPS).
+</details>
+
+<details>
+<summary><b>Q: "Điểm gãy" trong load test là gì?</b></summary>
+
+Là ngưỡng tải mà tại đó hiệu năng hệ thống giảm đột ngột (độ trễ tăng vọt, tỷ lệ lỗi tăng cao, CPU nghẽn 100%) chứng tỏ hệ thống đã quá tải hoàn toàn tài nguyên.
+</details>

@@ -73,6 +73,20 @@ Mặc định Write-Through cho hầu hết Spring app dùng `@CachePut`. Dùng 
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Rủi ro của Write-Behind caching là gì?
-- **Q:** Khi nào bạn dùng Write-Around thay vì Write-Through?
-- **Q:** Làm thế nào để duy trì consistency giữa cache và DB trong Write-Through?
+<details>
+<summary><b>Q: Rủi ro của Write-Behind caching là gì?</b></summary>
+
+Nguy cơ mất mát dữ liệu cao nếu node cache (Redis) bị sập đột ngột trước khi dữ liệu kịp được đồng bộ ghi xuống Database gốc.
+</details>
+
+<details>
+<summary><b>Q: Khi nào bạn dùng Write-Around thay vì Write-Through?</b></summary>
+
+Khi dữ liệu được ghi mới rất ít khi được đọc lại ngay lập tức (Write-Around ghi trực tiếp xuống DB, tránh làm bẩn/quá tải bộ nhớ cache vô ích).
+</details>
+
+<details>
+<summary><b>Q: Làm thế nào để duy trì consistency giữa cache và DB trong Write-Through?</b></summary>
+
+Ứng dụng luôn ghi dữ liệu vào cache trước, và chính cache engine sẽ chịu trách nhiệm đồng bộ ghi xuống DB ngay trong cùng một giao dịch (transaction) trước khi trả về kết quả thành công cho client.
+</details>

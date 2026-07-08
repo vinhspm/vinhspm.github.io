@@ -72,6 +72,20 @@ Luôn đặt `minReplicas: 2` cho HA. Scale trên metric cụ thể ứng dụng
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Khi nào vertical scaling không còn hiệu quả?
-- **Q:** Service cần gì để hỗ trợ horizontal scaling?
-- **Q:** Kubernetes HPA quyết định khi nào scale thế nào?
+<details>
+<summary><b>Q: Khi nào vertical scaling không còn hiệu quả?</b></summary>
+
+Khi chi phí phần cứng tăng theo cấp số nhân nhưng hiệu năng tăng không đáng kể (quy luật hiệu suất giảm dần), hoặc khi đạt giới hạn vật lý tối đa của CPU/RAM mà nhà cung cấp có thể sản xuất.
+</details>
+
+<details>
+<summary><b>Q: Service cần gì để hỗ trợ horizontal scaling?</b></summary>
+
+Phải thiết kế hoàn toàn **Stateless**: không lưu trạng thái phiên làm việc (session, file cục bộ) trong bộ nhớ của instance để request của người dùng có thể gửi đến bất kỳ node nào vẫn chạy đúng.
+</details>
+
+<details>
+<summary><b>Q: Kubernetes HPA quyết định khi nào scale thế nào?</b></summary>
+
+HPA định kỳ kiểm tra các metric của Pod (như phần trăm CPU, Memory hoặc custom metric qua Prometheus). Nó tính toán số lượng Pod cần thiết theo công thức: `DesiredReplicas = CurrentReplicas * (CurrentMetricValue / TargetMetricValue)`.
+</details>

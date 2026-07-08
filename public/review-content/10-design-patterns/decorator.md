@@ -109,6 +109,20 @@ Trong Spring, dùng AOP-based decoration (@Cacheable, @Transactional) thay vì m
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Decorator khác Proxy thế nào?
-- **Q:** Khi nào dùng Decorator thay vì subclass?
-- **Q:** Java I/O stream dùng Decorator thế nào?
+<details>
+<summary><b>Q: Decorator khác Proxy thế nào?</b></summary>
+
+Decorator tập trung vào việc thêm tính năng/hành vi mới cho đối tượng một cách linh hoạt tại runtime. Proxy tập trung vào việc kiểm soát quyền truy cập (access control, lazy loading, logging) đến đối tượng gốc mà không làm thay đổi trực tiếp hành vi của nó.
+</details>
+
+<details>
+<summary><b>Q: Khi nào dùng Decorator thay vì subclass?</b></summary>
+
+Khi muốn thêm/bớt tính năng cho đối tượng một cách động tại runtime, hoặc khi kế thừa (subclassing) tạo ra quá nhiều class con không thể quản lý nổi (bùng nổ số lượng class).
+</details>
+
+<details>
+<summary><b>Q: Java I/O stream dùng Decorator thế nào?</b></summary>
+
+Sử dụng cơ chế bọc lớp nối tiếp nhau: Ví dụ `new BufferedReader(new FileReader("file.txt"))`. `BufferedReader` trang trí thêm bộ đệm (buffering) cho luồng đọc thô của `FileReader`.
+</details>

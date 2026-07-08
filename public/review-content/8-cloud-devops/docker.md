@@ -57,6 +57,20 @@ Luôn dùng multi-stage build để giữ runtime image nhỏ (Alpine JRE ~100MB
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Sự khác biệt giữa Docker image và container là gì?
-- **Q:** Docker layer caching hoạt động thế nào và làm thế nào để tối ưu?
-- **Q:** Multi-stage build là gì và tại sao hữu ích?
+<details>
+<summary><b>Q: Sự khác biệt giữa Docker image và container là gì?</b></summary>
+
+Docker Image là một file đóng gói tĩnh chỉ đọc (read-only blueprint) chứa đầy đủ mã nguồn, thư viện cần chạy. Docker Container là một thực thể sống (runtime instance) chạy từ image đó và có thêm một lớp ghi tạm thời (writable layer).
+</details>
+
+<details>
+<summary><b>Q: Docker layer caching hoạt động thế nào và làm thế nào để tối ưu?</b></summary>
+
+Docker cache các chỉ lệnh trong Dockerfile theo từng lớp (layer). Nếu một lớp thay đổi, tất cả các lớp phía sau nó sẽ phải chạy lại từ đầu không dùng cache. Tối ưu: Đặt các câu lệnh ít thay đổi (như cài dependencies) lên trước, và đặt các câu lệnh hay đổi (copy source code) xuống cuối cùng.
+</details>
+
+<details>
+<summary><b>Q: Multi-stage build là gì và tại sao hữu ích?</b></summary>
+
+Là kỹ thuật chia Dockerfile thành nhiều giai đoạn build độc lập sử dụng các image nền khác nhau. Hữu ích vì giúp tạo ra Docker image cuối cùng cực kỳ nhỏ nhẹ (chỉ chứa file chạy thực tế) bằng cách bỏ đi toàn bộ công cụ build, trình biên dịch cồng kềnh ở giai đoạn trước đó.
+</details>

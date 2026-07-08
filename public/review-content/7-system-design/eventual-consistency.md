@@ -70,6 +70,20 @@ Thiết kế data model cho eventual consistency nơi bạn dùng nó: dùng tha
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Làm thế nào để giải thích eventual consistency cho stakeholder không kỹ thuật?
-- **Q:** Conflict nào có thể phát sinh với eventual consistency và giải quyết thế nào?
-- **Q:** Đưa ví dụ khi eventual consistency chấp nhận được vs nguy hiểm.
+<details>
+<summary><b>Q: Làm thế nào để giải thích eventual consistency cho stakeholder không kỹ thuật?</b></summary>
+
+Giống như gửi email công việc nhóm: Bạn gửi email cập nhật file, đồng nghiệp có thể chưa đọc ngay lập tức, nhưng cuối ngày tất cả mọi người sẽ đọc và nắm được thông tin đồng bộ như nhau.
+</details>
+
+<details>
+<summary><b>Q: Conflict nào có thể phát sinh với eventual consistency và giải quyết thế nào?</b></summary>
+
+Lỗi ghi đè chéo (xung đột ghi song song). Giải quyết bằng quy tắc: Last-Write-Wins (dùng timestamp), Vector Clocks để theo dõi lịch sử phiên bản, hoặc dùng cấu hình CRDT để tự động merge.
+</details>
+
+<details>
+<summary><b>Q: Đưa ví dụ khi eventual consistency chấp nhận được vs nguy hiểm.</b></summary>
+
+Chấp nhận được: Số lượt xem video Youtube, số lượt thích Facebook, cập nhật thông tin profile. Nguy hiểm: Số dư tài khoản ngân hàng, hệ thống đặt chỗ máy bay/rạp phim (gây overbooking).
+</details>

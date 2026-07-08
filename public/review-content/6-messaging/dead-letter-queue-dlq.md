@@ -72,6 +72,20 @@ Luôn cấu hình DLQ trong production. Đặt alert khi kích thước DLQ > 0.
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Nguyên nhân nào khiến message vào DLQ?
-- **Q:** Làm thế nào để replay message từ DLQ?
-- **Q:** Monitoring nào bạn nên đặt cho DLQ?
+<details>
+<summary><b>Q: Nguyên nhân nào khiến message vào DLQ?</b></summary>
+
+Do lỗi định dạng dữ liệu (malformed/deserialization error), lỗi nghiệp vụ (business validation fail), hoặc lỗi hệ thống tạm thời liên tục thất bại vượt quá số lần retry tối đa.
+</details>
+
+<details>
+<summary><b>Q: Làm thế nào để replay message từ DLQ?</b></summary>
+
+Viết một tool/job hoặc dùng console consumer để đọc các tin nhắn trong DLQ, sửa đổi payload (nếu lỗi do dữ liệu), rồi đẩy ngược lại vào Exchange/Topic ban đầu để xử lý lại.
+</details>
+
+<details>
+<summary><b>Q: Monitoring nào bạn nên đặt cho DLQ?</b></summary>
+
+Cần giám sát **kích thước/số lượng message** trong DLQ (alert ngay khi số lượng > 0) và tốc độ tăng trưởng của DLQ để phát hiện lỗi hệ thống diện rộng kịp thời.
+</details>

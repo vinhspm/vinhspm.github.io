@@ -75,6 +75,20 @@ Luôn đặt resource `requests` và `limits` — nếu không, HPA không thể
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Sự khác biệt giữa liveness probe và readiness probe là gì?
-- **Q:** Kubernetes schedule pod lên node thế nào?
-- **Q:** Điều gì xảy ra khi node đang chạy pod bị hỏng?
+<details>
+<summary><b>Q: Sự khác biệt giữa liveness probe và readiness probe là gì?</b></summary>
+
+Liveness Probe kiểm tra xem pod còn sống không; nếu fail, K8s sẽ tự động restart pod. Readiness Probe kiểm tra xem pod đã sẵn sàng nhận traffic chưa; nếu fail, K8s tạm thời ngắt pod ra khỏi Service Load Balancer để tránh gửi request của user vào.
+</details>
+
+<details>
+<summary><b>Q: Kubernetes schedule pod lên node thế nào?</b></summary>
+
+Kube-scheduler lọc các node dựa trên các điều kiện tài nguyên tối thiểu (Predicates) như CPU/RAM, sau đó đánh giá chấm điểm các node phù hợp (Priorities) dựa trên luật (Affinity, Taints, Tolerations) để chọn node tối ưu nhất để đặt pod lên.
+</details>
+
+<details>
+<summary><b>Q: Điều gì xảy ra khi node đang chạy pod bị hỏng?</b></summary>
+
+Kube-controller-manager phát hiện node mất kết nối với control plane qua heartbeat. Sau khoảng thời gian timeout (thường là 5 phút), các pod trên node hỏng đó sẽ bị đánh dấu trục xuất và tự động được lập lịch tạo mới lại trên các node khoẻ mạnh khác.
+</details>

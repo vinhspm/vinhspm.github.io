@@ -72,6 +72,20 @@ Với microservice trong K8s: dùng Ingress (Nginx, Traefik) cho external traffi
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Sự khác biệt giữa L4 và L7 load balancing là gì?
-- **Q:** Sticky session là gì và khi nào bạn dùng nó?
-- **Q:** Load balancer phát hiện và loại bỏ instance không healthy thế nào?
+<details>
+<summary><b>Q: Sự khác biệt giữa L4 và L7 load balancing là gì?</b></summary>
+
+L4 hoạt động ở tầng Transport (TCP/UDP), phân phối traffic chỉ dựa trên IP và Port (tốc độ siêu nhanh). L7 hoạt động ở tầng Application (HTTP/HTTPS), có thể đọc header, cookie, url path để đưa ra quyết định routing thông minh.
+</details>
+
+<details>
+<summary><b>Q: Sticky session là gì và khi nào bạn dùng nó?</b></summary>
+
+Là kỹ thuật cấu hình Load Balancer luôn định tuyến các request từ một Client cụ thể đến duy nhất một server vật lý trong suốt phiên làm việc. Dùng khi ứng dụng lưu trữ session trực tiếp trong bộ nhớ cục bộ của server đó.
+</details>
+
+<details>
+<summary><b>Q: Load balancer phát hiện và loại bỏ instance không healthy thế nào?</b></summary>
+
+Thông qua cơ chế **Health Check**: định kỳ gửi các request thử nghiệm (ví dụ gọi API `/actuator/health` qua HTTP). Nếu instance không phản hồi hoặc trả về mã lỗi liên tiếp vượt quá số lần cấu hình, Load Balancer sẽ ngừng chuyển tiếp traffic đến nó.
+</details>

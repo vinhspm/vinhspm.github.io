@@ -84,6 +84,20 @@ Dùng `@Cacheable` (Spring) cho Cache-Aside tự động. Với thundering herd 
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Luồng đọc và ghi của Cache-Aside là gì?
-- **Q:** Thundering herd problem trong caching là gì?
-- **Q:** Khi nào bạn KHÔNG dùng Cache-Aside?
+<details>
+<summary><b>Q: Luồng đọc và ghi của Cache-Aside là gì?</b></summary>
+
+Đọc: Check cache -> Nếu trúng (hit) trả về ngay; nếu trượt (miss) đọc DB, cập nhật cache rồi trả về. Ghi: Cập nhật DB trước, sau đó xóa key tương ứng trong cache.
+</details>
+
+<details>
+<summary><b>Q: Thundering herd problem trong caching là gì?</b></summary>
+
+Là hiện tượng khi một key cache hot bị hết hạn (expired), hàng ngàn request đồng thời đổ vào truy vấn xuống DB cùng lúc để lấy dữ liệu nạp lại cache, dễ làm sập DB. Khắc phục bằng cơ chế khóa mutex (SingleFlight) hoặc set thời gian hết hạn ngẫu nhiên.
+</details>
+
+<details>
+<summary><b>Q: Khi nào bạn KHÔNG dùng Cache-Aside?</b></summary>
+
+Khi hệ thống yêu cầu độ nhất quán dữ liệu tuyệt đối thời gian thực (vì có khoảng trễ giữa ghi DB và xóa cache), hoặc dữ liệu ghi quá nhiều nhưng ít đọc (làm cache luôn bị xóa vô ích).
+</details>

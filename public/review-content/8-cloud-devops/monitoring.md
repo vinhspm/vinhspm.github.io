@@ -42,6 +42,20 @@ Bắt đầu với phương pháp RED: Request Rate, Error Rate, Duration. Thêm
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Ba trụ cột của observability là gì?
-- **Q:** Bốn Golden Signal của Google là gì?
-- **Q:** Micrometer tích hợp với Prometheus thế nào?
+<details>
+<summary><b>Q: Ba trụ cột của observability là gì?</b></summary>
+
+Metrics (các chỉ số định lượng theo thời gian), Logs (lịch sử sự kiện văn bản chi tiết), và Traces (hành trình luồng request qua các hệ thống phân tán).
+</details>
+
+<details>
+<summary><b>Q: Bốn Golden Signal của Google là gì?</b></summary>
+
+Latency (độ trễ), Traffic (lưu lượng tải/RPS), Errors (tỷ lệ lỗi), và Saturation (mức độ bão hòa/sử dụng tài nguyên hệ thống).
+</details>
+
+<details>
+<summary><b>Q: Micrometer tích hợp với Prometheus thế nào?</b></summary>
+
+Micrometer đóng vai trò như một facade thu thập số liệu trong code Java (Spring Boot Actuator), sau đó định dạng lại dữ liệu và mở ra một HTTP endpoint `/actuator/prometheus` để máy chủ Prometheus định kỳ kéo (pull) dữ liệu về.
+</details>

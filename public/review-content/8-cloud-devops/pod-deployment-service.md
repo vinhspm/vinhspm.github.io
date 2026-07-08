@@ -51,6 +51,20 @@ Luôn dùng Deployment, đừng bao giờ tạo Pod trực tiếp — Deployment
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Sự khác biệt giữa ClusterIP và LoadBalancer service là gì?
-- **Q:** Kubernetes Service khám phá Pod nào để route đến thế nào?
-- **Q:** Điều gì xảy ra trong khi Kubernetes rolling update?
+<details>
+<summary><b>Q: Sự khác biệt giữa ClusterIP và LoadBalancer service là gì?</b></summary>
+
+ClusterIP chỉ cấp một địa chỉ IP nội bộ bên trong K8s cluster để các pod gọi nhau. LoadBalancer sẽ tích hợp với hạ tầng cloud để cấp một địa chỉ IP Public thực tế hướng ra ngoài Internet cho người dùng truy cập.
+</details>
+
+<details>
+<summary><b>Q: Kubernetes Service khám phá Pod nào để route đến thế nào?</b></summary>
+
+Dựa trên cấu hình Label Selector trong file manifest của Service để tự động lọc và gom tất cả các Pod có nhãn (Labels) tương ứng vào danh sách Endpoint IPs.
+</details>
+
+<details>
+<summary><b>Q: Điều gì xảy ra trong khi Kubernetes rolling update?</b></summary>
+
+Kubernetes tạo mới pod phiên bản mới, kiểm tra trạng thái hoạt động; khi pod mới sẵn sàng nhận tải, K8s đưa pod mới vào Service Endpoint và tiến hành xoá pod phiên bản cũ một cách tuần tự từ từ.
+</details>

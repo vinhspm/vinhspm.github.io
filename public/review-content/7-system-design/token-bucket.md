@@ -79,6 +79,20 @@ Token bucket là chuẩn cho user-facing rate limiting vì nó cho phép request
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Sự khác biệt giữa token bucket và leaky bucket là gì?
-- **Q:** Khi nào token bucket tốt hơn fixed window?
-- **Q:** Token bucket xử lý burst request thế nào?
+<details>
+<summary><b>Q: Sự khác biệt giữa token bucket và leaky bucket là gì?</b></summary>
+
+Token Bucket cho phép xử lý lưu lượng tăng đột biến nhanh chóng nếu trong xô còn token. Leaky Bucket ép dòng request đầu ra luôn đi đều ở một tốc độ cố định, request vượt ngưỡng phải xếp hàng đợi.
+</details>
+
+<details>
+<summary><b>Q: Khi nào token bucket tốt hơn fixed window?</b></summary>
+
+Khi hệ thống muốn tránh lỗi nghẽn tải cục bộ ở ranh giới chu kỳ (lỗi double-spend) và cho phép ứng dụng phản hồi nhanh hơn với các đợt lưu lượng tăng đột biến một cách hợp lệ.
+</details>
+
+<details>
+<summary><b>Q: Token bucket xử lý burst request thế nào?</b></summary>
+
+Các request đột biến sẽ tiêu thụ hết số lượng token hiện có trong xô ngay lập tức để xử lý thành công. Khi xô hết token, các request tiếp theo mới bắt đầu bị rate-limit cho đến khi xô được nạp thêm token theo thời gian.
+</details>

@@ -137,6 +137,20 @@ Spring Security filter chain: SecurityFilterChain là Chain of Responsibility th
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Sự khác biệt giữa Chain of Responsibility và if-else chain?
-- **Q:** Spring Security implement Chain of Responsibility thế nào?
-- **Q:** Handler trong chain có thể vừa xử lý VÀ forward request không?
+<details>
+<summary><b>Q: Sự khác biệt giữa Chain of Responsibility và if-else chain?</b></summary>
+
+If-else chain xử lý tập trung, cứng nhắc và khó tái sử dụng. Chain of Responsibility phân rã mỗi nhánh xử lý thành một class Handler độc lập, cho phép linh hoạt thay đổi thứ tự, thêm hoặc bớt handler trong chuỗi khi chạy (runtime).
+</details>
+
+<details>
+<summary><b>Q: Spring Security implement Chain of Responsibility thế nào?</b></summary>
+
+Thông qua SecurityFilterChain: request HTTP sẽ đi qua một danh sách các filter xếp tuần tự (như check csrf, auth, logout). Mỗi filter xử lý nhiệm vụ của mình và quyết định có gọi tiếp `filterChain.doFilter(...)` để chuyển request cho filter tiếp theo hay không.
+</details>
+
+<details>
+<summary><b>Q: Handler trong chain có thể vừa xử lý VÀ forward request không?</b></summary>
+
+Có, hoàn toàn được. Đó là cơ chế hoạt động điển hình của các Filter: thực hiện xử lý ghi log hoặc kiểm tra quyền (xử lý), sau đó tiếp tục forward request đi tiếp xuống dưới.
+</details>

@@ -85,6 +85,20 @@ Dùng RabbitMQ cho: task queue, request-reply pattern, routing phức tạp theo
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Sự khác biệt giữa Kafka topic và RabbitMQ queue là gì?
-- **Q:** Các loại RabbitMQ exchange và khi nào dùng mỗi loại?
-- **Q:** RabbitMQ xử lý message chưa được acknowledged thế nào?
+<details>
+<summary><b>Q: Sự khác biệt giữa Kafka topic và RabbitMQ queue là gì?</b></summary>
+
+Kafka topic là file log tuần tự, dữ liệu ghi vào không bị xóa đi khi consumer đọc xong. RabbitMQ queue là hàng đợi chứa các con trỏ tin nhắn, tin nhắn sẽ bị xóa ngay khỏi hàng đợi sau khi consumer phản hồi (ack) thành công.
+</details>
+
+<details>
+<summary><b>Q: Các loại RabbitMQ exchange và khi nào dùng mỗi loại?</b></summary>
+
+Fanout: Phát quảng bá cho tất cả. Direct: So khớp chính xác routing key. Topic: So khớp theo pattern wildcard. Headers: Khớp dựa trên các thuộc tính của headers.
+</details>
+
+<details>
+<summary><b>Q: RabbitMQ xử lý message chưa được acknowledged thế nào?</b></summary>
+
+Khi channel/connection của consumer bị ngắt, RabbitMQ sẽ tự động hoàn trả (requeue) tin nhắn chưa được ack đó lại hàng đợi để gửi cho consumer khác xử lý.
+</details>

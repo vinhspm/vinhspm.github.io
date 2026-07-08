@@ -83,6 +83,20 @@ Chạy `pact can-i-deploy --pacticipant user-service --version 1.2.3 --to-enviro
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Provider state trong Pact là gì?
-- **Q:** can-i-deploy hoạt động thế nào?
-- **Q:** Điều gì xảy ra khi provider thay đổi tên field API?
+<details>
+<summary><b>Q: Provider state trong Pact là gì?</b></summary>
+
+Là thiết lập trạng thái dữ liệu cần có ở phía Provider trước khi chạy test hợp đồng (ví dụ: thiết lập trạng thái "User ID 10 tồn tại trong DB" để chuẩn bị cho request GET `/users/10` từ Consumer).
+</details>
+
+<details>
+<summary><b>Q: can-i-deploy hoạt động thế nào?</b></summary>
+
+Công cụ kiểm tra ma trận tương thích trên Pact Broker xem phiên bản ứng dụng chuẩn bị deploy đã vượt qua tất cả các bài kiểm tra hợp đồng với phiên bản của đối tác đang chạy ở môi trường đích chưa.
+</details>
+
+<details>
+<summary><b>Q: Điều gì xảy ra khi provider thay đổi tên field API?</b></summary>
+
+Bài test kiểm tra hợp đồng ở phía Provider CI sẽ lập tức thất bại vì dữ liệu trả về không khớp với cấu trúc trường dữ liệu cũ mà Consumer đã khai báo yêu cầu trong file contract JSON.
+</details>

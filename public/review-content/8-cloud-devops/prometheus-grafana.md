@@ -44,6 +44,20 @@ Import Grafana dashboard có sẵn (JVM Micrometer dashboard ID 4701, Spring Boo
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Prometheus thu thập metric từ service thế nào?
-- **Q:** Viết PromQL query để tính error rate trong 5 phút.
-- **Q:** Làm thế nào để cấu hình alert trong Prometheus/Alertmanager?
+<details>
+<summary><b>Q: Prometheus thu thập metric từ service thế nào?</b></summary>
+
+Prometheus hoạt động theo cơ chế Pull Model: định kỳ gửi các HTTP request GET đến cổng `/metrics` đã được cấu hình sẵn trên các client service để kéo dữ liệu về máy chủ.
+</details>
+
+<details>
+<summary><b>Q: Viết PromQL query để tính error rate trong 5 phút.</b></summary>
+
+PromQL: `sum(rate(http_requests_total{status=~"5.."}[5m])) / sum(rate(http_requests_total[5m]))`
+</details>
+
+<details>
+<summary><b>Q: Làm thế nào để cấu hình alert trong Prometheus/Alertmanager?</b></summary>
+
+Khai báo rule cảnh báo trong file cấu hình Prometheus (prometheus.rules.yml) bằng cú pháp PromQL. Khi điều kiện đúng kéo dài qua khoảng thời gian FOR, Prometheus gửi cảnh báo sang Alertmanager để gom nhóm, lọc trùng và gửi đi (Email, Slack).
+</details>

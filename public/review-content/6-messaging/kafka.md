@@ -69,6 +69,20 @@ Dùng Kafka cho: event sourcing, cross-service event streaming, activity feed, a
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Vai trò của partition trong Kafka là gì?
-- **Q:** Kafka đảm bảo thứ tự message thế nào?
-- **Q:** Sự khác biệt giữa Kafka và RabbitMQ là gì?
+<details>
+<summary><b>Q: Vai trò của partition trong Kafka là gì?</b></summary>
+
+Là đơn vị phân tán dữ liệu cơ bản giúp Kafka lưu trữ dung lượng lớn hơn 1 ổ đĩa và cho phép nhiều consumer đọc song song, quyết định khả năng scale-out của hệ thống.
+</details>
+
+<details>
+<summary><b>Q: Kafka đảm bảo thứ tự message thế nào?</b></summary>
+
+Chỉ đảm bảo thứ tự ghi nhận và đọc ra chính xác trên **cùng một Partition**. Muốn đảm bảo thứ tự, cần sử dụng chung một Message Key để các tin nhắn được phân bổ vào cùng một partition.
+</details>
+
+<details>
+<summary><b>Q: Sự khác biệt giữa Kafka và RabbitMQ là gì?</b></summary>
+
+Kafka dựa trên mô hình append-only log (đọc không xóa dữ liệu, giữ dữ liệu lâu dài, cho phép replay). RabbitMQ dựa trên mô hình Smart Broker / Dumb Consumer (gửi xong xóa ngay khỏi queue, hỗ trợ định tuyến phức tạp linh hoạt).
+</details>

@@ -69,6 +69,20 @@ Khi xây dựng distributed cache hoặc session store, consistent hashing đả
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Consistent hashing giải quyết vấn đề gì so với modulo hashing?
-- **Q:** Virtual node là gì và tại sao dùng?
-- **Q:** Cassandra dùng consistent hashing cho phân phối dữ liệu thế nào?
+<details>
+<summary><b>Q: Consistent hashing giải quyết vấn đề gì so với modulo hashing?</b></summary>
+
+Modulo hashing (`hash(key) % N`) sẽ phải tính toán lại và di chuyển gần như toàn bộ dữ liệu khi số lượng node N thay đổi. Consistent Hashing giảm thiểu việc này, chỉ yêu cầu di chuyển trung bình `1/N` lượng dữ liệu khi thêm/bớt node.
+</details>
+
+<details>
+<summary><b>Q: Virtual node là gì và tại sao dùng?</b></summary>
+
+Là kỹ thuật ánh xạ một node vật lý thành nhiều node ảo trên vòng tròn hash ring. Dùng để phân bổ tải đều hơn trên các node, tránh hiện tượng các node vật lý bị phân bổ lệch tải (hotspots).
+</details>
+
+<details>
+<summary><b>Q: Cassandra dùng consistent hashing cho phân phối dữ liệu thế nào?</b></summary>
+
+Các node tạo thành một vòng tròn Token Ring. Khi dữ liệu được ghi, Cassandra băm khóa phân vùng (partition key) thành Token và ghi dữ liệu vào node đầu tiên quản lý phạm vi Token đó trên vòng tròn.
+</details>

@@ -60,6 +60,20 @@ Dùng direct exchange cho phân phối task đơn giản. Dùng topic cho routin
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Sự khác biệt giữa direct và topic exchange là gì?
-- **Q:** Điều gì xảy ra với message nếu không có queue nào bind để khớp routing key?
-- **Q:** Làm thế nào để implement pub/sub pattern trong RabbitMQ?
+<details>
+<summary><b>Q: Sự khác biệt giữa direct và topic exchange là gì?</b></summary>
+
+Direct Exchange định tuyến tin nhắn dựa trên sự khớp chính xác 100% giữa Routing Key và Binding Key. Topic Exchange linh hoạt hơn, cho phép định tuyến khớp theo pattern sử dụng ký tự đại diện wildcard (`*` và `#`).
+</details>
+
+<details>
+<summary><b>Q: Điều gì xảy ra với message nếu không có queue nào bind để khớp routing key?</b></summary>
+
+Mặc định tin nhắn sẽ bị xóa bỏ âm thầm. Để tránh mất mát, có thể cấu hình thuộc tính `mandatory=true` (để trả lại producer) hoặc dùng Alternate Exchange để hứng tin nhắn thừa.
+</details>
+
+<details>
+<summary><b>Q: Làm thế nào để implement pub/sub pattern trong RabbitMQ?</b></summary>
+
+Sử dụng **Fanout Exchange** (hoặc Topic Exchange với wildcard). Exchange này sẽ nhân bản tin nhắn và gửi đến tất cả các Queue được liên kết (bind) với nó mà không cần kiểm tra routing key.
+</details>

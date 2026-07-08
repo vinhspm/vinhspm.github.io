@@ -92,6 +92,20 @@ Tích hợp Pact Broker trong CI: consumer publish contract khi build, provider 
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Contract testing giải quyết vấn đề gì so với integration test?
-- **Q:** Vai trò của Pact Broker là gì?
-- **Q:** can-i-deploy là gì?
+<details>
+<summary><b>Q: Contract testing giải quyết vấn đề gì so với integration test?</b></summary>
+
+Giải quyết vấn đề kiểm thử tích hợp giữa các service mà không cần dựng lên toàn bộ hệ thống microservices phức tạp chạy tốn tài nguyên. Giúp phát hiện sớm việc thay đổi API của bên cung cấp (Provider) làm hỏng bên tiêu thụ (Consumer) ngay ở bước build độc lập.
+</details>
+
+<details>
+<summary><b>Q: Vai trò của Pact Broker là gì?</b></summary>
+
+Là kho lưu trữ trung tâm dùng để chia sẻ, quản lý phiên bản và so khớp các file hợp đồng (contracts JSON) giữa bên Consumer và Provider trong quy trình CI/CD.
+</details>
+
+<details>
+<summary><b>Q: can-i-deploy là gì?</b></summary>
+
+Là một công cụ CLI của Pact kiểm tra xem phiên bản hiện tại của Consumer và Provider có tương thích hợp đồng với nhau không trước khi tiến hành deploy lên một môi trường cụ thể (như Production).
+</details>

@@ -52,6 +52,20 @@ Dùng entity ID (orderId, userId) làm Kafka message key cho entity-level orderi
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Kafka có thể đảm bảo thứ tự qua các partition không?
-- **Q:** Làm thế nào để đảm bảo tất cả event của một user được xử lý theo thứ tự?
-- **Q:** Exactly-once semantics trong Kafka là gì và đạt được thế nào?
+<details>
+<summary><b>Q: Kafka có thể đảm bảo thứ tự qua các partition không?</b></summary>
+
+Không thể đảm bảo thứ tự giữa các partition khác nhau, chỉ đảm bảo thứ tự tuần tự trong nội bộ của một partition duy nhất.
+</details>
+
+<details>
+<summary><b>Q: Làm thế nào để đảm bảo tất cả event của một user được xử lý theo thứ tự?</b></summary>
+
+Thiết lập `user_id` làm Message Key khi gửi tin. Kafka sẽ băm (hash) key này để luôn định tuyến toàn bộ event của user này vào cùng một partition.
+</details>
+
+<details>
+<summary><b>Q: Exactly-once semantics trong Kafka là gì và đạt được thế nào?</b></summary>
+
+Là đảm bảo một chuỗi xử lý (đọc -> xử lý -> ghi) diễn ra chính xác 1 lần. Đạt được bằng cách bật `enable.idempotence=true` cho producer, dùng Transactional API kết hợp đồng bộ hóa offset consumer trong transaction.
+</details>

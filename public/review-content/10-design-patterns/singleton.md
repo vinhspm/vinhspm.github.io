@@ -73,6 +73,20 @@ Trong Spring app không có lý do để implement Singleton thủ công. Tất 
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Tại sao classic Singleton khó test?
-- **Q:** Initialization-on-demand holder idiom là gì?
-- **Q:** Spring xử lý Singleton khác gì so với pattern?
+<details>
+<summary><b>Q: Tại sao classic Singleton khó test?</b></summary>
+
+Vì constructor của nó là private nên không thể tạo đối tượng giả lập (mock/stub) khi viết unit test cho các class phụ thuộc vào nó, đồng thời nó giữ trạng thái toàn cục (global state) xuyên suốt luồng chạy test gây ảnh hưởng chéo kết quả test.
+</details>
+
+<details>
+<summary><b>Q: Initialization-on-demand holder idiom là gì?</b></summary>
+
+Là cách tạo Singleton an toàn đa luồng (thread-safe) tối ưu nhất trong Java mà không cần dùng `synchronized`. Sử dụng một static nested class (holder); class holder này chỉ được JVM nạp vào bộ nhớ và khởi tạo đối tượng duy nhất khi phương thức lấy instance được gọi lần đầu tiên.
+</details>
+
+<details>
+<summary><b>Q: Spring xử lý Singleton khác gì so với pattern?</b></summary>
+
+Classic Singleton giới hạn duy nhất 1 instance trên mỗi ClassLoader. Spring Singleton giới hạn duy nhất 1 instance ứng với mỗi Bean ID bên trong phạm vi quản lý của một Spring IoC Container cụ thể.
+</details>

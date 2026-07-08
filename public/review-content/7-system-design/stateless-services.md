@@ -69,6 +69,20 @@ Kiểm tra ứng dụng để tìm state trong process: in-memory cache, ThreadL
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Điều gì làm cho service trở thành stateless?
-- **Q:** Làm thế nào để xử lý file upload trong stateless service?
-- **Q:** Sticky session là gì và tại sao là anti-pattern?
+<details>
+<summary><b>Q: Điều gì làm cho service trở thành stateless?</b></summary>
+
+Khi nó không lưu trữ bất kỳ trạng thái người dùng hay dữ liệu tạm thời nào trong RAM hoặc ổ đĩa cục bộ của instance đó. Mọi thông tin trạng thái đều phải được truyền qua request hoặc lưu ở bộ lưu trữ dùng chung như Redis/Database.
+</details>
+
+<details>
+<summary><b>Q: Làm thế nào để xử lý file upload trong stateless service?</b></summary>
+
+Không lưu file trên ổ cứng local của server. Thay vào đó, hãy tải file trực tiếp lên một kho lưu trữ tập trung dùng chung như AWS S3 hoặc MinIO ngay khi nhận được file.
+</details>
+
+<details>
+<summary><b>Q: Sticky session là gì và tại sao là anti-pattern?</b></summary>
+
+Là ép user luôn vào một server cố định. Là anti-pattern vì cản trở việc tự động cân bằng tải, gây khó khăn khi scale-out/scale-in hoặc bảo trì hệ thống (nếu server đó sập, toàn bộ session của user trên đó sẽ bị mất).
+</details>

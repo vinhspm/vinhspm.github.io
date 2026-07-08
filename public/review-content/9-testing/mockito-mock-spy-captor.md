@@ -106,6 +106,20 @@ class OrderServiceMockitoTest {
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Sự khác biệt giữa spy() và mock()?
-- **Q:** Tại sao dùng doReturn() thay vì when().thenReturn() với spy?
-- **Q:** @InjectMocks inject mock thế nào?
+<details>
+<summary><b>Q: Sự khác biệt giữa spy() và mock()?</b></summary>
+
+mock() tạo ra đối tượng giả lập hoàn toàn (mọi hàm mặc định không làm gì hoặc trả về null). spy() tạo đối tượng bọc quanh một instance thật (mọi hàm mặc định chạy code thật trừ khi bị stub).
+</details>
+
+<details>
+<summary><b>Q: Tại sao dùng doReturn() thay vì when().thenReturn() với spy?</b></summary>
+
+Vì nếu dùng `when(spy.someMethod()).thenReturn(...)`, Java vẫn thực sự chạy vào code của `spy.someMethod()` trước khi stub, có thể gây lỗi runtime hoặc NullPointerException. `doReturn(...).when(spy).someMethod()` sẽ bypass code thật và thực hiện stub an toàn.
+</details>
+
+<details>
+<summary><b>Q: @InjectMocks inject mock thế nào?</b></summary>
+
+Mockito tự động quét và inject các trường được đánh dấu `@Mock` hoặc `@Spy` vào trong class được khai báo `@InjectMocks` thông qua constructor injection, setter injection, hoặc field injection.
+</details>

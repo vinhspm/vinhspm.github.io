@@ -104,6 +104,20 @@ Dùng Lombok @Builder cho tất cả DTO, request/response class với hơn 3 fi
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Builder giải quyết vấn đề gì?
-- **Q:** @Builder.Default hoạt động thế nào trong Lombok?
-- **Q:** Khi nào viết custom builder vs dùng Lombok?
+<details>
+<summary><b>Q: Builder giải quyết vấn đề gì?</b></summary>
+
+Giải quyết vấn đề "telescoping constructor" (quá nhiều tham số trong constructor gây nhầm lẫn thứ tự) và cho phép khởi tạo đối tượng phức tạp một cách từng bước, rõ ràng, dễ đọc.
+</details>
+
+<details>
+<summary><b>Q: @Builder.Default hoạt động thế nào trong Lombok?</b></summary>
+
+Dùng để giữ lại giá trị mặc định của trường dữ liệu được khai báo trong class khi sử dụng Builder của Lombok để tạo đối tượng (nếu không có annotation này, các trường không được gọi set trong builder sẽ nhận giá trị null/0).
+</details>
+
+<details>
+<summary><b>Q: Khi nào viết custom builder vs dùng Lombok?</b></summary>
+
+Dùng Lombok cho hầu hết các trường hợp thông thường để viết code ngắn gọn. Viết custom builder khi cần kiểm tra ràng buộc nghiệp vụ phức tạp giữa các trường (validation) trong quá trình khởi tạo hoặc xây dựng luồng fluent API đặc thù.
+</details>

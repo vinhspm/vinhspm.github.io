@@ -64,6 +64,20 @@ Bao gồm `eventId` duy nhất (UUID) trong mọi event bạn publish. Consumer 
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Thao tác idempotent là gì? Đưa ví dụ.
-- **Q:** Làm thế nào để implement idempotency cho Kafka consumer?
-- **Q:** Outbox pattern là gì và đảm bảo exactly-once publishing thế nào?
+<details>
+<summary><b>Q: Thao tác idempotent là gì? Đưa ví dụ.</b></summary>
+
+Là thao tác thực hiện một lần hay nhiều lần đều mang lại cùng một kết quả trạng thái duy nhất. Ví dụ: Set trạng thái `status = 'ACTIVE'` (idempotent), còn lệnh `balance = balance - 100` (không idempotent).
+</details>
+
+<details>
+<summary><b>Q: Làm thế nào để implement idempotency cho Kafka consumer?</b></summary>
+
+Sử dụng cơ chế lưu trữ phân tán (ví dụ Redis/Database) để kiểm tra một **Message ID** duy nhất của tin nhắn. Nếu ID đã tồn tại thì bỏ qua, nếu chưa thì xử lý dữ liệu và lưu lại ID đó trong một transaction.
+</details>
+
+<details>
+<summary><b>Q: Outbox pattern là gì và đảm bảo exactly-once publishing thế nào?</b></summary>
+
+Là ghi tin nhắn vào một bảng tạm `Outbox` cùng một database transaction với ghi dữ liệu nghiệp vụ, sau đó có một service quét bảng này đẩy tin lên Message Broker. Điều này đảm bảo dữ liệu ghi thành công thì tin nhắn chắc chắn sẽ được phát đi (chống mất mát).
+</details>

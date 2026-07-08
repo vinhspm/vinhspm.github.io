@@ -93,6 +93,20 @@ Cho project mới: chọn k6. Cho JMeter infrastructure có sẵn: giữ nguyên
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Sự khác biệt giữa virtual user và request per second là gì?
-- **Q:** Làm thế nào để parameterize test với credential user khác nhau?
-- **Q:** Think time mô phỏng gì trong load test?
+<details>
+<summary><b>Q: Sự khác biệt giữa virtual user và request per second là gì?</b></summary>
+
+Virtual User (VU) mô phỏng số lượng người dùng đồng thời tương tác với hệ thống. Request Per Second (RPS) là số lượng yêu cầu thực tế gửi đến máy chủ trong một giây. Một VU có thể gửi nhiều hoặc ít request tùy thuộc vào tốc độ phản hồi và thời gian chờ (think time).
+</details>
+
+<details>
+<summary><b>Q: Làm thế nào để parameterize test với credential user khác nhau?</b></summary>
+
+Nạp danh sách credentials từ một file dữ liệu ngoài (như CSV) vào công cụ load test (dùng CSV Data Set Config trong JMeter hoặc papaparse trong k6) để mỗi Virtual User lấy một hàng dữ liệu tài khoản khác nhau khi đăng nhập.
+</details>
+
+<details>
+<summary><b>Q: Think time mô phỏng gì trong load test?</b></summary>
+
+Mô phỏng khoảng thời gian chờ thực tế của con người giữa các thao tác nhấp chuột (ví dụ đọc trang web trước khi nhấn nút mua hàng) giúp tải trọng gửi lên server tự nhiên và chính xác hơn.
+</details>

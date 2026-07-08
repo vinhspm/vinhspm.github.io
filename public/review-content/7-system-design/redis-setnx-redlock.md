@@ -79,6 +79,20 @@ Dùng Redisson (`RLock`) trong production thay vì Lua script thô — nó xử 
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Tại sao phải dùng Lua script để release Redis distributed lock?
-- **Q:** Fencing token là gì và tại sao cần?
-- **Q:** Tình huống thất bại nào mà Redlock KHÔNG bảo vệ chống lại?
+<details>
+<summary><b>Q: Tại sao phải dùng Lua script để release Redis distributed lock?</b></summary>
+
+Để đảm bảo tính nguyên tử (atomic): chỉ giải phóng khoá nếu giá trị token của khoá đó vẫn khớp với Client sở hữu nó, tránh việc giải phóng nhầm khoá của Client khác khi hết hạn TTL.
+</details>
+
+<details>
+<summary><b>Q: Fencing token là gì và tại sao cần?</b></summary>
+
+Là một số ID tự tăng được gán kèm mỗi khi lấy lock thành công. Cần thiết để gửi xuống DB kiểm tra; DB sẽ từ chối các thao tác ghi của client mang ID cũ hơn nếu có client mới đã lấy được lock mới hơn (ngăn chặn lỗi GC pause).
+</details>
+
+<details>
+<summary><b>Q: Tình huống thất bại nào mà Redlock KHÔNG bảo vệ chống lại?</b></summary>
+
+Lỗi sụp đổ hệ thống mạng hoặc lỗi đồng hồ hệ thống (clock drift) nhảy thời gian quá nhanh khiến khoá hết hạn sớm hơn tính toán của client.
+</details>

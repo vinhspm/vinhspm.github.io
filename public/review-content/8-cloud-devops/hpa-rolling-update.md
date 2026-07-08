@@ -43,6 +43,20 @@ spec:
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Kubernetes đảm bảo zero downtime trong rolling update thế nào?
-- **Q:** HPA có thể dùng metric nào ngoài CPU và memory?
-- **Q:** PodDisruptionBudget là gì và khi nào bạn cần?
+<details>
+<summary><b>Q: Kubernetes đảm bảo zero downtime trong rolling update thế nào?</b></summary>
+
+Bằng cách chạy Pod mới song song với Pod cũ; chỉ định tuyến traffic sang Pod mới khi nó vượt qua bài test **Readiness Probe**, sau đó mới tiến hành tắt dần Pod cũ theo từng đợt thiết lập sẵn.
+</details>
+
+<details>
+<summary><b>Q: HPA có thể dùng metric nào ngoài CPU và memory?</b></summary>
+
+Có thể dùng custom metric từ bên ngoài (như số lượng request mỗi giây - RPS, số lượng message còn tồn đọng trong queue - Kafka lag) thông qua bộ cài Prometheus Adapter.
+</details>
+
+<details>
+<summary><b>Q: PodDisruptionBudget là gì và khi nào bạn cần?</b></summary>
+
+PDB định nghĩa số lượng Pod tối thiểu phải luôn hoạt động khi cluster tiến hành nâng cấp hoặc bảo trì node. Cần thiết cho các dịch vụ quan trọng để tránh việc Kubernetes vô tình tắt sạch các Pod cùng lúc làm gián đoạn dịch vụ.
+</details>

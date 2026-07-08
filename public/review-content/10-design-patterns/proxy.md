@@ -98,6 +98,14 @@ Hiểu cơ chế proxy Spring là chìa khóa debug @Transactional/@Cacheable kh
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Sự khác biệt giữa Proxy và Decorator?
-- **Q:** Tại sao self-invocation bypass Spring AOP?
-- **Q:** Sự khác biệt giữa JDK proxy và CGLIB proxy là gì?
+<details>
+<summary><b>Q: Tại sao self-invocation bypass Spring AOP?</b></summary>
+
+Vì Spring AOP bọc bean thật trong một Proxy. Khi một phương thức bên trong class tự gọi trực tiếp sang phương thức khác của chính nó, cuộc gọi này chạy trên instance thật trực tiếp chứ không đi qua lớp vỏ bọc Proxy, dẫn đến các annotation như @Transactional hay @Cacheable bị vô hiệu.
+</details>
+
+<details>
+<summary><b>Q: Sự khác biệt giữa JDK proxy và CGLIB proxy là gì?</b></summary>
+
+JDK Dynamic Proxy tạo proxy cho các class có implement Interface (dùng Reflection). CGLIB tạo proxy bằng cách kế thừa và tạo subclass từ class đích (không dùng được với các hàm/class final).
+</details>
