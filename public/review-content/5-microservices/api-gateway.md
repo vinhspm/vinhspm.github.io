@@ -109,6 +109,20 @@ public class JwtAuthFilter implements GlobalFilter, Ordered {
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Sự khác biệt giữa API Gateway và load balancer là gì?
-- **Q:** Pattern Backend for Frontend (BFF) là gì?
-- **Q:** Gateway xử lý authentication vs authorization thế nào?
+<details>
+<summary><b>Q: Sự khác biệt giữa API Gateway và load balancer là gì?</b></summary>
+
+Load balancer chỉ phân phối traffic (ở Layer 4 hoặc Layer 7) đến các instance của một service để tăng độ tải. API Gateway hoạt động ở mức ứng dụng (Layer 7), đóng vai trò như một điểm đầu vào duy nhất cung cấp thêm các tính năng nâng cao như routing phức tạp, authentication/authorization, rate limiting, logging, và gom/biến đổi API.
+</details>
+
+<details>
+<summary><b>Q: Pattern Backend for Frontend (BFF) là gì?</b></summary>
+
+BFF là pattern tạo ra các API Gateway riêng biệt cho từng loại client cụ thể (ví dụ: Mobile BFF, Web BFF, Third-party BFF) giúp tùy biến dữ liệu trả về tối ưu nhất cho từng thiết bị mà không làm phình to một API Gateway dùng chung.
+</details>
+
+<details>
+<summary><b>Q: Gateway xử lý authentication vs authorization thế nào?</b></summary>
+
+Gateway thường đảm nhận việc xác thực (**Authentication**) tập trung (kiểm tra tính hợp lệ của JWT/OAuth token) rồi chèn thông tin User đã xác thực vào request header gửi xuống các service nội bộ. Việc phân quyền (**Authorization** chi tiết ở mức tài nguyên cụ thể) thường được đẩy xuống từng service nội bộ tự xử lý dựa trên thông tin User nhận từ Gateway.
+</details>

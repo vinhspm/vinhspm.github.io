@@ -87,6 +87,20 @@ Kết hợp Circuit Breaker + Retry + TimeLimiter. Đặt retry trên call bên 
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Sự khác biệt giữa Circuit Breaker và retry là gì?
-- **Q:** Điều gì xảy ra trong trạng thái HALF_OPEN?
-- **Q:** Làm thế nào để implement fallback khi circuit đang OPEN?
+<details>
+<summary><b>Q: Sự khác biệt giữa Circuit Breaker và retry là gì?</b></summary>
+
+Retry cố gắng gọi lại service bị lỗi ngay lập tức với hy vọng lỗi đó là tạm thời (transient). Circuit Breaker ngăn chặn việc gọi đến service bị lỗi ngay từ đầu bằng cách ngắt mạch (fail-fast), bảo vệ hệ thống khỏi bị cạn kiệt tài nguyên do chờ đợi service bị sập.
+</details>
+
+<details>
+<summary><b>Q: Điều gì xảy ra trong trạng thái HALF_OPEN?</b></summary>
+
+Circuit Breaker cho phép một số lượng giới hạn các request đi qua để thử nghiệm dịch vụ phía sau. Nếu các request thử nghiệm này thành công, mạch sẽ đóng lại (`CLOSED` - hoạt động bình thường). Nếu tiếp tục thất bại, mạch sẽ mở ra lại (`OPEN` - ngắt kết nối).
+</details>
+
+<details>
+<summary><b>Q: Làm thế nào để implement fallback khi circuit đang OPEN?</b></summary>
+
+Khi circuit đang ở trạng thái `OPEN`, hệ thống sẽ trả về ngay dữ liệu mặc định (local cache, dữ liệu tĩnh) hoặc thông báo lỗi thân thiện mà không gọi xuống service bị lỗi. Trong Spring, có thể dùng `@CircuitBreaker(fallbackMethod = "...")`.
+</details>

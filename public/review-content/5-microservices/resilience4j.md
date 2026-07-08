@@ -101,6 +101,20 @@ Dùng Resilience4j với Spring Cloud OpenFeign cho inter-service call. Áp dụ
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Sự khác biệt giữa Resilience4j Bulkhead và Circuit Breaker là gì?
-- **Q:** @TimeLimiter hoạt động với CompletableFuture thế nào?
-- **Q:** slow-call-rate-threshold trong cấu hình circuit breaker là gì?
+<details>
+<summary><b>Q: Sự khác biệt giữa Resilience4j Bulkhead và Circuit Breaker là gì?</b></summary>
+
+Circuit Breaker ngắt mạch dựa trên **tỷ lệ lỗi hoặc độ trễ** của các cuộc gọi nhằm tránh làm quá tải hệ thống khi đối tác gặp sự cố. Bulkhead giới hạn **số lượng cuộc gọi đồng thời** (concurrent calls) đến một tài nguyên cụ thể để ngăn một service lỗi chiếm dụng toàn bộ tài nguyên (thread pool/semaphore) của ứng dụng.
+</details>
+
+<details>
+<summary><b>Q: @TimeLimiter hoạt động với CompletableFuture thế nào?</b></summary>
+
+`@TimeLimiter` yêu cầu phương thức được khai báo phải trả về một kiểu bất đồng bộ như `CompletableFuture`. Khi gọi hàm, TimeLimiter sẽ giám sát thời gian chạy; nếu vượt quá ngưỡng thời gian cho phép, nó sẽ chủ động hủy task và ném ra `TimeoutException`.
+</details>
+
+<details>
+<summary><b>Q: slow-call-rate-threshold trong cấu hình circuit breaker là gì?</b></summary>
+
+Là tỷ lệ phần trăm (ví dụ: 50%) các cuộc gọi có thời gian phản hồi vượt quá ngưỡng trễ định trước (`slowCallDurationThreshold`). Nếu vượt quá tỷ lệ này trong khoảng giám sát, Circuit Breaker sẽ chuyển sang trạng thái `OPEN`.
+</details>

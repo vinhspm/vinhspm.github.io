@@ -112,6 +112,20 @@ Dùng Temporal cho workflow chạy lâu cần durability, retry và visibility. 
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Vai trò của orchestrator trong orchestration saga là gì?
-- **Q:** Temporal khác message queue cho saga orchestration thế nào?
-- **Q:** Trade-off giữa orchestration và choreography là gì?
+<details>
+<summary><b>Q: Vai trò của orchestrator trong orchestration saga là gì?</b></summary>
+
+Đóng vai trò là bộ não điều phối tập trung (Central Coordinator), chịu trách nhiệm định nghĩa luồng xử lý, gửi lệnh thực thi đến các service tham gia, nhận phản hồi và quyết định kích hoạt các compensating transaction (giao dịch bù) để hoàn tác nếu có bước bị lỗi.
+</details>
+
+<details>
+<summary><b>Q: Temporal khác message queue cho saga orchestration thế nào?</b></summary>
+
+Message Queue chỉ truyền tải message thuần túy, lập trình viên phải tự viết code quản lý trạng thái phức tạp của luồng. Temporal là một Workflow Engine giúp lưu trữ trạng thái bền vững (Stateful) của toàn bộ luồng nghiệp vụ tự động, hỗ trợ tự động retry, timeout và quản lý luồng chạy dài (dù server sập luồng vẫn tiếp tục chạy đúng điểm dừng).
+</details>
+
+<details>
+<summary><b>Q: Trade-off giữa orchestration và choreography là gì?</b></summary>
+
+Orchestration dễ theo dõi luồng (high visibility), dễ kiểm soát lỗi nhưng orchestrator có thể trở thành điểm nghẽn cổ chai (single point of failure) và làm tăng tính phụ thuộc lẫn nhau. Choreography giảm tính phụ thuộc (loose coupling), hiệu năng cao nhưng hệ thống rất khó debug, khó theo dõi toàn bộ luồng sự kiện.
+</details>

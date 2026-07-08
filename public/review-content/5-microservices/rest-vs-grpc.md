@@ -104,6 +104,20 @@ Cho inter-service call nội bộ trong môi trường microservice đa ngôn ng
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Ưu điểm chính của gRPC so với REST là gì?
-- **Q:** Protocol Buffers là gì và tại sao dùng với gRPC?
-- **Q:** gRPC có thể dùng từ browser không?
+<details>
+<summary><b>Q: Ưu điểm chính của gRPC so với REST là gì?</b></summary>
+
+gRPC sử dụng **HTTP/2** (truyền tải dạng nhị phân, multiplexing nhiều request trên 1 kết nối, nén header) giúp tốc độ truyền tải cực nhanh và tiết kiệm tài nguyên. Đồng thời gRPC sử dụng **Protocol Buffers** thay vì JSON nên payload rất nhỏ gọn và tự động sinh code client/server từ file `.proto` một cách chặt chẽ.
+</details>
+
+<details>
+<summary><b>Q: Protocol Buffers là gì và tại sao dùng với gRPC?</b></summary>
+
+Protocol Buffers (Protobuf) là cơ chế tuần tự hóa dữ liệu (serialization) dạng nhị phân do Google phát triển. Nó được dùng với gRPC vì cho tốc độ mã hóa/giải mã cực nhanh, kích thước dữ liệu truyền đi siêu nhỏ so với JSON/XML và hỗ trợ định nghĩa kiểu dữ liệu tĩnh nghiêm ngặt.
+</details>
+
+<details>
+<summary><b>Q: gRPC có thể dùng từ browser không?</b></summary>
+
+Không thể gọi trực tiếp native gRPC từ browser do các trình duyệt hiện nay chưa hỗ trợ đầy đủ các tính năng HTTP/2 mức thấp (như kiểm soát frame trực tiếp). Để gọi được từ browser, bắt buộc phải dùng thư viện hỗ trợ như **gRPC-Web** thông qua một proxy trung gian (như Envoy) để dịch HTTP/1.1 sang HTTP/2 gRPC.
+</details>

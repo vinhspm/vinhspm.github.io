@@ -111,6 +111,20 @@ Luôn định nghĩa cấu hình timeout cho Feign client (`connectTimeout`, `re
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Feign hoạt động nội bộ thế nào?
-- **Q:** Làm thế nào để truyền header (như JWT) qua Feign call?
-- **Q:** Sự khác biệt giữa Feign fallback và fallbackFactory là gì?
+<details>
+<summary><b>Q: Feign hoạt động nội bộ thế nào?</b></summary>
+
+Feign sử dụng cơ chế Dynamic Proxy của Java để tạo ra class triển khai (implementation) từ interface được khai báo bằng annotation `@FeignClient`, tự động chuyển đổi các gọi hàm Java thành các HTTP request tương ứng gửi đi.
+</details>
+
+<details>
+<summary><b>Q: Làm thế nào để truyền header (như JWT) qua Feign call?</b></summary>
+
+Implement interface `RequestInterceptor` để viết một bean cấu hình chung cho Feign. Trong hàm `apply(RequestTemplate template)`, lấy token từ context bảo mật hiện tại (ví dụ `SecurityContextHolder`) và chèn vào header `Authorization`.
+</details>
+
+<details>
+<summary><b>Q: Sự khác biệt giữa Feign fallback và fallbackFactory là gì?</b></summary>
+
+`fallback` nhận vào một class triển khai interface Feign chỉ để trả về giá trị mặc định khi lỗi xảy ra. `fallbackFactory` mạnh mẽ hơn, cho phép bạn truy cập vào nguyên nhân gây lỗi cụ thể (Throwable/Exception) để đưa ra quyết định xử lý fallback tương ứng.
+</details>

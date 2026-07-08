@@ -103,6 +103,20 @@ Thêm alert rule cho chuyển đổi trạng thái: CLOSED→OPEN nên gọi on-
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Mô tả ba trạng thái circuit breaker và sự chuyển đổi của chúng.
-- **Q:** Điều gì xảy ra với in-flight call khi circuit chuyển sang OPEN?
-- **Q:** Circuit breaker ở trạng thái OPEN bao lâu trước khi thử HALF_OPEN?
+<details>
+<summary><b>Q: Mô tả ba trạng thái circuit breaker và sự chuyển đổi của chúng.</b></summary>
+
+CLOSED: Hoạt động bình thường, chuyển sang OPEN khi tỷ lệ lỗi vượt ngưỡng. OPEN: Ngắt mạch lập tức, chuyển sang HALF_OPEN sau thời gian timeout cool-down. HALF_OPEN: Chạy thử nghiệm, nếu thành công chuyển về CLOSED, nếu thất bại chuyển về OPEN.
+</details>
+
+<details>
+<summary><b>Q: Điều gì xảy ra với in-flight call khi circuit chuyển sang OPEN?</b></summary>
+
+Các cuộc gọi đang trên đường truyền (in-flight calls) vẫn tiếp tục thực thi cho đến khi nhận được phản hồi hoặc quá thời gian timeout của chúng. Tuy nhiên, bất kỳ request mới nào đến ngay sau thời điểm mạch chuyển sang `OPEN` sẽ bị chặn lại ngay lập tức.
+</details>
+
+<details>
+<summary><b>Q: Circuit breaker ở trạng thái OPEN bao lâu trước khi thử HALF_OPEN?</b></summary>
+
+Thời gian này tùy thuộc vào cấu hình của ứng dụng (trong Resilience4j là thuộc tính `waitDurationInOpenState`, mặc định thường là 60 giây). Khoảng thời gian này nhằm mục đích tạo thời gian trống (cool down) cho service gặp sự cố có cơ hội tự phục hồi hệ thống.
+</details>

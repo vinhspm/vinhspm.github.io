@@ -98,6 +98,20 @@ public class SlidingWindowRateLimiter {
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Sự khác biệt giữa token bucket và leaky bucket rate limiting là gì?
-- **Q:** Làm thế nào để implement distributed rate limiting qua nhiều gateway instance?
-- **Q:** Một response bị rate-limited nên trả về HTTP status code và header nào?
+<details>
+<summary><b>Q: Sự khác biệt giữa token bucket và leaky bucket rate limiting là gì?</b></summary>
+
+**Token Bucket** cho phép xử lý các đợt request tăng đột biến (burst of traffic) miễn là trong xô còn token. **Leaky Bucket** ép luồng request đầu ra luôn ổn định ở một tốc độ cố định giống như nước nhỏ giọt đều đặn từ xô bị rò, bất kỳ request dư thừa nào sẽ bị xếp hàng hoặc loại bỏ ngay lập tức.
+</details>
+
+<details>
+<summary><b>Q: Làm thế nào để implement distributed rate limiting qua nhiều gateway instance?</b></summary>
+
+Sử dụng một kho lưu trữ trạng thái tập trung dùng chung, phổ biến nhất là **Redis** kết hợp với Redis Script (Lua script) để thực hiện thao tác kiểm tra và giảm số lượng token của IP/User một cách atomic trên toàn bộ các gateway instance.
+</details>
+
+<details>
+<summary><b>Q: Một response bị rate-limited nên trả về HTTP status code và header nào?</b></summary>
+
+Trả về HTTP status code **429 Too Many Requests**. Các header nên đi kèm: `Retry-After` (thời gian tính bằng giây/mốc thời gian cần chờ trước khi thử lại), `X-RateLimit-Limit` (giới hạn tối đa), và `X-RateLimit-Remaining` (số request còn lại trong chu kỳ).
+</details>

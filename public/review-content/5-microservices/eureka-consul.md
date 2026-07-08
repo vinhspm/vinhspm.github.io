@@ -72,6 +72,20 @@ Trong môi trường cloud-native/K8s, không cần Eureka hay Consul — dùng 
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Sự khác biệt giữa Eureka và Consul là gì?
-- **Q:** Self-preservation mode của Eureka là gì và khi nào kích hoạt?
-- **Q:** Consul xử lý tình huống split-brain thế nào?
+<details>
+<summary><b>Q: Sự khác biệt giữa Eureka và Consul là gì?</b></summary>
+
+Eureka (thuộc Netflix) sử dụng mô hình AP (trong định lý CAP), ưu tiên tính khả dụng cao, dữ liệu nhất quán sau cùng và giao tiếp qua HTTP. Consul (thuộc HashiCorp) sử dụng thuật toán đồng thuận Raft nên theo mô hình CP, ưu tiên tính nhất quán mạnh mẽ, hỗ trợ thêm cấu hình Key-Value, DNS interface và Service Mesh.
+</details>
+
+<details>
+<summary><b>Q: Self-preservation mode của Eureka là gì và khi nào kích hoạt?</b></summary>
+
+Là chế độ tự bảo vệ của Eureka Server. Khi tỷ lệ nhận heartbeat của các instance giảm đột ngột dưới ngưỡng thiết lập (thường do lỗi mạng tạm thời chứ không phải service bị down), Eureka sẽ kích hoạt chế độ này: ngừng hủy đăng ký (evict) các instance để tránh xóa nhầm các service vẫn đang chạy khỏe mạnh.
+</details>
+
+<details>
+<summary><b>Q: Consul xử lý tình huống split-brain thế nào?</b></summary>
+
+Consul sử dụng giao thức đồng thuận Raft để bầu cử Leader. Nếu xảy ra split-brain (chia cắt mạng thành 2 vùng), vùng nào có số lượng node chiếm đa số (quorum) mới có thể bầu leader và hoạt động bình thường; vùng thiểu số sẽ không thể ghi và từ chối các request để bảo vệ tính nhất quán.
+</details>

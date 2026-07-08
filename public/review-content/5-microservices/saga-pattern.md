@@ -96,6 +96,20 @@ Bắt đầu với choreography (đơn giản hơn), chuyển sang orchestration
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Compensating transaction trong Saga là gì?
-- **Q:** Sự khác biệt giữa choreography và orchestration saga là gì?
-- **Q:** Làm thế nào để xử lý partial failure trong distributed saga?
+<details>
+<summary><b>Q: Compensating transaction trong Saga là gì?</b></summary>
+
+Là giao dịch bù (hoàn tác) được thiết kế để đảo ngược các tác động của một giao dịch đã thực hiện thành công trước đó (ví dụ: giao dịch bù của "trừ tiền tài khoản" là "cộng lại tiền vào tài khoản"), được chạy khi có một bước sau đó trong chuỗi Saga bị thất bại.
+</details>
+
+<details>
+<summary><b>Q: Sự khác biệt giữa choreography và orchestration saga là gì?</b></summary>
+
+Choreography hoạt động theo mô hình phản ứng sự kiện (event-driven), các service tự lắng nghe event của nhau để chạy tiếp mà không có ai quản lý. Orchestration hoạt động theo mô hình điều phối tập trung, có một service (orchestrator) ra lệnh trực tiếp cho từng service chạy lần lượt.
+</details>
+
+<details>
+<summary><b>Q: Làm thế nào để xử lý partial failure trong distributed saga?</b></summary>
+
+Khi một bước trong Saga thất bại, hệ thống sẽ kích hoạt luồng hoàn tác (Backward Recovery) bằng cách chạy lần lượt các compensating transaction cho các bước đã thành công trước đó theo thứ tự ngược lại để đưa hệ thống về trạng thái nhất quán ban đầu. Hoặc sử dụng Forward Recovery (tự động retry bước lỗi liên tục nếu lỗi đó được xác định là tạm thời).
+</details>

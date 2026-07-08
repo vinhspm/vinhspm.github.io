@@ -91,6 +91,20 @@ Dùng Feign + Circuit Breaker cho sync inter-service call. Publish event lên Ka
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Khi nào bạn chọn gRPC thay vì REST cho inter-service communication?
-- **Q:** Trade-off giữa giao tiếp đồng bộ và bất đồng bộ là gì?
-- **Q:** Làm thế nào để xử lý lỗi trong sync service-to-service call?
+<details>
+<summary><b>Q: Khi nào bạn chọn gRPC thay vì REST cho inter-service communication?</b></summary>
+
+Chọn gRPC khi giao tiếp giữa các service nội bộ yêu cầu hiệu năng cực cao, độ trễ thấp, lượng truyền tải dữ liệu lớn, hoặc khi hệ thống được viết bằng nhiều ngôn ngữ lập trình khác nhau cần chia sẻ chung một hợp đồng API (file `.proto`) chặt chẽ.
+</details>
+
+<details>
+<summary><b>Q: Trade-off giữa giao tiếp đồng bộ và bất đồng bộ là gì?</b></summary>
+
+Giao tiếp đồng bộ (HTTP/gRPC) đơn giản, lập trình trực quan nhưng dễ gây ra lỗi dây chuyền (cascading failure), nghẽn luồng và tính phụ thuộc cao. Giao tiếp bất đồng bộ (Message Queue/Event) giúp cô lập lỗi tốt, tăng tính chịu tải và giảm phụ thuộc nhưng hệ thống phức tạp hơn, khó debug và chỉ đạt tính nhất quán sau cùng.
+</details>
+
+<details>
+<summary><b>Q: Làm thế nào để xử lý lỗi trong sync service-to-service call?</b></summary>
+
+Áp dụng cơ chế **Circuit Breaker** để ngắt kết nối sớm nếu đầu bên kia bị lỗi, thiết lập **Timeout** hợp lý để tránh treo luồng vô thời hạn, và chuẩn bị sẵn các hàm **Fallback** để trả về dữ liệu dự phòng an toàn.
+</details>

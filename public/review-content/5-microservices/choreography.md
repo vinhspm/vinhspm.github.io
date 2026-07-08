@@ -87,6 +87,20 @@ Dùng choreography cho flow đơn giản 2-3 bước. Khi độ phức tạp tă
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Nhược điểm của choreography trong saga dài là gì?
-- **Q:** Làm thế nào để debug choreography saga khi bước nào đó fail âm thầm?
-- **Q:** Choreography xử lý out-of-order event thế nào?
+<details>
+<summary><b>Q: Nhược điểm của choreography trong saga dài là gì?</b></summary>
+
+Dễ dẫn đến hiện tượng "Spaghetti code" ở mức hệ thống do không có nơi quản lý tập trung luồng nghiệp vụ. Khi số bước tăng lên, hệ thống cực kỳ khó theo dõi (flow visibility), khó bảo trì, và có nguy cơ xảy ra vòng lặp vô hạn giữa các event (event loop).
+</details>
+
+<details>
+<summary><b>Q: Làm thế nào để debug choreography saga khi bước nào đó fail âm thầm?</b></summary>
+
+Sử dụng giải pháp **Distributed Tracing** (như Jaeger, Zipkin, OpenTelemetry) kết hợp gắn một **Correlation ID** duy nhất xuyên suốt chuỗi event để lọc log tập trung từ các service liên quan, phát hiện điểm đứt gãy luồng sự kiện.
+</details>
+
+<details>
+<summary><b>Q: Choreography xử lý out-of-order event thế nào?</b></summary>
+
+Sử dụng cơ chế Idempotency ở tầng nhận tin để bỏ qua các event trùng lặp, kết hợp lưu trữ trạng thái tạm thời của nghiệp vụ ở database để chỉ xử lý event khi nó ở đúng trạng thái logic mong muốn, nếu event đến quá sớm thì đưa vào hàng đợi chờ hoặc từ chối xử lý.
+</details>
