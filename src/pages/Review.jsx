@@ -109,7 +109,7 @@ function Review() {
 
       <aside className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
         <div className="sb-top">
-          <div className="logo">☕ Bản Đồ Phỏng Vấn Java</div>
+          <div className="logo">☕ Tổng hợp kiến thức</div>
           <input
             id="search"
             type="text"
