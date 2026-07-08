@@ -157,12 +157,7 @@
 }
 
 .nav-items {
-  display: none;
   padding-left: 0;
-}
-
-.nav-group.open .nav-items {
-  display: block;
 }
 
 .nav-topic {
@@ -211,13 +206,7 @@
   flex: 1;
 }
 
-.nav-subs {
-  display: none;
-}
-
-.nav-topic.sub-open+.nav-subs {
-  display: block;
-}
+/* nav-subs animation handled by framer-motion */
 
 .nav-sub {
   padding: 5px 14px 5px 36px;
