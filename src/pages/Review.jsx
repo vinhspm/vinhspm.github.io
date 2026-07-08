@@ -5,6 +5,7 @@ import rehypeRaw from 'rehype-raw';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { Search, ChevronDown, ChevronRight, Menu, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
 import './Review.css';
 
 const slugify = (text) => {
@@ -133,46 +134,68 @@ function Review() {
                   </span>
                 </div>
 
-                <div className="nav-items">
-                  {cat.topics.map((topic, ti) => {
-                    const tKey = `${ci}-${ti}`;
-                    const hasSubs = topic.subs && topic.subs.length > 0;
-                    const isSubOpen = expandedTopics[tKey] || topic.forceExpand;
+                <AnimatePresence initial={false}>
+                  {(expandedGroups[ci] || searchQuery) && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.2, ease: 'easeInOut' }}
+                      style={{ overflow: 'hidden' }}
+                      className="nav-items"
+                    >
+                      {cat.topics.map((topic, ti) => {
+                        const tKey = `${ci}-${ti}`;
+                        const hasSubs = topic.subs && topic.subs.length > 0;
+                        const isSubOpen = expandedTopics[tKey] || topic.forceExpand;
 
-                    return (
-                      <div key={ti}>
-                        <div
-                          className={`nav-topic ${hasSubs ? 'has-subs' : ''} ${isSubOpen ? 'sub-open' : ''} ${activeItem === topic.name ? 'active' : ''}`}
-                          onClick={() => {
-                            handleSelectItem(topic.name, cat.title);
-                            if (hasSubs) toggleTopic(ci, ti);
-                          }}
-                        >
-                          {hasSubs && (
-                            <span className="nav-tp-arrow">
-                              <ChevronRight size={10} />
-                            </span>
-                          )}
-                          <span className="nav-tp-name">{topic.name}</span>
-                        </div>
+                        return (
+                          <div key={ti}>
+                            <div
+                              className={`nav-topic ${hasSubs ? 'has-subs' : ''} ${isSubOpen ? 'sub-open' : ''} ${activeItem === topic.name ? 'active' : ''}`}
+                              onClick={() => {
+                                handleSelectItem(topic.name, cat.title);
+                                if (hasSubs) toggleTopic(ci, ti);
+                              }}
+                            >
+                              {hasSubs && (
+                                <span className="nav-tp-arrow">
+                                  <ChevronRight size={10} />
+                                </span>
+                              )}
+                              <span className="nav-tp-name">{topic.name}</span>
+                            </div>
 
-                        {hasSubs && (
-                          <div className="nav-subs" style={{ display: isSubOpen ? 'block' : 'none' }}>
-                            {topic.subs.map((sub, si) => (
-                              <div
-                                key={si}
-                                className={`nav-sub ${activeItem === sub ? 'active' : ''}`}
-                                onClick={() => handleSelectItem(sub, cat.title)}
-                              >
-                                {sub}
-                              </div>
-                            ))}
+                            {hasSubs && (
+                              <AnimatePresence initial={false}>
+                                {isSubOpen && (
+                                  <motion.div
+                                    initial={{ height: 0, opacity: 0 }}
+                                    animate={{ height: 'auto', opacity: 1 }}
+                                    exit={{ height: 0, opacity: 0 }}
+                                    transition={{ duration: 0.2, ease: 'easeInOut' }}
+                                    style={{ overflow: 'hidden' }}
+                                    className="nav-subs"
+                                  >
+                                    {topic.subs.map((sub, si) => (
+                                      <div
+                                        key={si}
+                                        className={`nav-sub ${activeItem === sub ? 'active' : ''}`}
+                                        onClick={() => handleSelectItem(sub, cat.title)}
+                                      >
+                                        {sub}
+                                      </div>
+                                    ))}
+                                  </motion.div>
+                                )}
+                              </AnimatePresence>
+                            )}
                           </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
+                        );
+                      })}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             ))
           )}
