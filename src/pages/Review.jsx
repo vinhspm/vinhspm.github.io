@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { Search, ChevronDown, ChevronRight, Menu, X } from 'lucide-react';
@@ -30,10 +31,6 @@ function Review() {
         setCategories(data);
         if (data.length > 0) {
           setExpandedGroups({ [0]: true });
-          // Optionally, load the first topic
-          // if (data[0].topics.length > 0) {
-          //   handleSelectItem(data[0].topics[0].name);
-          // }
         }
         setIsLoading(false);
       })
@@ -193,6 +190,7 @@ function Review() {
           <div className="markdown-body">
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
+              rehypePlugins={[rehypeRaw]}
               components={{
                 code({ node, inline, className, children, ...props }) {
                   const match = /language-(\w+)/.exec(className || '')

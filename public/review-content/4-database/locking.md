@@ -69,21 +69,20 @@ Dùng optimistic locking (`@Version`) cho tình huống low-contention — trán
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Sự khác biệt giữa optimistic và pessimistic locking là gì?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+<details>
+<summary><b>Q: Sự khác biệt giữa optimistic và pessimistic locking là gì?</b></summary>
 
-  Optimistic locking không khóa dữ liệu ở tầng DB, nó kiểm tra phiên bản dữ liệu (`@Version`) lúc ghi đè; nếu có xung đột phiên bản thì ném lỗi để ứng dụng xử lý (phù hợp hệ thống ít xung đột ghi). Pessimistic locking chủ động khóa trực tiếp các hàng dữ liệu ở tầng DB (`SELECT ... FOR UPDATE`), ngăn chặn các transaction khác đọc/ghi dòng đó cho tới khi transaction hiện tại kết thúc (phù hợp hệ thống xung đột ghi cao).
-  </details>
-- **Q:** Deadlock trong DB có thể xảy ra khi nào và DB giải quyết thế nào?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+Optimistic locking không khóa dữ liệu ở tầng DB, nó kiểm tra phiên bản dữ liệu (`@Version`) lúc ghi đè; nếu có xung đột phiên bản thì ném lỗi để ứng dụng xử lý (phù hợp hệ thống ít xung đột ghi). Pessimistic locking chủ động khóa trực tiếp các hàng dữ liệu ở tầng DB (`SELECT ... FOR UPDATE`), ngăn chặn các transaction khác đọc/ghi dòng đó cho tới khi transaction hiện tại kết thúc (phù hợp hệ thống xung đột ghi cao).
+</details>
 
-  Deadlock xảy ra khi hai hay nhiều transaction chờ đợi nhau giải phóng các khóa mà đối phương đang nắm giữ (A chờ B giải phóng khóa dòng 2, B chờ A giải phóng khóa dòng 1). DB giải quyết bằng cách chạy thuật toán phát hiện chu kỳ khóa (deadlock detection), tự động hủy (abort/rollback) một transaction để giải phóng tài nguyên cho các transaction còn lại chạy tiếp.
-  </details>
-- **Q:** @Version implement optimistic locking trong JPA thế nào?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+<details>
+<summary><b>Q: Deadlock trong DB có thể xảy ra khi nào và DB giải quyết thế nào?</b></summary>
 
-  JPA thêm một cột phiên bản (thường là số nguyên) vào bảng. Mỗi khi cập nhật dữ liệu, JPA thực hiện câu lệnh: `UPDATE table SET ..., version = version + 1 WHERE id = ? AND version = current_version`. Nếu số hàng cập nhật trả về bằng 0, nghĩa là đã có transaction khác sửa trước đó, JPA sẽ ném ra `OptimisticLockException`.
-  </details>
+Deadlock xảy ra khi hai hay nhiều transaction chờ đợi nhau giải phóng các khóa mà đối phương đang nắm giữ (A chờ B giải phóng khóa dòng 2, B chờ A giải phóng khóa dòng 1). DB giải quyết bằng cách chạy thuật toán phát hiện chu kỳ khóa (deadlock detection), tự động hủy (abort/rollback) một transaction để giải phóng tài nguyên cho các transaction còn lại chạy tiếp.
+</details>
+
+<details>
+<summary><b>Q: @Version implement optimistic locking trong JPA thế nào?</b></summary>
+
+JPA thêm một cột phiên bản (thường là số nguyên) vào bảng. Mỗi khi cập nhật dữ liệu, JPA thực hiện câu lệnh: `UPDATE table SET ..., version = version + 1 WHERE id = ? AND version = current_version`. Nếu số hàng cập nhật trả về bằng 0, nghĩa là đã có transaction khác sửa trước đó, JPA sẽ ném ra `OptimisticLockException`.
+</details>

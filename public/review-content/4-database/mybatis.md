@@ -19,21 +19,20 @@ Nhiều công ty tech gốc Trung Quốc (Alibaba, Baidu ecosystem) ưa MyBatis 
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** #{} và ${} trong MyBatis khác nhau thế nào?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+<details>
+<summary><b>Q: #{} và ${} trong MyBatis khác nhau thế nào?</b></summary>
 
-  `#{}` tạo ra một placeholder dạng `?` trong Prepared Statement và tự động xử lý kiểu dữ liệu, bảo mật cao. `${}` thay thế trực tiếp giá trị vào chuỗi SQL như một chuỗi thô, dễ bị SQL Injection.
-  </details>
-- **Q:** MyBatis ngăn SQL injection thế nào so với nối chuỗi?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+`#{}` tạo ra một placeholder dạng `?` trong Prepared Statement và tự động xử lý kiểu dữ liệu, bảo mật cao. `${}` thay thế trực tiếp giá trị vào chuỗi SQL như một chuỗi thô, dễ bị SQL Injection.
+</details>
 
-  Bằng cách sử dụng cơ chế `PreparedStatement` của JDBC thông qua cú pháp `#{}`, các tham số truyền vào được gửi riêng biệt với câu lệnh SQL, DB engine chỉ coi chúng là các tham số dữ liệu đơn thuần chứ không biên dịch chúng thành mã lệnh thực thi.
-  </details>
-- **Q:** Khi nào chọn MyBatis thay vì JPA/Hibernate?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+<details>
+<summary><b>Q: MyBatis ngăn SQL injection thế nào so với nối chuỗi?</b></summary>
 
-  Khi cần viết SQL tùy biến cao, tận dụng các tính năng đặc thù của hệ quản trị CSDL cụ thể, hoặc khi cần tối ưu hiệu năng tối đa cho các tác vụ báo cáo, xử lý lô (batch processing) mà ORM hoạt động quá cồng kềnh.
-  </details>
+Bằng cách sử dụng cơ chế `PreparedStatement` của JDBC thông qua cú pháp `#{}`, các tham số truyền vào được gửi riêng biệt với câu lệnh SQL, DB engine chỉ coi chúng là các tham số dữ liệu đơn thuần chứ không biên dịch chúng thành mã lệnh thực thi.
+</details>
+
+<details>
+<summary><b>Q: Khi nào chọn MyBatis thay vì JPA/Hibernate?</b></summary>
+
+Khi cần viết SQL tùy biến cao, tận dụng các tính năng đặc thù của hệ quản trị CSDL cụ thể, hoặc khi cần tối ưu hiệu năng tối đa cho các tác vụ báo cáo, xử lý lô (batch processing) mà ORM hoạt động quá cồng kềnh.
+</details>

@@ -81,21 +81,20 @@ Với tình huống đặt chỗ hoặc giảm tồn kho, pessimistic an toàn h
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** JPA ném exception nào khi xung đột optimistic lock?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+<details>
+<summary><b>Q: JPA ném exception nào khi xung đột optimistic lock?</b></summary>
 
-  JPA ném ra `OptimisticLockException` (trong Spring Data JPA thường được bọc lại thành `ObjectOptimisticLockingFailureException`).
-  </details>
-- **Q:** @Version hoạt động nội bộ thế nào?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+JPA ném ra `OptimisticLockException` (trong Spring Data JPA thường được bọc lại thành `ObjectOptimisticLockingFailureException`).
+</details>
 
-  Hibernate lưu giữ giá trị phiên bản ban đầu khi tải thực thể. Khi flush dữ liệu, nó chèn điều kiện so sánh `WHERE id = ? AND version = old_version` vào câu lệnh update. Nếu bản ghi đã bị thay đổi bởi transaction khác, số hàng bị tác động trả về là 0, kích hoạt lỗi xung đột khóa.
-  </details>
-- **Q:** Khi nào pessimistic locking có thể gây deadlock?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+<details>
+<summary><b>Q: @Version hoạt động nội bộ thế nào?</b></summary>
 
-  Khi hai transaction đồng thời cố gắng khóa chéo các tài nguyên của nhau theo thứ tự ngược nhau (ví dụ: T1 khóa hàng A rồi yêu cầu khóa hàng B; trong khi T2 đang giữ khóa hàng B và yêu cầu khóa hàng A).
-  </details>
+Hibernate lưu giữ giá trị phiên bản ban đầu khi tải thực thể. Khi flush dữ liệu, nó chèn điều kiện so sánh `WHERE id = ? AND version = old_version` vào câu lệnh update. Nếu bản ghi đã bị thay đổi bởi transaction khác, số hàng bị tác động trả về là 0, kích hoạt lỗi xung đột khóa.
+</details>
+
+<details>
+<summary><b>Q: Khi nào pessimistic locking có thể gây deadlock?</b></summary>
+
+Khi hai transaction đồng thời cố gắng khóa chéo các tài nguyên của nhau theo thứ tự ngược nhau (ví dụ: T1 khóa hàng A rồi yêu cầu khóa hàng B; trong khi T2 đang giữ khóa hàng B và yêu cầu khóa hàng A).
+</details>

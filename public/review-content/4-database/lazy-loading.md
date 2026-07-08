@@ -71,21 +71,20 @@ Pattern an toàn nhất: fetch chính xác những gì bạn cần trong query (
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Nguyên nhân LazyInitializationException và cách sửa là gì?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+<details>
+<summary><b>Q: Nguyên nhân LazyInitializationException và cách sửa là gì?</b></summary>
 
-  Lỗi này xảy ra khi ta cố truy cập một thuộc tính được cấu hình LAZY fetching sau khi Session/EntityManager quản lý thực thể đó đã đóng. Cách sửa: Dùng `JOIN FETCH` trong JPQL, sử dụng `@EntityGraph`, hoặc đảm bảo giao dịch vẫn mở (`@Transactional`) khi truy cập thuộc tính đó.
-  </details>
-- **Q:** Open Session in View anti-pattern là gì?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+Lỗi này xảy ra khi ta cố truy cập một thuộc tính được cấu hình LAZY fetching sau khi Session/EntityManager quản lý thực thể đó đã đóng. Cách sửa: Dùng `JOIN FETCH` trong JPQL, sử dụng `@EntityGraph`, hoặc đảm bảo giao dịch vẫn mở (`@Transactional`) khi truy cập thuộc tính đó.
+</details>
 
-  OSIV giữ Session của Hibernate mở trong suốt vòng đời của request HTTP (tới tận tầng View/Controller) để tiện cho việc Lazy loading. Nó bị coi là anti-pattern vì có thể âm thầm tạo ra vô số câu lệnh SQL truy vấn ngoài tầm kiểm soát (N+1 query) và chiếm giữ connection pool quá lâu gây thắt nút cổ chai hiệu năng.
-  </details>
-- **Q:** Khi nào bạn dùng @EntityGraph thay vì JPQL JOIN FETCH?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+<details>
+<summary><b>Q: Open Session in View anti-pattern là gì?</b></summary>
 
-  Nên dùng `@EntityGraph` khi sử dụng các phương thức có sẵn của Spring Data JPA (như `findById`, `findAll`) để tải kèm dữ liệu liên quan mà không muốn phải viết lại toàn bộ câu query JPQL dài dòng bằng tay.
-  </details>
+OSIV giữ Session của Hibernate mở trong suốt vòng đời của request HTTP (tới tận tầng View/Controller) để tiện cho việc Lazy loading. Nó bị coi là anti-pattern vì có thể âm thầm tạo ra vô số câu lệnh SQL truy vấn ngoài tầm kiểm soát (N+1 query) và chiếm giữ connection pool quá lâu gây thắt nút cổ chai hiệu năng.
+</details>
+
+<details>
+<summary><b>Q: Khi nào bạn dùng @EntityGraph thay vì JPQL JOIN FETCH?</b></summary>
+
+Nên dùng `@EntityGraph` khi sử dụng các phương thức có sẵn của Spring Data JPA (như `findById`, `findAll`) để tải kèm dữ liệu liên quan mà không muốn phải viết lại toàn bộ câu query JPQL dài dòng bằng tay.
+</details>

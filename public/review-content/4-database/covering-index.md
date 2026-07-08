@@ -58,21 +58,20 @@ Với hot read path (ví dụ: API endpoint được query hàng nghìn lần/gi
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Covering index là gì và cải thiện hiệu năng thế nào?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+<details>
+<summary><b>Q: Covering index là gì và cải thiện hiệu năng thế nào?</b></summary>
 
-  Là index chứa toàn bộ các cột cần truy vấn. Nó tăng hiệu năng vượt trội vì DB chỉ cần đọc dữ liệu trực tiếp từ cây index (Index Only Scan) mà không cần tốn chi phí đọc ngẫu nhiên vào đĩa để lấy dữ liệu từ bảng gốc (Table Lookup/Key Lookup).
-  </details>
-- **Q:** "Index Only Scan" trong output EXPLAIN có nghĩa gì?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+Là index chứa toàn bộ các cột cần truy vấn. Nó tăng hiệu năng vượt trội vì DB chỉ cần đọc dữ liệu trực tiếp từ cây index (Index Only Scan) mà không cần tốn chi phí đọc ngẫu nhiên vào đĩa để lấy dữ liệu từ bảng gốc (Table Lookup/Key Lookup).
+</details>
 
-  Có nghĩa là DB engine đã tìm thấy toàn bộ dữ liệu cần thiết từ chính index và hoàn toàn không cần phải truy cập vào các trang dữ liệu của bảng (data heap/data pages).
-  </details>
-- **Q:** Khi nào covering index KHÔNG có lợi?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+<details>
+<summary><b>Q: "Index Only Scan" trong output EXPLAIN có nghĩa gì?</b></summary>
 
-  Khi bảng bị cập nhật/ghi quá thường xuyên (vì phải cập nhật thêm nhiều cột trong index làm chậm lệnh WRITE), hoặc khi danh sách các cột cần SELECT quá lớn/nhiều làm tăng kích thước của cây index quá mức, gây tốn bộ nhớ RAM.
-  </details>
+Có nghĩa là DB engine đã tìm thấy toàn bộ dữ liệu cần thiết từ chính index và hoàn toàn không cần phải truy cập vào các trang dữ liệu của bảng (data heap/data pages).
+</details>
+
+<details>
+<summary><b>Q: Khi nào covering index KHÔNG có lợi?</b></summary>
+
+Khi bảng bị cập nhật/ghi quá thường xuyên (vì phải cập nhật thêm nhiều cột trong index làm chậm lệnh WRITE), hoặc khi danh sách các cột cần SELECT quá lớn/nhiều làm tăng kích thước của cây index quá mức, gây tốn bộ nhớ RAM.
+</details>

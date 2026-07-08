@@ -60,21 +60,20 @@ Dùng READ COMMITTED (mặc định) cho hầu hết thao tác. Dùng REPEATABLE
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Dirty read là gì và isolation level nào ngăn nó?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+<details>
+<summary><b>Q: Dirty read là gì và isolation level nào ngăn nó?</b></summary>
 
-  Dirty read xảy ra khi Transaction A đọc được dữ liệu đã bị sửa đổi bởi Transaction B nhưng Transaction B vẫn chưa commit. Nếu B rollback, dữ liệu A đã đọc trở thành vô nghĩa. Các mức isolation từ **READ COMMITTED** trở lên sẽ ngăn chặn được hiện tượng này.
-  </details>
-- **Q:** Sự khác biệt giữa non-repeatable read và phantom read là gì?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+Dirty read xảy ra khi Transaction A đọc được dữ liệu đã bị sửa đổi bởi Transaction B nhưng Transaction B vẫn chưa commit. Nếu B rollback, dữ liệu A đã đọc trở thành vô nghĩa. Các mức isolation từ **READ COMMITTED** trở lên sẽ ngăn chặn được hiện tượng này.
+</details>
 
-  Non-repeatable read xảy ra khi đọc lại một dòng dữ liệu hiện tại thấy giá trị của nó **bị thay đổi** (do transaction khác UPDATE/DELETE và commit). Phantom read xảy ra khi chạy lại cùng một query tìm kiếm và thấy **thêm các dòng mới** xuất hiện (do transaction khác INSERT và commit).
-  </details>
-- **Q:** PostgreSQL implement REPEATABLE READ khác MySQL thế nào?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+<details>
+<summary><b>Q: Sự khác biệt giữa non-repeatable read và phantom read là gì?</b></summary>
 
-  Trong PostgreSQL, REPEATABLE READ ngăn chặn hoàn toàn cả Phantom Read (không cho phép chèn dòng ma). Trong MySQL (InnoDB), REPEATABLE READ mặc định sử dụng Next-key lock để ngăn phantom read, nhưng có trường hợp đặc biệt vẫn có thể gặp nếu chèn ép khóa thủ công; đồng thời PostgreSQL sẽ ném lỗi Serialization Error nếu phát hiện xung đột ghi song song, yêu cầu ứng dụng phải retry.
-  </details>
+Non-repeatable read xảy ra khi đọc lại một dòng dữ liệu hiện tại thấy giá trị của nó **bị thay đổi** (do transaction khác UPDATE/DELETE và commit). Phantom read xảy ra khi chạy lại cùng một query tìm kiếm và thấy **thêm các dòng mới** xuất hiện (do transaction khác INSERT và commit).
+</details>
+
+<details>
+<summary><b>Q: PostgreSQL implement REPEATABLE READ khác MySQL thế nào?</b></summary>
+
+Trong PostgreSQL, REPEATABLE READ ngăn chặn hoàn toàn cả Phantom Read (không cho phép chèn dòng ma). Trong MySQL (InnoDB), REPEATABLE READ mặc định sử dụng Next-key lock để ngăn phantom read, nhưng có trường hợp đặc biệt vẫn có thể gặp nếu chèn ép khóa thủ công; đồng thời PostgreSQL sẽ ném lỗi Serialization Error nếu phát hiện xung đột ghi song song, yêu cầu ứng dụng phải retry.
+</details>

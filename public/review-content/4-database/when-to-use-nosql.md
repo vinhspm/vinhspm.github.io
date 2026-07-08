@@ -68,16 +68,20 @@ Bắt đầu với PostgreSQL — ACID, hỗ trợ JSON xuất sắc và scale t
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Trade-off giữa SQL và NoSQL cho financial application là gì?
-- **Q:** Mô tả tình huống bạn dùng cả SQL và NoSQL trong cùng hệ thống.
-  <details>
-  <summary><b>Trả lời:</b></summary>
+<details>
+<summary><b>Q: Trade-off giữa SQL và NoSQL cho financial application là gì?</b></summary>
 
-  Trang TMĐT: SQL lưu đơn hàng, thanh toán (cần ACID). MongoDB lưu danh mục sản phẩm (schema động). Redis làm cache tăng tốc. Elasticsearch làm công cụ tìm kiếm sản phẩm.
-  </details>
-- **Q:** Eventual consistency có nghĩa gì và khi nào chấp nhận được?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+SQL đảm bảo tính nhất quán mạnh mẽ (ACID) nhưng khó mở rộng quy mô cực lớn. NoSQL dễ mở rộng ngang và hiệu năng cao nhưng thường chỉ có tính nhất quán sau cùng (eventual consistency), rủi ro sai lệch số dư tạm thời.
+</details>
 
-  Nghĩa là dữ liệu cập nhật sẽ đồng bộ và nhất quán trên tất cả các node sau một khoảng thời gian trễ. Chấp nhận được trong các hệ thống mạng xã hội (like, comment, post) hoặc danh mục sản phẩm.
-  </details>
+<details>
+<summary><b>Q: Mô tả tình huống bạn dùng cả SQL và NoSQL trong cùng hệ thống.</b></summary>
+
+Trang TMĐT: SQL lưu đơn hàng, thanh toán (cần ACID). MongoDB lưu danh mục sản phẩm (schema động). Redis làm cache tăng tốc. Elasticsearch làm công cụ tìm kiếm sản phẩm.
+</details>
+
+<details>
+<summary><b>Q: Eventual consistency có nghĩa gì và khi nào chấp nhận được?</b></summary>
+
+Nghĩa là dữ liệu cập nhật sẽ đồng bộ và nhất quán trên tất cả các node sau một khoảng thời gian trễ. Chấp nhận được trong các hệ thống mạng xã hội (like, comment, post) hoặc danh mục sản phẩm.
+</details>

@@ -56,21 +56,20 @@ Alias tất cả cột trong JOIN query (ví dụ `o.id AS o_id`) để tránh x
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** resultType và resultMap khác nhau thế nào?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+<details>
+<summary><b>Q: resultType và resultMap khác nhau thế nào?</b></summary>
 
-  `resultType` dùng khi tên thuộc tính của Java class trùng với tên cột DB (hoặc tự động camelCase). `resultMap` dùng để cấu hình ánh xạ thủ công tùy biến, hoặc ánh xạ các quan hệ phức tạp 1-1, 1-nhiều.
-  </details>
-- **Q:** MyBatis xử lý quan hệ một-nhiều trong một query thế nào?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+`resultType` dùng khi tên thuộc tính của Java class trùng với tên cột DB (hoặc tự động camelCase). `resultMap` dùng để cấu hình ánh xạ thủ công tùy biến, hoặc ánh xạ các quan hệ phức tạp 1-1, 1-nhiều.
+</details>
 
-  Sử dụng tag `<resultMap>` kết hợp tag con `<collection>` để gom các dòng dữ liệu phẳng từ kết quả `JOIN` thành danh sách đối tượng lồng nhau.
-  </details>
-- **Q:** Ngăn N+1 query trong MyBatis thế nào?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+<details>
+<summary><b>Q: MyBatis xử lý quan hệ một-nhiều trong một query thế nào?</b></summary>
 
-  Tránh dùng tag `<association>` hoặc `<collection>` có thuộc tính `select` vì nó sẽ tạo truy vấn bổ sung cho mỗi dòng. Hãy dùng `JOIN` trong một SQL duy nhất và ánh xạ qua resultMap.
-  </details>
+Sử dụng tag `<resultMap>` kết hợp tag con `<collection>` để gom các dòng dữ liệu phẳng từ kết quả `JOIN` thành danh sách đối tượng lồng nhau.
+</details>
+
+<details>
+<summary><b>Q: Ngăn N+1 query trong MyBatis thế nào?</b></summary>
+
+Tránh dùng tag `<association>` hoặc `<collection>` có thuộc tính `select` vì nó sẽ tạo truy vấn bổ sung cho mỗi dòng. Hãy dùng `JOIN` trong một SQL duy nhất và ánh xạ qua resultMap.
+</details>

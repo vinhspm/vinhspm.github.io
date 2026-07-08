@@ -64,21 +64,20 @@ Bật Hibernate statistics trong dev (`spring.jpa.properties.hibernate.generate_
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** N+1 query problem là gì và tại sao xảy ra?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+<details>
+<summary><b>Q: N+1 query problem là gì và tại sao xảy ra?</b></summary>
 
-  Là vấn đề hiệu năng xảy ra khi ứng dụng thực hiện 1 câu query để lấy danh sách cha (1), sau đó với mỗi bản ghi cha lại thực hiện thêm 1 câu query nữa để lấy danh sách con liên quan (N), tổng cộng tạo ra N+1 truy vấn xuống DB. Nó xảy ra do các thuộc tính liên kết được cấu hình Lazy Loading và được duyệt qua trong vòng lặp ở tầng ứng dụng.
-  </details>
-- **Q:** @BatchSize giúp gì với N+1?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+Là vấn đề hiệu năng xảy ra khi ứng dụng thực hiện 1 câu query để lấy danh sách cha (1), sau đó với mỗi bản ghi cha lại thực hiện thêm 1 câu query nữa để lấy danh sách con liên quan (N), tổng cộng tạo ra N+1 truy vấn xuống DB. Nó xảy ra do các thuộc tính liên kết được cấu hình Lazy Loading và được duyệt qua trong vòng lặp ở tầng ứng dụng.
+</details>
 
-  `@BatchSize` cấu hình cho Hibernate tải trước dữ liệu con cho nhiều thực thể cha cùng một lúc bằng câu lệnh `IN` (ví dụ `WHERE parent_id IN (?, ?, ?, ?)` với kích thước batch định trước), giúp giảm số lượng truy vấn từ N+1 xuống còn `1 + (N/batch_size)`.
-  </details>
-- **Q:** Làm thế nào để phát hiện N+1 query trong Spring Boot app?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+<details>
+<summary><b>Q: @BatchSize giúp gì với N+1?</b></summary>
 
-  Bật cấu hình log sql `spring.jpa.show-sql=true`, sử dụng các thư viện như `QuickPerf` trong unit test, hoặc sử dụng các công cụ giám sát hiệu năng APM (như Datadog, Dynatrace) để phát hiện các truy vấn lặp đi lặp lại có cùng cấu trúc.
-  </details>
+`@BatchSize` cấu hình cho Hibernate tải trước dữ liệu con cho nhiều thực thể cha cùng một lúc bằng câu lệnh `IN` (ví dụ `WHERE parent_id IN (?, ?, ?, ?)` với kích thước batch định trước), giúp giảm số lượng truy vấn từ N+1 xuống còn `1 + (N/batch_size)`.
+</details>
+
+<details>
+<summary><b>Q: Làm thế nào để phát hiện N+1 query trong Spring Boot app?</b></summary>
+
+Bật cấu hình log sql `spring.jpa.show-sql=true`, sử dụng các thư viện như `QuickPerf` trong unit test, hoặc sử dụng các công cụ giám sát hiệu năng APM (như Datadog, Dynatrace) để phát hiện các truy vấn lặp đi lặp lại có cùng cấu trúc.
+</details>

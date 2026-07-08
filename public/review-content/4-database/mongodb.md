@@ -93,21 +93,20 @@ Dùng MongoDB khi dữ liệu tự nhiên là hierarchical/document-shaped và s
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Khi nào bạn embed vs reference document trong MongoDB?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+<details>
+<summary><b>Q: Khi nào bạn embed vs reference document trong MongoDB?</b></summary>
 
-  Sử dụng **Embed** (nhúng trực tiếp) khi quan hệ là 1-1 hoặc 1-nhiều nhưng số lượng con nhỏ/giới hạn và dữ liệu con thường xuyên được đọc kèm với dữ liệu cha. Sử dụng **Reference** (tham chiếu bằng ID) khi quan hệ là nhiều-nhiều, số lượng bản ghi con tăng trưởng vô hạn (1-vô-cùng), hoặc dữ liệu con thường xuyên được truy cập độc lập.
-  </details>
-- **Q:** MongoDB aggregation pipeline là gì?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+Sử dụng **Embed** (nhúng trực tiếp) khi quan hệ là 1-1 hoặc 1-nhiều nhưng số lượng con nhỏ/giới hạn và dữ liệu con thường xuyên được đọc kèm với dữ liệu cha. Sử dụng **Reference** (tham chiếu bằng ID) khi quan hệ là nhiều-nhiều, số lượng bản ghi con tăng trưởng vô hạn (1-vô-cùng), hoặc dữ liệu con thường xuyên được truy cập độc lập.
+</details>
 
-  Là framework xử lý dữ liệu mạnh mẽ trong MongoDB hoạt động theo mô hình đường ống. Dữ liệu đi qua các giai đoạn (stages) biến đổi nối tiếp nhau như lọc (`$match`), gom nhóm (`$group`), sắp xếp (`$sort`), chiếu dữ liệu (`$project`) để trả ra kết quả tổng hợp cuối cùng.
-  </details>
-- **Q:** MongoDB xử lý transaction thế nào?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+<details>
+<summary><b>Q: MongoDB aggregation pipeline là gì?</b></summary>
 
-  Kể từ phiên bản 4.0, MongoDB hỗ trợ Multi-Document Transactions cho cả Replica Sets và Sharded Clusters. Nó tuân thủ các thuộc tính ACID, sử dụng giao thức 2-phase commit nội bộ, hoạt động tương tự như transaction trong các hệ quản trị CSDL quan hệ.
-  </details>
+Là framework xử lý dữ liệu mạnh mẽ trong MongoDB hoạt động theo mô hình đường ống. Dữ liệu đi qua các giai đoạn (stages) biến đổi nối tiếp nhau như lọc (`$match`), gom nhóm (`$group`), sắp xếp (`$sort`), chiếu dữ liệu (`$project`) để trả ra kết quả tổng hợp cuối cùng.
+</details>
+
+<details>
+<summary><b>Q: MongoDB xử lý transaction thế nào?</b></summary>
+
+Kể từ phiên bản 4.0, MongoDB hỗ trợ Multi-Document Transactions cho cả Replica Sets và Sharded Clusters. Nó tuân thủ các thuộc tính ACID, sử dụng giao thức 2-phase commit nội bộ, hoạt động tương tự như transaction trong các hệ quản trị CSDL quan hệ.
+</details>

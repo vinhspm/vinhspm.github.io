@@ -53,21 +53,20 @@
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Tag <where> giải quyết vấn đề gì so với hardcode "WHERE 1=1"?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+<details>
+<summary><b>Q: Tag <where> giải quyết vấn đề gì so với hardcode "WHERE 1=1"?</b></summary>
 
-  Tag `<where>` tự động chèn chữ `WHERE` nếu có ít nhất một điều kiện con bên trong đúng, đồng thời tự động loại bỏ các từ khóa dư thừa như `AND` hoặc `OR` đứng ở đầu điều kiện đầu tiên, tránh lỗi cú pháp SQL mà không cần dùng mẹo `WHERE 1=1`.
-  </details>
-- **Q:** Viết batch INSERT 100 record bằng MyBatis thế nào?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+Tag `<where>` tự động chèn chữ `WHERE` nếu có ít nhất một điều kiện con bên trong đúng, đồng thời tự động loại bỏ các từ khóa dư thừa như `AND` hoặc `OR` đứng ở đầu điều kiện đầu tiên, tránh lỗi cú pháp SQL mà không cần dùng mẹo `WHERE 1=1`.
+</details>
 
-  Sử dụng tag `<foreach>` để lặp qua danh sách đối tượng và tạo cú pháp `INSERT INTO table (cols...) VALUES (...), (...), ...` trong một câu lệnh duy nhất, hoặc cấu hình `ExecutorType.BATCH` trong SqlSession để thực hiện batch gửi đi hiệu quả.
-  </details>
-- **Q:** Biểu thức OGNL kiểm tra list không rỗng thế nào?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+<details>
+<summary><b>Q: Viết batch INSERT 100 record bằng MyBatis thế nào?</b></summary>
 
-  Sử dụng biểu thức: `<if test="myList != null and myList.size() > 0">` hoặc `<if test="myList != null and !myList.isEmpty()">`.
-  </details>
+Sử dụng tag `<foreach>` để lặp qua danh sách đối tượng và tạo cú pháp `INSERT INTO table (cols...) VALUES (...), (...), ...` trong một câu lệnh duy nhất, hoặc cấu hình `ExecutorType.BATCH` trong SqlSession để thực hiện batch gửi đi hiệu quả.
+</details>
+
+<details>
+<summary><b>Q: Biểu thức OGNL kiểm tra list không rỗng thế nào?</b></summary>
+
+Sử dụng biểu thức: `<if test="myList != null and myList.size() > 0">` hoặc `<if test="myList != null and !myList.isEmpty()">`.
+</details>

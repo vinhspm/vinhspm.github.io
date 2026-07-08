@@ -78,21 +78,20 @@ public class Order {
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Sự khác biệt giữa managed và detached entity là gì?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+<details>
+<summary><b>Q: Sự khác biệt giữa managed và detached entity là gì?</b></summary>
 
-  Managed entity nằm trong sự quản lý của Persistence Context (Session/EntityManager), mọi thay đổi trên nó sẽ được tự động đồng bộ xuống DB (Dirty Checking). Detached entity là thực thể đã bị tách khỏi Persistence Context (ví dụ sau khi session đóng), mọi thay đổi trên nó sẽ không ảnh hưởng đến DB trừ khi được `merge()` lại.
-  </details>
-- **Q:** Khi nào Hibernate issue UPDATE SQL cho field đã thay đổi?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+Managed entity nằm trong sự quản lý của Persistence Context (Session/EntityManager), mọi thay đổi trên nó sẽ được tự động đồng bộ xuống DB (Dirty Checking). Detached entity là thực thể đã bị tách khỏi Persistence Context (ví dụ sau khi session đóng), mọi thay đổi trên nó sẽ không ảnh hưởng đến DB trừ khi được `merge()` lại.
+</details>
 
-  Khi session thực hiện **flush** (thường xảy ra tự động trước khi commit transaction, trước khi chạy một câu query JPQL/HQL, hoặc khi gọi `flush()` thủ công).
-  </details>
-- **Q:** Mục đích của merge() vs persist() là gì?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+<details>
+<summary><b>Q: Khi nào Hibernate issue UPDATE SQL cho field đã thay đổi?</b></summary>
 
-  `persist()` dùng để chuyển một thực thể mới (Transient) thành Managed để lưu mới vào DB. `merge()` dùng để sao chép trạng thái của một thực thể Detached vào một thực thể Managed (có thể tải từ DB lên hoặc tạo mới nếu chưa có) để cập nhật dữ liệu.
-  </details>
+Khi session thực hiện **flush** (thường xảy ra tự động trước khi commit transaction, trước khi chạy một câu query JPQL/HQL, hoặc khi gọi `flush()` thủ công).
+</details>
+
+<details>
+<summary><b>Q: Mục đích của merge() vs persist() là gì?</b></summary>
+
+`persist()` dùng để chuyển một thực thể mới (Transient) thành Managed để lưu mới vào DB. `merge()` dùng để sao chép trạng thái của một thực thể Detached vào một thực thể Managed (có thể tải từ DB lên hoặc tạo mới nếu chưa có) để cập nhật dữ liệu.
+</details>

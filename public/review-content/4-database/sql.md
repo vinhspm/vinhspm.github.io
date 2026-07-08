@@ -64,16 +64,20 @@ Trong Spring app, viết query analytics phức tạp dưới dạng native SQL 
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Sự khác biệt giữa WHERE và HAVING là gì?
-- **Q:** Giải thích INNER JOIN vs LEFT JOIN bằng ví dụ.
-  <details>
-  <summary><b>Trả lời:</b></summary>
+<details>
+<summary><b>Q: Sự khác biệt giữa WHERE và HAVING là gì?</b></summary>
 
-  Với bảng User và Order: `INNER JOIN` chỉ lấy user đã mua hàng (có order). `LEFT JOIN` lấy toàn bộ user, user chưa mua hàng sẽ có thông tin order là `NULL`.
-  </details>
-- **Q:** Window function khác GROUP BY thế nào?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+`WHERE` lọc dữ liệu trước khi gộp nhóm (`GROUP BY`). `HAVING` lọc kết quả sau khi đã gộp nhóm trên các hàm aggregate.
+</details>
 
-  `GROUP BY` gom các dòng lại thành một dòng duy nhất và làm mất chi tiết dòng. Window function (`OVER`) tính toán aggregate trên một nhóm dòng liên quan nhưng vẫn giữ nguyên chi tiết của từng dòng.
-  </details>
+<details>
+<summary><b>Q: Giải thích INNER JOIN vs LEFT JOIN bằng ví dụ.</b></summary>
+
+Với bảng User và Order: `INNER JOIN` chỉ lấy user đã mua hàng (có order). `LEFT JOIN` lấy toàn bộ user, user chưa mua hàng sẽ có thông tin order là `NULL`.
+</details>
+
+<details>
+<summary><b>Q: Window function khác GROUP BY thế nào?</b></summary>
+
+`GROUP BY` gom các dòng lại thành một dòng duy nhất và làm mất chi tiết dòng. Window function (`OVER`) tính toán aggregate trên một nhóm dòng liên quan nhưng vẫn giữ nguyên chi tiết của từng dòng.
+</details>

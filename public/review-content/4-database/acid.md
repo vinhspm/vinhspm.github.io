@@ -53,21 +53,20 @@ Hiểu DB của bạn cung cấp thuộc tính ACID nào vs bạn phải impleme
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Giải thích durability — cơ chế nào đảm bảo nó trong PostgreSQL?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+<details>
+<summary><b>Q: Giải thích durability — cơ chế nào đảm bảo nó trong PostgreSQL?</b></summary>
 
-  Durability đảm bảo dữ liệu của transaction đã commit sẽ được lưu vĩnh viễn dù hệ thống sụp đổ. Trong PostgreSQL, nó được đảm bảo bằng cơ chế **WAL (Write-Ahead Log)**: ghi mọi thay đổi vào file log tuần tự trên đĩa trước khi cập nhật thực tế lên các data page.
-  </details>
-- **Q:** Isolation khác atomicity thế nào?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+Durability đảm bảo dữ liệu của transaction đã commit sẽ được lưu vĩnh viễn dù hệ thống sụp đổ. Trong PostgreSQL, nó được đảm bảo bằng cơ chế **WAL (Write-Ahead Log)**: ghi mọi thay đổi vào file log tuần tự trên đĩa trước khi cập nhật thực tế lên các data page.
+</details>
 
-  Atomicity đảm bảo một transaction thực hiện kiểu "tất cả hoặc không gì cả" (all-or-nothing). Isolation đảm bảo các transaction chạy song song độc lập và không nhìn thấy dữ liệu trung gian chưa commit của nhau.
-  </details>
-- **Q:** BASE có nghĩa gì và DB NoSQL nào theo nó?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+<details>
+<summary><b>Q: Isolation khác atomicity thế nào?</b></summary>
 
-  BASE là viết tắt của **B**asically **A**vailable, **S**oft-state, **E**ventual consistency (nhất quán sau cùng). Các DB NoSQL theo nó bao gồm Cassandra, DynamoDB, MongoDB (ở một số cấu hình mặc định).
-  </details>
+Atomicity đảm bảo một transaction thực hiện kiểu "tất cả hoặc không gì cả" (all-or-nothing). Isolation đảm bảo các transaction chạy song song độc lập và không nhìn thấy dữ liệu trung gian chưa commit của nhau.
+</details>
+
+<details>
+<summary><b>Q: BASE có nghĩa gì và DB NoSQL nào theo nó?</b></summary>
+
+BASE là viết tắt của **B**asically **A**vailable, **S**oft-state, **E**ventual consistency (nhất quán sau cùng). Các DB NoSQL theo nó bao gồm Cassandra, DynamoDB, MongoDB (ở một số cấu hình mặc định).
+</details>

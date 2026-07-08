@@ -53,21 +53,20 @@ Trong phỏng vấn mô tả quy trình: 1) EXPLAIN slow query, 2) tìm type=ALL
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** type=ALL trong EXPLAIN có nghĩa gì?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+<details>
+<summary><b>Q: type=ALL trong EXPLAIN có nghĩa gì?</b></summary>
 
-  Là Full Table Scan. Đây là tín hiệu xấu chứng tỏ query không sử dụng được index nào để lọc dữ liệu và buộc phải quét qua toàn bộ bảng.
-  </details>
-- **Q:** Covering index là gì và verify thế nào trong EXPLAIN?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+Là Full Table Scan. Đây là tín hiệu xấu chứng tỏ query không sử dụng được index nào để lọc dữ liệu và buộc phải quét qua toàn bộ bảng.
+</details>
 
-  Covering Index là index chứa đầy đủ tất cả các cột cần thiết cho câu query (SELECT, WHERE, JOIN...). Xác minh trong EXPLAIN: cột **Extra** sẽ hiển thị **"Using index"** (trong MySQL/MariaDB) hoặc hiển thị **Index Only Scan** (trong PostgreSQL).
-  </details>
-- **Q:** Fix query có "Using filesort" trong Extra column thế nào?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+<details>
+<summary><b>Q: Covering index là gì và verify thế nào trong EXPLAIN?</b></summary>
 
-  Using filesort xảy ra khi MySQL phải thực hiện sắp xếp dữ liệu ngoài bộ nhớ do không tận dụng được index. Cách fix: Tạo một composite index bao gồm các cột trong mệnh đề `WHERE` kết hợp với cột trong mệnh đề `ORDER BY` theo đúng thứ tự.
-  </details>
+Covering Index là index chứa đầy đủ tất cả các cột cần thiết cho câu query (SELECT, WHERE, JOIN...). Xác minh trong EXPLAIN: cột **Extra** sẽ hiển thị **"Using index"** (trong MySQL/MariaDB) hoặc hiển thị **Index Only Scan** (trong PostgreSQL).
+</details>
+
+<details>
+<summary><b>Q: Fix query có "Using filesort" trong Extra column thế nào?</b></summary>
+
+Using filesort xảy ra khi MySQL phải thực hiện sắp xếp dữ liệu ngoài bộ nhớ do không tận dụng được index. Cách fix: Tạo một composite index bao gồm các cột trong mệnh đề `WHERE` kết hợp với cột trong mệnh đề `ORDER BY` theo đúng thứ tự.
+</details>

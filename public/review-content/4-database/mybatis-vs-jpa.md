@@ -49,21 +49,20 @@ Khi hỏi "MyBatis vs JPA": nêu cả hai trade-off, rồi đưa ra recommendati
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** N+1 query trong JPA do đâu và fix thế nào?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+<details>
+<summary><b>Q: N+1 query trong JPA do đâu và fix thế nào?</b></summary>
 
-  Xảy ra do cơ chế LAZY fetching: tải entity cha, sau đó duyệt qua danh sách liên kết con và tạo ra thêm N câu query để lấy dữ liệu con. Fix bằng cách dùng `JOIN FETCH` trong JPQL/HQL, cấu hình `@EntityGraph`, hoặc sử dụng `@BatchSize` để gộp các truy vấn con.
-  </details>
-- **Q:** Dùng cả MyBatis và Spring Data JPA trong cùng Spring Boot project được không?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+Xảy ra do cơ chế LAZY fetching: tải entity cha, sau đó duyệt qua danh sách liên kết con và tạo ra thêm N câu query để lấy dữ liệu con. Fix bằng cách dùng `JOIN FETCH` trong JPQL/HQL, cấu hình `@EntityGraph`, hoặc sử dụng `@BatchSize` để gộp các truy vấn con.
+</details>
 
-  Được. Cả hai có thể chia sẻ chung một DataSource và cùng tham gia vào một Transaction quản lý bởi Spring (`@Transactional`), giúp tận dụng điểm mạnh của cả hai công cụ.
-  </details>
-- **Q:** Khi nào recommend MyBatis cho project mới?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+<details>
+<summary><b>Q: Dùng cả MyBatis và Spring Data JPA trong cùng Spring Boot project được không?</b></summary>
 
-  Khi hệ thống có các câu truy vấn SQL cực kỳ phức tạp cần tối ưu hóa thủ công tỉ mỉ, hoặc khi làm việc với các cơ sở dữ liệu có sẵn không được thiết kế theo chuẩn ORM, hoặc đội ngũ phát triển thành thạo viết SQL thuần túy hơn là học JPA/Hibernate.
-  </details>
+Được. Cả hai có thể chia sẻ chung một DataSource và cùng tham gia vào một Transaction quản lý bởi Spring (`@Transactional`), giúp tận dụng điểm mạnh của cả hai công cụ.
+</details>
+
+<details>
+<summary><b>Q: Khi nào recommend MyBatis cho project mới?</b></summary>
+
+Khi hệ thống có các câu truy vấn SQL cực kỳ phức tạp cần tối ưu hóa thủ công tỉ mỉ, hoặc khi làm việc với các cơ sở dữ liệu có sẵn không được thiết kế theo chuẩn ORM, hoặc đội ngũ phát triển thành thạo viết SQL thuần túy hơn là học JPA/Hibernate.
+</details>

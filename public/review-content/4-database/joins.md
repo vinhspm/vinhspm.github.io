@@ -55,21 +55,20 @@ LEFT JOIN với NULL check là pattern phổ biến "tìm bản ghi không có b
 
 ### ❓ Câu hỏi phỏng vấn
 
-- **Q:** Sự khác biệt giữa LEFT JOIN và INNER JOIN là gì?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+<details>
+<summary><b>Q: Sự khác biệt giữa LEFT JOIN và INNER JOIN là gì?</b></summary>
 
-  `INNER JOIN` chỉ trả về các hàng khi có sự khớp dữ liệu giữa cả hai bảng. `LEFT JOIN` trả về tất cả các hàng từ bảng bên trái (bảng chính) và các hàng khớp từ bảng bên phải; nếu bảng bên phải không có hàng khớp, các cột tương ứng sẽ nhận giá trị `NULL`.
-  </details>
-- **Q:** Làm thế nào để tìm hàng trong Bảng A không có khớp trong Bảng B?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+`INNER JOIN` chỉ trả về các hàng khi có sự khớp dữ liệu giữa cả hai bảng. `LEFT JOIN` trả về tất cả các hàng từ bảng bên trái (bảng chính) và các hàng khớp từ bảng bên phải; nếu bảng bên phải không có hàng khớp, các cột tương ứng sẽ nhận giá trị `NULL`.
+</details>
 
-  Thực hiện `LEFT JOIN` từ Bảng A sang Bảng B với điều kiện khớp, sau đó thêm mệnh đề lọc `WHERE B.key IS NULL`.
-  </details>
-- **Q:** Tích Descartes là gì và khi nào có thể vô tình xảy ra?
-  <details>
-  <summary><b>Trả lời:</b></summary>
+<details>
+<summary><b>Q: Làm thế nào để tìm hàng trong Bảng A không có khớp trong Bảng B?</b></summary>
 
-  Tích Descartes (Cartesian Product) là kết quả kết hợp mọi hàng của bảng A với mọi hàng của bảng B (số dòng trả về = dòng A * dòng B). Nó vô tình xảy ra khi viết lệnh `JOIN` nhưng quên không khai báo điều kiện khớp (mệnh đề `ON` hoặc `WHERE`).
-  </details>
+Thực hiện `LEFT JOIN` từ Bảng A sang Bảng B với điều kiện khớp, sau đó thêm mệnh đề lọc `WHERE B.key IS NULL`.
+</details>
+
+<details>
+<summary><b>Q: Tích Descartes là gì và khi nào có thể vô tình xảy ra?</b></summary>
+
+Tích Descartes (Cartesian Product) là kết quả kết hợp mọi hàng của bảng A với mọi hàng của bảng B (số dòng trả về = dòng A * dòng B). Nó vô tình xảy ra khi viết lệnh `JOIN` nhưng quên không khai báo điều kiện khớp (mệnh đề `ON` hoặc `WHERE`).
+</details>
