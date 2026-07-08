@@ -52,5 +52,20 @@ Dùng B-Tree cho hầu hết trường hợp. Chuyển sang GIN/GiST cho full-te
 ### ❓ Câu hỏi phỏng vấn
 
 - **Q:** B-Tree index KHÔNG thể tối ưu loại query nào?
+  <details>
+  <summary><b>Trả lời:</b></summary>
+
+  Không tối ưu được các query tìm kiếm không khớp tiền tố trái (ví dụ: `LIKE '%abc'`), tìm kiếm dạng full-text search, hoặc các so sánh không bằng trên nhiều cột không tuân theo leftmost prefix.
+  </details>
 - **Q:** Tại sao B-Tree index không hỗ trợ LIKE '%word%'?
+  <details>
+  <summary><b>Trả lời:</b></summary>
+
+  B-Tree index sắp xếp dữ liệu theo thứ tự từ trái qua phải. Khi dùng `%word%`, ký tự bắt đầu là wildcard nên công cụ tìm kiếm không thể định vị được khoảng giá trị (range scan) và buộc phải quét toàn bộ index hoặc bảng (Full Scan).
+  </details>
 - **Q:** Một B-Tree index điển hình sâu bao nhiêu cấp cho 10 triệu hàng?
+  <details>
+  <summary><b>Trả lời:</b></summary>
+
+  Thường chỉ sâu khoảng **3 đến 4 cấp** do mỗi node (page) của B-Tree có độ rẽ nhánh (fan-out) rất lớn (ví dụ: chứa được hàng trăm key trên 1 page 8KB/16KB).
+  </details>

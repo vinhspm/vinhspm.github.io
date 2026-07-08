@@ -50,5 +50,20 @@ Production: đặt `long_query_time=1` (hoặc 0.5 cho service SLA chặt). Dùn
 ### ❓ Câu hỏi phỏng vấn
 
 - **Q:** Bật và phân tích MySQL slow query log thế nào?
+  <details>
+  <summary><b>Trả lời:</b></summary>
+
+  Bật bằng cấu hình `slow_query_log = 'ON'` và set thời gian `long_query_time = 2` (giây). Phân tích file log thu được bằng công cụ `mysqldumpslow`.
+  </details>
 - **Q:** Query fingerprinting là gì và tại sao quan trọng?
+  <details>
+  <summary><b>Trả lời:</b></summary>
+
+  Là việc chuẩn hóa câu SQL bằng cách ẩn các giá trị tham số (ví dụ biến `id = 5` thành `id = ?`) để gộp các câu query có cùng cấu trúc giúp thống kê các query chậm hiệu quả nhất.
+  </details>
 - **Q:** Performance Schema khác slow query log thế nào?
+  <details>
+  <summary><b>Trả lời:</b></summary>
+
+  Slow query log chỉ ghi nhận lại các truy vấn chạy vượt quá thời gian thiết lập. Performance Schema là công cụ giám sát sâu và thu thập số liệu thời gian thực về tài nguyên (khóa, IO, bộ nhớ...) của các tiến trình trong DB.
+  </details>

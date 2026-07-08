@@ -60,5 +60,20 @@ Thiết kế index xung quanh query thường xuyên nhất. Kiểm tra `pg_stat
 ### ❓ Câu hỏi phỏng vấn
 
 - **Q:** Giải thích leftmost prefix rule cho composite index.
+  <details>
+  <summary><b>Trả lời:</b></summary>
+
+  Là quy tắc tìm kiếm từ trái qua phải. Với composite index trên các cột `(A, B, C)`, cơ sở dữ liệu chỉ có thể tận dụng index nếu câu query tìm kiếm có chứa cột bên trái nhất (`A`), hoặc `(A, B)`, hoặc `(A, B, C)`. Nếu thiếu cột `A` (ví dụ chỉ tìm `B, C`), index sẽ không được sử dụng.
+  </details>
 - **Q:** Với index (a, b), query nào có thể dùng nó: WHERE b=1, WHERE a=1 hay WHERE a=1 AND b=1?
+  <details>
+  <summary><b>Trả lời:</b></summary>
+
+  Query `WHERE a=1` và `WHERE a=1 AND b=1` sẽ dùng được index. Query `WHERE b=1` KHÔNG dùng được index vì vi phạm quy tắc leftmost prefix.
+  </details>
 - **Q:** Thứ tự cột trong composite index ảnh hưởng hiệu năng thế nào?
+  <details>
+  <summary><b>Trả lời:</b></summary>
+
+  Cột có **độ chọn lọc (selectivity) cao nhất** (chứa nhiều giá trị độc nhất nhất) nên được đặt ở vị trí đầu tiên bên trái để thu hẹp vùng dữ liệu tìm kiếm nhanh nhất. Đồng thời phải ưu tiên sắp xếp cột theo các mệnh đề `=` trước, rồi mới đến các cột dùng so sánh phạm vi (`>`, `<`, `LIKE`) và `ORDER BY`.
+  </details>

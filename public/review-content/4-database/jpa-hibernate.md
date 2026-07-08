@@ -79,5 +79,20 @@ Luôn định nghĩa `FetchType.LAZY` trên collection và association `@ManyToO
 ### ❓ Câu hỏi phỏng vấn
 
 - **Q:** Sự khác biệt giữa EAGER và LAZY fetching là gì?
+  <details>
+  <summary><b>Trả lời:</b></summary>
+
+  `EAGER` tải dữ liệu liên quan ngay lập tức cùng lúc với entity chính. `LAZY` trì hoãn việc tải dữ liệu liên quan cho đến khi thuộc tính đó được truy cập lần đầu tiên (thông qua Proxy object).
+  </details>
 - **Q:** Dirty checking trong Hibernate là gì?
+  <details>
+  <summary><b>Trả lời:</b></summary>
+
+  Là cơ chế tự động phát hiện các thay đổi trên trạng thái của các Managed entity trong Persistence Context. Khi transaction chuẩn bị commit, Hibernate so sánh thực thể hiện tại với bản snapshot ban đầu và tự động sinh ra các câu lệnh `UPDATE` SQL cần thiết xuống DB mà không cần gọi hàm update thủ công.
+  </details>
 - **Q:** JPA first-level cache hoạt động thế nào?
+  <details>
+  <summary><b>Trả lời:</b></summary>
+
+  Là bộ đệm cấp 1 gắn liền với Session (EntityManager). Mọi thao tác tìm kiếm thực thể bằng ID trong cùng một Session trước hết sẽ kiểm tra xem thực thể đó đã có trong cache chưa. Nếu có, nó trả về ngay lập tức mà không cần truy vấn lại database. Cache này tự giải phóng khi Session đóng.
+  </details>

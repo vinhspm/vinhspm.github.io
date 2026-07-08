@@ -56,5 +56,20 @@ Thêm index dựa trên slow query log thực tế (`pg_stat_statements` trong P
 ### ❓ Câu hỏi phỏng vấn
 
 - **Q:** Sự khác biệt giữa clustered và non-clustered index là gì?
+  <details>
+  <summary><b>Trả lời:</b></summary>
+
+  Clustered index xác định thứ tự vật lý của dữ liệu trên đĩa (lá của nó chứa chính dữ liệu của hàng). Mỗi bảng chỉ có duy nhất 1 clustered index (thường là Primary Key). Non-clustered index lưu cấu trúc index riêng biệt, các lá của nó chứa con trỏ/key dẫn tới dữ liệu hàng thực tế.
+  </details>
 - **Q:** Khi nào bạn dùng composite index?
+  <details>
+  <summary><b>Trả lời:</b></summary>
+
+  Khi câu lệnh query thường xuyên lọc dữ liệu (`WHERE`) hoặc sắp xếp dữ liệu (`ORDER BY`) trên nhiều cột cùng một lúc.
+  </details>
 - **Q:** Index selectivity là gì và tại sao quan trọng?
+  <details>
+  <summary><b>Trả lời:</b></summary>
+
+  Là tỷ lệ giữa số lượng giá trị độc nhất (unique values) chia cho tổng số hàng trong bảng. Chỉ số này càng gần 1 thì index càng có độ chọn lọc cao, giúp DB engine thu hẹp phạm vi tìm kiếm nhanh nhất. Index có selectivity quá thấp (như cột Giới tính) thường không mang lại hiệu quả và bị DB Engine bỏ qua để quét toàn bảng.
+  </details>

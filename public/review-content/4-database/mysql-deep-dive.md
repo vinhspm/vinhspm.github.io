@@ -18,5 +18,20 @@ Kiến thức MySQL được expect nếu JD nhắc đến MySQL. Biết InnoDB 
 ### ❓ Câu hỏi phỏng vấn
 
 - **Q:** Clustered index là gì và InnoDB implement thế nào?
+  <details>
+  <summary><b>Trả lời:</b></summary>
+
+  Clustered index sắp xếp thứ tự lưu trữ vật lý của các dòng dữ liệu trên đĩa. Trong InnoDB, clustered index bắt buộc được gán cho Primary Key (hoặc Unique Index không null đầu tiên nếu không có PK, hoặc một cột ẩn tự tăng do InnoDB tự sinh).
+  </details>
 - **Q:** type=ALL trong EXPLAIN có nghĩa gì?
+  <details>
+  <summary><b>Trả lời:</b></summary>
+
+  Là Full Table Scan. Đây là tín hiệu xấu chứng tỏ query không sử dụng được index nào để lọc dữ liệu và buộc phải quét qua toàn bộ bảng.
+  </details>
 - **Q:** Tune HikariCP pool size thế nào?
+  <details>
+  <summary><b>Trả lời:</b></summary>
+
+  Dựa trên số lượng core CPU của database, cấu hình đĩa cứng và số lượng kết nối mạng song song. Quy tắc ngón tay cái nổi tiếng của PostgreSQL/HikariCP là: `connections = ((physical_cores * 2) + effective_spindle_count)`. Sau đó cần đo đạc thực tế để tinh chỉnh.
+  </details>

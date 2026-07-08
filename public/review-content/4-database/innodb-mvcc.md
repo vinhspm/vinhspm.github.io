@@ -53,5 +53,20 @@ Lỗi phổ biến nhất InnoDB: dùng UUID (v4) làm primary key. UUID ngẫu 
 ### ❓ Câu hỏi phỏng vấn
 
 - **Q:** Tại sao UUID ngẫu nhiên là lựa chọn tồi cho InnoDB primary key?
+  <details>
+  <summary><b>Trả lời:</b></summary>
+
+  InnoDB sắp xếp Clustered Index vật lý theo khóa chính. UUID ngẫu nhiên khiến dữ liệu chèn mới bị phân tán lung tung thay vì ghi tuần tự ở cuối trang, gây ra hiện tượng **phân mảnh trang (page split)**, làm chậm nghiêm trọng hiệu năng ghi (write IO) và tốn không gian lưu trữ index.
+  </details>
 - **Q:** MVCC cho phép reader và writer chạy đồng thời không block nhau thế nào?
+  <details>
+  <summary><b>Trả lời:</b></summary>
+
+  MVCC sử dụng cơ chế ghi nhận phiên bản lịch sử của dữ liệu (Undo Log). Khi một transaction thay đổi dòng dữ liệu (Write), nó tạo ra phiên bản mới. Các transaction khác đọc dữ liệu (Read) tại thời điểm đó sẽ được hướng dẫn đọc phiên bản cũ trong Undo Log phù hợp với snapshot của họ, tránh việc phải đợi khóa ghi kết thúc.
+  </details>
 - **Q:** Next-key lock là gì và InnoDB dùng nó để làm gì?
+  <details>
+  <summary><b>Trả lời:</b></summary>
+
+  Next-key lock là sự kết hợp giữa Record Lock (khóa trên dòng cụ thể) và Gap Lock (khóa khoảng trống giữa các index record). InnoDB dùng nó ở mức isolation level `REPEATABLE READ` để ngăn chặn hiện tượng **Phantom Read** (dòng ma xuất hiện khi đọc lại).
+  </details>

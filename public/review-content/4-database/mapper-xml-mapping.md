@@ -56,5 +56,20 @@ Dùng annotation cho CRUD đơn giản một bảng, XML cho query có điều k
 ### ❓ Câu hỏi phỏng vấn
 
 - **Q:** Rủi ro khi dùng ${} thay vì #{} trong MyBatis?
+  <details>
+  <summary><b>Trả lời:</b></summary>
+
+  Biểu thức `${}` chèn trực tiếp chuỗi ký tự thô vào câu SQL (String concatenation), gây ra nguy cơ cao bị tấn công **SQL Injection**. Biểu thức `#{} ` sử dụng cơ chế Prepared Statement (truyền tham số an toàn dưới dạng dấu `?`), giúp ngăn chặn triệt để SQL Injection.
+  </details>
 - **Q:** Lấy primary key tự sinh sau INSERT thế nào?
+  <details>
+  <summary><b>Trả lời:</b></summary>
+
+  Cấu hình thuộc tính `useGeneratedKeys="true"` và chỉ định cột nhận giá trị qua `keyProperty="propertyName"` trong tag `<insert>` của file XML Mapper.
+  </details>
 - **Q:** Namespace trong XML mapper file liên hệ với Mapper interface thế nào?
+  <details>
+  <summary><b>Trả lời:</b></summary>
+
+  Thuộc tính `namespace` trong file XML bắt buộc phải trỏ đúng đến tên đầy đủ (fully qualified name) của interface Mapper tương ứng để MyBatis có thể liên kết các phương thức của interface với các câu lệnh SQL trong XML.
+  </details>

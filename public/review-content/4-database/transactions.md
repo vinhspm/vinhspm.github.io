@@ -74,5 +74,20 @@ Giữ method `@Transactional` ngắn và tránh HTTP call bên ngoài trong tran
 ### ❓ Câu hỏi phỏng vấn
 
 - **Q:** ACID là viết tắt của gì và mỗi thuộc tính đảm bảo điều gì?
+  <details>
+  <summary><b>Trả lời:</b></summary>
+
+  Atomicity (All-or-nothing); Consistency (Đúng ràng buộc); Isolation (Chạy song song độc lập); Durability (Lưu trữ vĩnh viễn sau commit).
+  </details>
 - **Q:** Điều gì xảy ra với transaction nếu server crash giữa hai update?
+  <details>
+  <summary><b>Trả lời:</b></summary>
+
+  Khi server khởi động lại, DB phục hồi bằng cách quét log giao dịch và rollback (hoàn tác) toàn bộ transaction này vì chưa được commit hoàn chỉnh.
+  </details>
 - **Q:** Tại sao bạn nên tránh transaction chạy lâu?
+  <details>
+  <summary><b>Trả lời:</b></summary>
+
+  Transaction lâu sẽ giữ khóa dữ liệu lâu làm nghẽn các transaction khác, làm phình to Undo Log/WAL và tăng nguy cơ gây deadlock hoặc cạn tài nguyên.
+  </details>

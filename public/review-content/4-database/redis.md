@@ -91,5 +91,20 @@ Dùng `@Cacheable`/`@CacheEvict` với Redis CacheManager cho method-level cachi
 ### ❓ Câu hỏi phỏng vấn
 
 - **Q:** Các cấu trúc dữ liệu chính trong Redis và trường hợp sử dụng là gì?
+  <details>
+  <summary><b>Trả lời:</b></summary>
+
+  String: Cache cơ bản, counter; List: Queue, feed; Set: Nhóm không trùng, giao/hợp; Hash: User profile; Sorted Set: Leaderboard.
+  </details>
 - **Q:** Redis đạt durability thế nào?
+  <details>
+  <summary><b>Trả lời:</b></summary>
+
+  Qua 2 cơ chế: RDB (chụp snapshot nhanh xuống đĩa định kỳ) và AOF (ghi log lại các lệnh ghi liên tục). Có thể dùng cả hai song song.
+  </details>
 - **Q:** Làm thế nào để implement rate limiter dùng Redis?
+  <details>
+  <summary><b>Trả lời:</b></summary>
+
+  Có thể sử dụng thuật toán Fixed Window đơn giản bằng cách dùng `INCR` khóa IP/User theo phút kết hợp `EXPIRE`, hoặc dùng Sorted Set cho thuật toán Sliding Window chính xác hơn.
+  </details>
