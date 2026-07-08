@@ -182,7 +182,6 @@ function Home() {
             <h3 className="exp-role">Software Engineer</h3>
             <div className="exp-company">CMC Global</div>
             <ul className="exp-desc" style={{ listStyleType: 'disc', paddingLeft: '1.5rem', marginBottom: '1.5rem' }}>
-              <li>Led a team of 5 developers, improving sprint velocity by 20% through effective task estimation and rigorous code reviews.</li>
               <li>Architected core LMS modules (Task Scheduling, Event Pub-Sub), handling 1,000+ concurrent user events with high reliability.</li>
               <li>Constructed automated CI/CD pipelines using Jenkins and Docker, reducing deployment time.</li>
               <li>Optimized database interactions with complex DTO projections and bulk upserts, reducing API response times by 70%.</li>
