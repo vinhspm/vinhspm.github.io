@@ -30,10 +30,22 @@ function Review() {
       .then(res => res.json())
       .then(data => {
         // Tạm ẩn các chủ đề thuần Java (Core Java, Spring Ecosystem) vì không học Java
-        const nonJavaCategories = data.filter(cat => {
-          const title = cat.title.toLowerCase();
-          return !title.includes('java') && !title.includes('spring');
-        });
+        // Đánh số lại menu từ 1 đến N liên tục
+        const nonJavaCategories = data
+          .filter(cat => {
+            const title = cat.title.toLowerCase();
+            return !title.includes('java') && !title.includes('spring');
+          })
+          .map((cat, idx) => {
+            const originalTitle = cat.title;
+            const cleanTitle = cat.title.replace(/^\d+\.\s*/, '');
+            return {
+              ...cat,
+              originalTitle,
+              folderSlug: slugify(originalTitle),
+              title: `${idx + 1}. ${cleanTitle}`
+            };
+          });
         setCategories(nonJavaCategories);
         if (nonJavaCategories.length > 0) {
           setExpandedGroups({ [0]: true });
@@ -46,7 +58,7 @@ function Review() {
       });
   }, []);
 
-  const handleSelectItem = (name, catTitle) => {
+  const handleSelectItem = (name, cat) => {
     setActiveItem(name);
     setMarkdownContent('Đang tải nội dung...');
     if (window.innerWidth < 768) {
@@ -54,7 +66,11 @@ function Review() {
     }
 
     const slug = slugify(name);
-    const catSlug = slugify(catTitle);
+    // Sử dụng folderSlug để khớp chính xác thư mục trên đĩa (/review-content/2-concurrency/...)
+    const catSlug = (typeof cat === 'object' && cat !== null)
+      ? (cat.folderSlug || slugify(cat.originalTitle || cat.title))
+      : slugify(cat);
+
     fetch(`/review-content/${catSlug}/${slug}.md`)
       .then(res => {
         if (!res.ok) throw new Error('Not found');
@@ -159,7 +175,7 @@ function Review() {
                             <div
                               className={`nav-topic ${hasSubs ? 'has-subs' : ''} ${isSubOpen ? 'sub-open' : ''} ${activeItem === topic.name ? 'active' : ''}`}
                               onClick={() => {
-                                handleSelectItem(topic.name, cat.title);
+                                handleSelectItem(topic.name, cat);
                                 if (hasSubs) toggleTopic(ci, ti);
                               }}
                             >
@@ -186,7 +202,7 @@ function Review() {
                                       <div
                                         key={si}
                                         className={`nav-sub ${activeItem === sub ? 'active' : ''}`}
-                                        onClick={() => handleSelectItem(sub, cat.title)}
+                                        onClick={() => handleSelectItem(sub, cat)}
                                       >
                                         {sub}
                                       </div>
