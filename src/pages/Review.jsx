@@ -29,8 +29,13 @@ function Review() {
     fetch('/review-content/topics.json')
       .then(res => res.json())
       .then(data => {
-        setCategories(data);
-        if (data.length > 0) {
+        // Tạm ẩn các chủ đề thuần Java (Core Java, Spring Ecosystem) vì không học Java
+        const nonJavaCategories = data.filter(cat => {
+          const title = cat.title.toLowerCase();
+          return !title.includes('java') && !title.includes('spring');
+        });
+        setCategories(nonJavaCategories);
+        if (nonJavaCategories.length > 0) {
           setExpandedGroups({ [0]: true });
         }
         setIsLoading(false);
